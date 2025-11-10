@@ -290,7 +290,7 @@ window.addEventListener('resize', setDynamicHeight);
       slideInterval = setInterval(function(){
         currentIndex = (currentIndex + 1) % $('#mainimg').find('video').length;
         showSlide(currentIndex);
-      }, 4000);	//4秒ごとにスライド
+      }, 8000);	//4秒ごとにスライド
     }
 
     function stopSlideshow() { clearInterval(slideInterval); }
