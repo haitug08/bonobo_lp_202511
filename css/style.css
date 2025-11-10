@@ -190,7 +190,11 @@ header a {color: inherit;}
 #header-box .btn a {
 	display: block;text-decoration: none;
 	padding: 0.5rem 2rem;	/*上下、左右へのボタン内の余白*/
-	border-radius: 3px;		/*角を少し丸くする*/
+	background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    font-weight: bold;
 }
 
 /*ボタンに使用しているアイコン*/
