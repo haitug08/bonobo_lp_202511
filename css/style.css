@@ -229,7 +229,7 @@ header a {color: inherit;}
 	width: 100%;
 	height: 100%;
 	padding: 100px var(--content-space) 50px;		/*ブロック内の余白。上に100px、左右についてはcss冒頭のcontent-spaceを読み込む、下に50px。*/
-	background-image: url(images/bg_menu.png);
+	background-image: url(https://haitug08.github.io/bonobo_lp_202511/images/bg_menu.png);
 	color: var(--primary-inverse-color);	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
 }
 
