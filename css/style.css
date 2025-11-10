@@ -237,9 +237,11 @@ header a {color: inherit;}
 #menubar a {
 	display: block;text-decoration: none;
 	color: inherit;
-	border: 1px solid #fff;	/*枠線の幅、線種、色*/
+	border: 1px solid #000000;	/*枠線の幅、線種、色*/
 	margin-bottom: 1rem;	/*下に１文字分のスペースを空ける。メニュー同士の間隔です。*/
 	padding: 1rem 2rem;		/*メニュー内の余白。上下に１文字分、左右に２文字分。*/
+	border-radius: 100px;
+    background-color: #ffffff;
 }
 
 
@@ -273,7 +275,7 @@ header a {color: inherit;}
 	left: 18px;
 	width: 35px;
 	height: 2px;		/*線の高さ*/
-	background: #fff;	/*線の色*/
+	background: #000000;	/*線の色*/
 	transition: 0.3s;
 }
 
