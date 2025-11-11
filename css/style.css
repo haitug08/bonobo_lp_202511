@@ -416,7 +416,7 @@ main h2.c {
 
 /*ブロック内のh4見出し*/
 .list-half .list h4 {
-	font-size: 1.4rem;	/*文字サイズを1.4倍*/
+	font-size: 4.0rem;	/*文字サイズを1.4倍*/
 	margin-bottom: 1rem;	/*下に１文字分のスペースを空ける*/
 }
 
@@ -442,6 +442,7 @@ main h2.c {
 		flex-direction: row;			/*子要素を横並びにする*/
 		justify-content: space-between;	/*並びかたの種類の指定*/
 		align-items: center;			/*垂直揃えの指定。天地中央に配置されるように。*/
+		padding: 10%;
 	}
 
 	/*画像ブロック共通*/
