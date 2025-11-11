@@ -444,7 +444,6 @@ main h2.c {
 /*画像ブロック共通*/
 .list-half .image-l img, .list-half .image-r img {
 	border-radius: 50px;	/*角を丸くする指定。*/
-	box-shadow: 10px 10px rgba(0,0,0,0.1);	/*ボックスの影。右へ、下へ、0,0,0は黒の事で0.1は色が10%出た状態。*/
 }
 
 	/*画面幅900px以上の追加指定*/
@@ -465,6 +464,7 @@ main h2.c {
 	/*画像を右に配置する場合*/
 	.list-half .image-r {
 		margin-left: 2rem;	/*画像の左側に空けるスペース*/
+		max-width: 350px;
 	}
 
 	/*画像を左に配置する場合*/
@@ -478,6 +478,9 @@ main h2.c {
 		flex: 1;
 	}
 
+
+
+		
 	}/*追加指定ここまで*/
 
 
