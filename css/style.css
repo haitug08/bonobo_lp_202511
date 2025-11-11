@@ -249,7 +249,7 @@ header a {color: inherit;}
 #menubar_hdr {
 	display: flex;
 	animation: opa1 0s 0.2s both;
-	position: fixed;
+	position: static;
 	z-index: 101;
 	cursor: pointer;
 	right: 40px;	/*右からの配置場所*/
