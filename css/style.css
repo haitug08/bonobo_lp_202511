@@ -85,25 +85,13 @@ figure {margin: 0;}
 dd {margin: 0;}
 nav,ul,li,ol {margin: 0;padding: 0;}
 nav ul {list-style: none;}
-
-/*table全般の設定*/
 table {border-collapse:collapse;}
-
-/*画像全般の設定*/
 img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
-
-/*videoタグ*/
 video {max-width: 100%;}
-
-/*iframeタグ*/
 iframe {width: 100%;}
-
-/*他*/
 input {font-size: 1rem;}
-
-/*section*/
 section {
-	padding: var(--content-space);	/*section内の余白。css冒頭のcontent-spaceを読み込みます。*/
+		padding: 10%;
 }
 
 
