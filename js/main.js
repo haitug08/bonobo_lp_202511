@@ -254,8 +254,8 @@ window.addEventListener('resize', setDynamicHeight);
 
   // スライドショー本体
   $(function(){
-    var filesPortrait  = ['1-tate.mp4','1-tate.mp4','1-tate.mp4'],
-        filesLandscape = ['1-yoko.mp4','1-yoko.mp4','1-yoko.mp4'],
+    var filesPortrait  = ['1-tate.mp4','2-tate.mp4'],
+        filesLandscape = ['1-yoko.mp4','2-yoko.mp4'],
         slideInterval, currentIndex = 0, currentOrientation;
 
     function setVideoSources(orientation) {
