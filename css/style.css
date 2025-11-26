@@ -75,7 +75,7 @@ body {
 	font-family: "YU Gothic UI", YuGothic, "游ゴシック", "Yu Gothic", sans-serif;
 	-webkit-text-size-adjust: none;
 	background: #fff;	/*背景色*/
-	color: #555;		/*文字色*/
+	color: #000000;		/*文字色*/
 	line-height: 2;		/*行間*/
 	overflow-x: hidden;
 }
