@@ -1090,8 +1090,8 @@ ul.step li:last-child::after {
 /*bg1
 ---------------------------------------------------------------------------*/
 .bg1 {
-	background: var(--secondary-color);		/*背景色。css冒頭のsecondary-colorを読み込みます。*/
-	color: var(--secondary-inverse-color);	/*背景色。css冒頭のsecondary-inverse-colorを読み込みます。*/
+	background: #000000;
+	color: #ffffff;
 }
 
 
