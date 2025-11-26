@@ -180,7 +180,7 @@ header a {color: inherit;}
 	padding: 0.5rem 1.5rem;	/*上下、左右へのボタン内の余白*/
 	background-color: #ffffff;
     color: #000000;
-    border: 1px solid #000000;
+    border: 2px solid #000000;
     border-radius: 30px;
     font-weight: bold;
 }
@@ -245,7 +245,7 @@ header a {color: inherit;}
 	width: 70px;	/*ボタンの幅*/
 	height: 70px;	/*ボタンの高さ*/
 	background: #ffffff;	/*ボタン色*/
-	border: 1px solid #000000;
+	border: 2px solid #000000;
 	border-radius: 100px;	/*角を丸くする指定。左上、右上、右下、左下の順番。この場合は左下だけ角を丸くする。*/
 	transform-origin: right top;
 	transform: scale(1);	/*大きさを調整したい場合はここの「1」を変更します。1.2や0.7など。*/
