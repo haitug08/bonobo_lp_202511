@@ -552,8 +552,8 @@ main h2.c {
 
 /*ボックス内のfigure画像*/
 .list-grid7 .list figure {
-	margin: 0 auto;
-	margin-bottom: 1rem;	/*画像の下に空けるスペース*/
+    margin: 5rem;
+    max-width: 300px;
 }
 
 
