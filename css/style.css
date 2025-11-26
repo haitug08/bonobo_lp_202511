@@ -432,7 +432,12 @@ main h2 span.small {
 
 /*見出しをセンタリングする場合*/
 main h2.c {
-	align-items: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 72px;
+    font-family: "Fugaz One";
+    letter-spacing: 1.2rem;
+    font-style: italic;
 }
 
 
