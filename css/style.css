@@ -414,7 +414,6 @@ main h2 {
 	margin: 0;padding: 0;
 	font-size: 2.4rem;		/*文字サイズ。240%。*/
 	font-weight: normal;	/*h要素のデフォルトの太字を標準に*/
-	margin-bottom: 5vw;		/*下にスペースを空ける*/
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: flex-start;
@@ -436,8 +435,7 @@ main h2.c {
     font-weight: bold;
     font-size: 72px;
     font-family: "Fugaz One";
-    letter-spacing: 1.2rem;
-    font-style: italic;
+    letter-spacing: 0.5rem;
 }
 
 
