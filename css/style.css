@@ -491,7 +491,7 @@ main h2.c {
 
 	/*画像を右に配置する場合*/
 	.list-half .image-r {
-		margin: 2rem　10rem　2rem　2rem;	/*画像の左側に空けるスペース*/
+		margin: 2rem 10rem 2rem 2rem;
 		max-width: 350px;
 	}
 
