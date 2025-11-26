@@ -550,8 +550,9 @@ main h2.c {
 
 /*ボックス内のp要素*/
 .list-grid7 .list p {
-	font-size: 0.85rem;	/*文字サイズを85%に*/
-	line-height: 1.5;	/*行間を少し狭く*/
+	color: #ffffff;
+    font-weight: bold;
+    margin: 2rem 3rem 3rem 3rem;
 }
 
 /*ボックス内のfigure画像*/
