@@ -562,7 +562,6 @@ main h2.c {
 	/*ブロック全体を囲むブロック*/
 	.list-grid7 {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);	/*3列にする指定。4列にしたければrepeat(4, 1fr)とする。*/
 		gap: 2rem	/*ブロックの間に空けるマージン的な指定。２文字分。*/
 	}
 
