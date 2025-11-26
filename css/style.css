@@ -359,6 +359,45 @@ body:not(.home) #contents {
 	margin-right: 2rem;
 }
 
+/*ボタンが入ったボックス*/
+#contents .btn {
+	list-style: none;
+	display: flex;
+	gap: 1rem;	/*ボタン同士の間に空けるスペース。１文字分。*/
+}
+
+/*メニュー１個あたり（ここにない設定は、下の方にある「btn共通設定」にあります。）*/
+#contents .btn a {
+	display: block;text-decoration: none;
+	padding: 0.5rem 1.5rem;	/*上下、左右へのボタン内の余白*/
+	background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+/*ボタンに使用しているアイコン*/
+#contents .btn i {
+	margin-right: 1rem;		/*アイコンの右側に１文字分のスペースを空ける*/
+	transform: scale(1.4);	/*アイコンサイズを140%に。*/
+}
+
+	/*画面幅500px以下の追加指定*/
+	@media screen and (max-width:500px) {
+
+	/*ボタンが入ったボックス*/
+	#contents .btn {
+		display: inline-block;
+	}
+	
+	/*ボタン１個あたり*/
+	#contents .btn li {
+		margin-bottom: 0.5rem;
+	}
+
+	}/*追加指定ここまで*/
+
 
 /*p要素（段落タグ）
 ---------------------------------------------------------------------------*/
