@@ -372,7 +372,7 @@ body:not(.home) #contents {
 	padding: 0.5rem 1.5rem;	/*上下、左右へのボタン内の余白*/
 	background-color: #ffffff;
     color: #000000;
-    border: 1px solid #000000;
+    border: 2px solid #000000;
     border-radius: 30px;
     font-weight: bold;
 }
