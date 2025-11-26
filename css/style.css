@@ -520,13 +520,14 @@ main h2.c {
 .list-grid7 .list {
     display: grid;
 	position: relative;
-	border-radius: 5px;		/*角を少しだけ丸く*/
+	border-radius: 20px;
 	background: #fafafa;	/*背景色*/
 	color: #555;			/*文字色*/
 	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
 	padding: 2rem;			/*ボックス内の余白。２文字分。*/
 	margin-bottom: 2rem;	/*ボックスの下に空けるスペース。2文字分。*/
 	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/007.png);
+	margin: auto;
 }
 
 /*ボックス内のh4見出し*/
@@ -562,7 +563,7 @@ main h2.c {
 
 	/*ブロック全体を囲むブロック*/
 	.list-grid7 {
-		display: grid;
+		display: flex;
 		gap: 2rem	/*ブロックの間に空けるマージン的な指定。２文字分。*/
 	}
 
