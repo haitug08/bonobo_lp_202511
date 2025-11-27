@@ -573,6 +573,7 @@ main h2 {
 	.list-grid7 {
 		display: flex;
 		gap: 2rem	/*ブロックの間に空けるマージン的な指定。２文字分。*/
+		margin-bottom: 150px;
 	}
 
 	}/*追加指定ここまで*/
