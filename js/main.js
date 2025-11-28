@@ -354,11 +354,16 @@ $(function() {
 // 背景画像が少しずつ上に移動する
 //===============================================================
 $(document).ready(function() {
-    // 初期設定：ロード時にも位置合わせを実行
+    console.log("① スクリプト開始：読み込み完了"); // これが出なければjQuery自体が動いていません
+
+    var $target = $('.list-grid7 .list');
+    console.log("② 対象要素の数: " + $target.length); // 「0」だとHTMLのクラス名が見つかっていません
+
+    // 初期設定
     updateParallax();
 
-    // スクロール時に実行
     $(window).on('scroll', function() {
+        // スクロールするたびにログが出すぎないよう、計算処理だけ実行
         updateParallax();
     });
 
@@ -366,25 +371,25 @@ $(document).ready(function() {
         var scrollTop = $(window).scrollTop();
         var windowHeight = $(window).height();
 
-        // ★ここを書き換えました（対象を .list-grid7 の中の .list に変更）
-        $('.list-grid7 .list').each(function() {
+        $target.each(function(index) {
             var $this = $(this);
             var offsetTop = $this.offset().top;
             var height = $this.outerHeight();
 
-            // 要素が画面内に見えている時だけ計算する
+            // 画面内にあるか判定
             if (offsetTop + height > scrollTop && offsetTop < scrollTop + windowHeight) {
-                // 画面内のどこにいるかを0〜1の割合で計算
                 var percentScrolled = (scrollTop + windowHeight - offsetTop) / (windowHeight + height);
-                
-                // 範囲を0〜1に制限
-                percentScrolled = percentScrolled > 1 ? 1 : percentScrolled < 0 ? 0 : percentScrolled;
+                percentScrolled = Math.min(Math.max(percentScrolled, 0), 1); // 0〜1に制限
 
-                // 背景位置を調整（0%から100%へ移動）
                 var yPos = (percentScrolled * 100);
                 
-                // CSSのbackground-positionを書き換える
+                // CSS書き換え実行
                 $this.css('background-position', 'center ' + yPos + '%');
+                
+                // 最初の1回だけログを出す（動作確認用）
+                if(index === 0 && Math.random() < 0.05) { 
+                    console.log("③ 計算実行中: " + yPos + "%"); 
+                }
             }
         });
     }
