@@ -1,16 +1,12 @@
 @charset "utf-8";
 
-
-
 /*Font Awesomeの読み込み
 ---------------------------------------------------------------------------*/
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
 
-
 /*Google Fontsの読み込み
 ---------------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
-
 
 /*テンプレート専用cssファイルの読み込み
 ---------------------------------------------------------------------------*/
@@ -649,6 +645,85 @@ main h2 {
 
 
 
+/*ご利用の流れ
+---------------------------------------------------------------------------*/
+.flow-box * {margin: 0;padding: 0;}
+
+/*背景画像*/
+#flow {
+	background: url("../images/bg-flow.png") no-repeat right top / 50vw;	/*right(右)、top(上)に配置し、幅は画面幅の50%に。*/
+}
+
+/*ステップボックス１個あたりの設定*/
+.flow-box {
+	position: relative;
+	margin-bottom: 4rem;	/*下に空けるスペース、2文字分。ステップボックス同士のスペースです。*/
+}
+
+/*ボックス内のh3見出し（大きな端末で左側に配置される背景色つきの見出し）*/
+.flow-box .title h3 {
+	background: var(--primary-color);		/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	color: var(--primary-inverse-color);	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+	margin-left: calc(-1 * var(--content-space));
+	margin-right: calc(-1 * var(--content-space));
+	text-align: center;	/*テキストをセンタリング*/
+	padding: 2rem;		/*見出し内の余白。２文字分。*/
+	margin-bottom: 2rem;	/*見出しの下に空けるスペース。２文字分。*/
+}
+
+/*h3内のspan（小さな装飾文字）*/
+.flow-box .title h3 span {
+	display: block;
+	font-size: 0.7em;	/*文字サイズ。親要素の70%。*/
+}
+
+/*「STEP01」〜「STEP04」のテキスト*/
+.flow-box .step-num {
+	display: inline-block;
+	position: absolute;
+	left: 0px;
+	top: -50px;	/*本来の場所から上に50pxずらす*/
+	width: 100%;
+	font-size: 3rem;	/*文字サイズ300%*/
+	color: var(--primary-color);	/*文字色。css冒頭のprimary-colorを読み込みます。*/
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	.flow-box {
+		display: flex;
+		align-items: flex-start;
+		gap: 5rem;	/*左右のブロック同士の間に空けるスペース。５文字分。*/
+	}
+	
+	/*「STEP01」〜「STEP04」のテキスト*/
+	.flow-box .step-num {
+		top: -100px;		/*本来の場所から上に100pxずらす*/
+		font-size: 5rem;	/*文字サイズ500%*/
+		opacity: 0.15;		/*透明度。色が15%出た状態。*/
+	}
+
+	/*h3見出しが入ったブロック（大きな端末で左側に配置される背景色つきの見出しを囲むブロック）*/
+	.flow-box .title {
+		width: 30%;	/*幅*/
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+	}
+
+	/*ボックス内のh3見出し（大きな端末で左側に配置される背景色つきの見出し）*/
+	.flow-box .title h3 {
+		margin-right: auto;
+		border-radius: 0 100px 100px 0;	/*角を丸くする指定。左上、右上、右下、左下の順番。*/
+	}
+
+	/*大きな端末で右側に配置されるテキストブロックを囲むボックス*/
+	.flow-box .text {
+		flex: 1;
+	}
+
+	}/*追加指定ここまで*/
 
 
 /*ステップボックス
@@ -683,6 +758,115 @@ ul.step li:last-child::after {
 }
 
 
+/*list-yoko-scroll（お客様の声ブロック）
+---------------------------------------------------------------------------*/
+.list-yoko-scroll * {margin: 0; padding: 0;}
+
+/*横スクロールブロック全体*/
+.list-yoko-scroll {
+	display: flex;
+	align-items: flex-start;
+	overflow-x: auto;
+	scrollbar-width: none;	/* Firefox用 */
+	scroll-snap-type: x mandatory; /* スナップスクロールを有効にする */
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-right: calc(-1 * var(--content-space));
+}
+.list-yoko-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge用 */
+}
+
+/*ブロック内の１個あたり*/
+.list-yoko-scroll .list {
+	width: 60%;		/*ブロック１個の幅。お好みで変更して下さい。*/
+	flex-shrink: 0;
+	scroll-snap-align: start;
+	margin-right: 2rem;	/*ふきだしごとの間に空けるスペース。２文字分。*/
+	position: relative;
+	color: var(--primary-inverse-color);	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+	background: var(--primary-color);		/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	border-radius: 1rem;	/*角を丸くする指定*/
+	padding: 2rem;			/*ボックス内の余白。２文字分。*/
+}
+
+	/*画面幅600px以上の追加指定*/
+	@media screen and (min-width:600px) {
+
+	/*ブロック内の１個あたり*/
+	.list-yoko-scroll .list {
+		width: 28%;		/*ブロック１個の幅。お好みで変更して下さい。*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*偶数版目のふきだしだけ、下に30pxずらす*/
+.list-yoko-scroll .list:nth-of-type(even) {
+	transform: translateY(30px);
+}
+
+/*ふきだしぐち（▲の形）*/
+.list-yoko-scroll .list::before {
+	content: "▲";	/*このテキストを出す*/
+	color: var(--primary-color);	/*文字色。css冒頭のprimary-colorを読み込みます。*/
+	font-size: 30px;	/*サイズ*/
+	position: absolute;
+	left: 30%;	/*ふきだしの左からの配置場所。お好みで。*/
+	top: -40px;	/*ふきだしの上からの配置場所*/
+}
+
+/*ふきだし内の.text（テキスト）ブロック*/
+.list-yoko-scroll .list .text {
+	font-size: 0.85rem;	/*文字サイズ85%*/
+	line-height: 1.5;	/*行間*/
+}
+
+
+/*よく頂く質問ブロック
+---------------------------------------------------------------------------*/
+/*ブロック全体*/
+.faq {
+	font-size: 1.3rem;	/*文字サイズ130%*/
+	border-bottom: 1px solid rgba(255,255,255,0.3);	/*下線の幅、線種、最後は色の指定で255,255,255は白の事で0.3は色を30%出す指定。*/
+}
+
+/*質問*/
+.faq dt {
+	display: flex;
+	align-items: flex-start;
+	border-top: 1px solid rgba(255,255,255,0.3);	/*上の幅、線種、最後は色の指定で255,255,255は白の事で0.3は色を30%出す指定。*/
+	padding: 1rem;		/*ブロック内の余白。１文字分。*/
+	cursor: pointer;	/*カーソルの形状。リンクと同じスタイルにしてクリックできると認識してもらう。*/
+}
+
+/*「＋」アイコン（閉じている場合）*/
+.faq dt::before {
+	content: "＋";	/*アイコン画像の指定*/
+	margin-right: 1rem;	/*右側に空けるスペース*/
+	flex-shrink: 0;
+	background: var(--primary-color);		/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	color: var(--primary-inverse-color);	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+	width: 2rem;		/*幅*/
+	line-height: 2rem;	/*高さ*/
+	text-align: center;
+	border-radius: 50%;	/*円形にする*/
+	transform: translateY(5px);	/*アイコンの上下バランスの微調整*/
+}
+
+/*「ー」アイコン（開いている場合）*/
+.faq dt.active::before {
+	content: "ー";	/*アイコン画像の指定*/
+}
+
+/*回答*/
+.faq dd {
+	margin: 0 1rem 1rem 4rem;	/*ボックスの外側にとる余白。上、右、下、左への順番。*/
+	padding: 1rem 2rem;	/*ボックスの内側の余白。上下に1文字、左右に２文字分。*/
+	background: #fff;	/*背景色*/
+	color: #333;		/*文字色*/
+	border-radius: 5px;	/*角を丸くする指示*/
+}
 
 
 /*btn共通設定（ヘッダーと、フッターの上のボックス内にあるボタンの共通設定）
@@ -746,7 +930,61 @@ ul.step li:last-child::after {
 	}/*追加指定ここまで*/
 
 
+/*波のアニメーション
+---------------------------------------------------------------------------*/
+/*アニメーション*/
+@keyframes move-wave {
+0% { transform: translateX(0); }
+100%   { transform: translateX(-50%); }
+}
 
+/*波を囲む全体のブロック*/
+.wave-section {
+	position: relative;
+	
+	/*以下の３行の数字については、下のwaveのheight(波の高さ)から1を差し引いた形です。隙間が出る場合があるのでそれが出ないようにしています。*/
+	padding-top: 79px;
+	top: -79px;
+	margin-bottom: -79px;
+}
+
+/*波の色（２つとも揃えておけばOK）*/
+.wave-section .text {
+	background: var(--primary-color);	/*背景色。css冒頭のprimary-colorを読み込みます。*/
+}
+.wave-wrap use {
+	fill: var(--primary-color);			/*塗りつぶしの色。css冒頭のprimary-colorを読み込みます。*/
+}
+
+/*上下の波（共通）*/
+.wave {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 80px;	/*波の高さ。ここを変更する場合は上の.wave-sectionの３箇所の数字も合わせて変更して下さい。*/
+}
+.wave svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.wave .wave-wrap {
+	transform-box: fill-box;
+	transform-origin: 0 0;
+	animation: move-wave 10s linear infinite;	/*ここの10sを変更すれば波のアニメーション速度が変わります*/
+}
+
+/*上の波*/
+.wave-top {
+	top: 0;
+}
+
+/*下の波*/
+.wave-bottom {
+	bottom: 0;
+	transform: rotate(180deg);
+}
 
 
 /*フッター
@@ -822,6 +1060,118 @@ ul.step li:last-child::after {
 	}/*追加指定ここまで*/
 
 
+/*Copyright部分*/
+#footer small {
+	display: block;
+	text-align: right;
+	margin-top: 2rem;
+}
+
+
+/*SNSアイコン
+---------------------------------------------------------------------------*/
+#footer .sns {
+	list-style: none;
+	margin: 0;padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;		/*アイコン同士のマージン的な要素。１文字分。*/
+}
+
+#footer .sns i {
+	font-size: 30px;	/*アイコンサイズ*/
+}
+
+
+/*Google Map用
+---------------------------------------------------------------------------*/
+#footer .iframe {
+	width: 100%;
+	height: 0;
+	padding-top: 56.25% !important;	/*マップの高さを増やしたい場合は、ここの数値を上げてみて下さい。*/
+	position: relative;
+	overflow: hidden;
+}
+#footer .iframe iframe {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+
+/*フッター内の受付時間テーブル
+---------------------------------------------------------------------------*/
+.week {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
+	border-radius: 5px;	/*角を丸くする指定*/
+	border: 1px solid #ccc;	/*テーブル外側の線の幅、線種、色*/
+	table-layout: fixed;	/*幅を均等に*/
+	background: #fff;		/*テーブル全体の背景色*/
+	color: #555;			/*テーブル全体の文字色*/
+}
+
+/*受付時間の幅*/
+.week th:first-child,
+.week td:first-child {
+	width: 25%;
+}
+
+/*各曜日の幅*/
+.week th:not(:first-child),
+.week td:not(:first-child) {
+	width: calc(75% / 7);	/*受付時間で25%とっているので残りの75%を7で割る*/
+}
+
+/*th(曜日)とtd(時間)*/
+.week th,
+.week td {
+	padding: 1rem 0;	/*ボックス内の余白。上下に１文字分、左右は0。*/
+	text-align: center;	/*テキストをセンタリング*/
+	border-bottom: 1px solid #ccc;	/*下の線の幅、線種、色*/
+	border-right: 1px solid #ccc;	/*右の線の幅、線種、色*/
+}
+
+/*th(曜日)とtd(時間)のそれぞれ最後の右側の線を消す*/
+.week th:last-child,
+.week td:last-child {
+	border-right: none;
+}
+
+/*最後の行の下線を消す*/
+.week tr:last-child td {
+	border-bottom: none;
+}
+
+/*th(曜日)の追加指定*/
+.week th {
+	background: #fafafa;	/*背景色*/
+}
+.week td {
+	border-bottom: 1px solid #ccc;	/*下の線の幅、線種、色*/
+}
+
+
+/*著作部分（※意図的に見えなくしたりしないで下さい。規約違反になります。）
+---------------------------------------------------------------------------*/
+.pr a {
+	text-decoration: none;display: block;
+	background: #555;
+	color: #ccc;
+	text-align: right;
+	padding: 0.5rem 1rem;
+	font-size: 0.8rem;
+}
+.pr a::before {
+	font-family: "Font Awesome 6 Free";
+	content: "\e2ca";
+	font-weight: bold;
+	margin-right: 0.5em;
+}
 
 
 /*PAGE TOP（↑）設定
@@ -858,6 +1208,40 @@ ul.step li:last-child::after {
 	color: #000000;
 }
 
+
+
+/*背景画像が少しずつ上に移動する
+---------------------------------------------------------------------------*/
+/*共通設定*/
+.bg-slideup {
+    background-repeat: no-repeat;
+    background-size: cover;
+	width: 100%;
+}
+
+/*slideup1画像*/
+.slideup1 {
+    background-image: url("../images/bg-slideup1.jpg");	/*背景画像の読み込み*/
+	color: #fff;
+	border-radius: 10vw 10vw 0 0;
+}
+
+/*slideup2画像*/
+.slideup2 {
+    background-image: url("../images/bg-slideup2.jpg");	/*背景画像の読み込み*/
+	position: relative;
+}
+
+/*slideup2の上部にグラデーションをかけて、「よく頂く質問」ブロックとの境界をなめらかにする*/
+.slideup2::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 20vh;	/*高さ。画面の高さの20%。お好みで。*/
+	background: linear-gradient(var(--secondary-color), transparent);/*背景グラデーション。css冒頭の--secondary-colorから透明(transparent)になるグラデ。*/
+}
 
 
 /*お知らせブロック
@@ -928,6 +1312,16 @@ animationの行の「0.2s」が文字の出現のなめらかさで、大きい�
 }
 
 
+/*マニュアルページ用
+---------------------------------------------------------------------------*/
+#manual {background-image: none;}
+.manual {
+	padding: 5rem;
+}
+.manual h2,.manual h3 {
+	margin-top: 3rem;
+}
+pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 
 
 /*その他
@@ -957,6 +1351,3 @@ animationの行の「0.2s」が文字の出現のなめらかさで、大きい�
 	.pc {display: block;}
 
 	}/*追加指定ここまで*/
-
-
-
