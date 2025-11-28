@@ -596,6 +596,7 @@ main h2 {
 	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/004.png);
 	margin: auto;
 	width: 80%;
+	background-position: right;
 }
 
 /*ボックス内のh4見出し*/
