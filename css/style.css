@@ -572,7 +572,7 @@ main h2 {
 	/*ブロック全体を囲むブロック*/
 	.list-grid7 {
 		display: flex;
-		gap: 2rem	/*ブロックの間に空けるマージン的な指定。２文字分。*/
+		gap: 2rem;
 		margin-bottom: 150px;
 	}
 
