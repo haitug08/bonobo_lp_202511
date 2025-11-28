@@ -1003,7 +1003,6 @@ ul.step li:last-child::after {
 	padding: var(--content-space);	/*フッター内の余白。css冒頭のcontent-spaceを読み込みます。*/
 }
 
-/*ロゴやSNSアイコンが入ったブロック*/
 #footer div.footer1 {
 	flex: 1;
 	display: flex;
@@ -1011,10 +1010,27 @@ ul.step li:last-child::after {
 	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
 }
 
-/*メニューブロック*/
 #footer div.footer2 {
-    flex: 1;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
 }
+
+#footer div.footer3 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+}
+
+#footer div.footer4 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+}
+
 
 	/*画面700px以上の追加指定*/
 	@media screen and (min-width:700px) {
@@ -1024,12 +1040,27 @@ ul.step li:last-child::after {
 		gap: 2rem;		/*ロゴのブロックとメニューのブロックとの間の余白。2文字分。*/
 	}
 
-	/*ロゴやSNSアイコンが入ったブロック*/
 	#footer div.footer1 {
 		text-align: left;
 		width: 40%;	/*幅。40%。*/
 	}
+		
+	#footer div.footer2 {
+		text-align: left;
+		width: 40%;	/*幅。40%。*/
+	}
+		
+	#footer div.footer3 {
+		text-align: left;
+		width: 40%;	/*幅。40%。*/
+	}
+		
+	#footer div.footer4 {
+		text-align: left;
+		width: 40%;	/*幅。40%。*/
+	}
 
+		
 	}/*追加指定ここまで*/
 
 
