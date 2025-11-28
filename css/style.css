@@ -1,12 +1,16 @@
 @charset "utf-8";
 
+
+
 /*Font Awesomeの読み込み
 ---------------------------------------------------------------------------*/
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
 
+
 /*Google Fontsの読み込み
 ---------------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+
 
 /*テンプレート専用cssファイルの読み込み
 ---------------------------------------------------------------------------*/
@@ -435,9 +439,10 @@ main h2 {
 
 
 
-/*2カラムブロック　※900px未満では１カラム
+/*2カラムブロック　※900px未満では１カラム（私たちのこだわりブロック）
 ---------------------------------------------------------------------------*/
 .list-half * {margin: 0;padding: 0;}
+
 
 /*２カラムを囲むブロック*/
 .list-half .list {
@@ -640,7 +645,81 @@ main h2 {
 
 
 
+/*ご利用の流れ
+---------------------------------------------------------------------------*/
+.flow-box * {margin: 0;padding: 0;}
 
+
+/*ステップボックス１個あたりの設定*/
+.flow-box {
+	position: relative;
+	margin-bottom: 4rem;	/*下に空けるスペース、2文字分。ステップボックス同士のスペースです。*/
+}
+
+/*ボックス内のh3見出し（大きな端末で左側に配置される背景色つきの見出し）*/
+.flow-box .title h3 {
+	background: var(--primary-color);		/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	color: var(--primary-inverse-color);	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+	margin-left: calc(-1 * var(--content-space));
+	margin-right: calc(-1 * var(--content-space));
+	text-align: center;	/*テキストをセンタリング*/
+	padding: 2rem;		/*見出し内の余白。２文字分。*/
+	margin-bottom: 2rem;	/*見出しの下に空けるスペース。２文字分。*/
+}
+
+/*h3内のspan（小さな装飾文字）*/
+.flow-box .title h3 span {
+	display: block;
+	font-size: 0.7em;	/*文字サイズ。親要素の70%。*/
+}
+
+/*「STEP01」〜「STEP04」のテキスト*/
+.flow-box .step-num {
+	display: inline-block;
+	position: absolute;
+	left: 0px;
+	top: -50px;	/*本来の場所から上に50pxずらす*/
+	width: 100%;
+	font-size: 3rem;	/*文字サイズ300%*/
+	color: var(--primary-color);	/*文字色。css冒頭のprimary-colorを読み込みます。*/
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	.flow-box {
+		display: flex;
+		align-items: flex-start;
+		gap: 5rem;	/*左右のブロック同士の間に空けるスペース。５文字分。*/
+	}
+	
+	/*「STEP01」〜「STEP04」のテキスト*/
+	.flow-box .step-num {
+		top: -100px;		/*本来の場所から上に100pxずらす*/
+		font-size: 5rem;	/*文字サイズ500%*/
+		opacity: 0.15;		/*透明度。色が15%出た状態。*/
+	}
+
+	/*h3見出しが入ったブロック（大きな端末で左側に配置される背景色つきの見出しを囲むブロック）*/
+	.flow-box .title {
+		width: 30%;	/*幅*/
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+	}
+
+	/*ボックス内のh3見出し（大きな端末で左側に配置される背景色つきの見出し）*/
+	.flow-box .title h3 {
+		margin-right: auto;
+		border-radius: 0 100px 100px 0;	/*角を丸くする指定。左上、右上、右下、左下の順番。*/
+	}
+
+	/*大きな端末で右側に配置されるテキストブロックを囲むボックス*/
+	.flow-box .text {
+		flex: 1;
+	}
+
+	}/*追加指定ここまで*/
 
 
 /*ステップボックス
@@ -1127,7 +1206,26 @@ ul.step li:last-child::after {
 
 
 
+/*背景画像が少しずつ上に移動する
+---------------------------------------------------------------------------*/
+/*共通設定*/
+.bg-slideup {
+    background-repeat: no-repeat;
+    background-size: cover;
+	width: 100%;
+}
 
+
+/*slideup2の上部にグラデーションをかけて、「よく頂く質問」ブロックとの境界をなめらかにする*/
+.slideup2::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 20vh;	/*高さ。画面の高さの20%。お好みで。*/
+	background: linear-gradient(var(--secondary-color), transparent);/*背景グラデーション。css冒頭の--secondary-colorから透明(transparent)になるグラデ。*/
+}
 
 
 /*お知らせブロック
