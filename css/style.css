@@ -514,7 +514,7 @@ main h2 {
 	}/*追加指定ここまで*/
 
 
-/*list-grid7（サービス紹介ブロック）
+/*list-grid7
 ---------------------------------------------------------------------------*/
 .list-grid7 .list * {margin: 0;padding: 0;}
 
@@ -577,6 +577,72 @@ main h2 {
 	}
 
 	}/*追加指定ここまで*/
+
+
+/*list-grid8
+---------------------------------------------------------------------------*/
+.list-grid8 .list * {margin: 0;padding: 0;}
+
+/*ボックス１個あたり*/
+.list-grid8 .list {
+    display: grid;
+	position: relative;
+	border-radius: 20px;
+	background: #fafafa;	/*背景色*/
+	color: #555;			/*文字色*/
+	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
+	padding: 2rem;			/*ボックス内の余白。２文字分。*/
+	margin-bottom: 2rem;	/*ボックスの下に空けるスペース。2文字分。*/
+	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/004.png);
+	margin: auto;
+	width: 80%;
+}
+
+/*ボックス内のh4見出し*/
+.list-grid8 .list h4 {
+	text-align: center;		/*テキストをセンタリング*/
+	font-size: 1.3rem;		/*文字サイズ130%*/
+	margin-bottom: 0.5rem;	/*下に0.5文字分の余白を空ける*/
+	color: var(--primary-color);	/*文字色。css冒頭のprimary-colorを読み込みます。*/
+}
+
+/*h4内のspan（小さな装飾文字）*/
+.list-grid8 .list h4 span {
+	display: block;
+	font-weight: normal;	/*デフォルトだと太字なので標準に*/
+	font-size: 0.7em;		/*文字サイズを70%*/
+}
+
+/*ボックス内のp要素*/
+.list-grid8 .list p {
+    color: #ffffff;
+    margin: 2rem 3rem 3rem 3rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.4rem;
+    font-family: auto;
+    font-size: small;
+    padding-left: 0.5rem;
+}
+
+/*ボックス内のfigure画像*/
+.list-grid8 .list figure {
+    margin: 3rem 3rem 0rem 3rem;
+    max-width: 250px;
+}
+
+
+	/*画面幅800px以上の追加指定*/
+	@media screen and (min-width:800px) {
+
+	/*ブロック全体を囲むブロック*/
+	.list-grid8 {
+		display: flex;
+		gap: 2rem;
+		margin-bottom: 150px;
+	}
+
+	}/*追加指定ここまで*/
+
 
 
 /*ご利用の流れ
