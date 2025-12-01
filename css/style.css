@@ -63,7 +63,7 @@ html,body {
 	font-size: 1.0714vw; 
   }
   body {
-    max-width: 1920px; 
+    max-width: 100%;
     margin: 0 auto; /* 中央寄せ */
     font-size: 1rem; 
   }
