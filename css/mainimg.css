@@ -4,7 +4,6 @@
 #mainimg {
     position: relative;
     width: 100vw; /* 親の幅ではなく、画面(Viewport)の幅にする */
-    height: 100vh;
     overflow: hidden;
     z-index: -1;
 }
