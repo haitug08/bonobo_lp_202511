@@ -223,15 +223,18 @@ header a {color: inherit;}
 ---------------------------------------------------------------------------*/
 /*メニューブロック共通*/
 #menubar {
-	animation: animation1 0.2s both;
-	position: fixed;overflow: auto;z-index: 100;
-	right: 0px;top: 0px;
-	width: 100%;
-	height: 100%;
-	padding: 100px var(--content-space) 50px;		/*ブロック内の余白。上に100px、左右についてはcss冒頭のcontent-spaceを読み込む、下に50px。*/
-	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/007.png);
-	color: var(--primary-inverse-color);	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
-	background-size: cover;
+    display: none; /* 【重要】最初は非表示にしておく */
+    position: fixed;
+    z-index: 1000; /* コンテンツより前面 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* 全画面 */
+    padding: 100px 4rem 50px; /* 余白調整 */
+    background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/007.png);
+    background-size: cover;
+    color: #fff;
+    overflow: auto;
 }
 
 /*メニュー１個あたり*/
@@ -247,20 +250,20 @@ header a {color: inherit;}
 /*３本バー（ハンバーガー）アイコン設定
 ---------------------------------------------------------------------------*/
 #menubar_hdr {
-	display: flex;
-	animation: opa1 0s 0.2s both;
-	position: static;
-	z-index: 101;
-	cursor: pointer;
-	right: 40px;	/*右からの配置場所*/
-	top: 70px;	/*上からの配置場所*/
-	width: 70px;	/*ボタンの幅*/
-	height: 70px;	/*ボタンの高さ*/
-	background: #ffffff;	/*ボタン色*/
-	border: 2px solid #000000;
-	border-radius: 100px;	/*角を丸くする指定。左上、右上、右下、左下の順番。この場合は左下だけ角を丸くする。*/
-	transform-origin: right top;
-	transform: scale(1);	/*大きさを調整したい場合はここの「1」を変更します。1.2や0.7など。*/
+    display: block; /* 常に表示 */
+    position: fixed; /* スクロールしてもついてくるように固定 */
+    z-index: 1001; /* 【重要】メニュー(1000)より手前に配置してクリックできるようにする */
+    cursor: pointer;
+    right: 2.6rem; /* 位置調整 */
+    top: 3rem;     /* 位置調整 */
+    width: 4.6rem; /* サイズ調整 */
+    height: 4.6rem;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    
+    /* アニメーション用設定 */
+    transition: 0.3s;
 }
 
 /*バツ印が出ている時のボタン色*/
@@ -270,34 +273,31 @@ header a {color: inherit;}
 
 /*ハンバーガーアイコンの線*/
 #menubar_hdr span {
-	display: block;
-	position: absolute;
-	left: 16px;
-	width: 35px;
-	height: 3px;		/*線の高さ*/
-	background: #000000;	/*線の色*/
-	transition: 0.3s;
+    display: block;
+    position: absolute;
+    left: 1rem; /* 位置調整 */
+    width: 2.6rem; /* 線の長さ */
+    height: 3px;
+    background: #000000;
+    transition: 0.3s;
 }
 
-#menubar_hdr span:nth-of-type(1) {
-	top: 22px;
-}
-#menubar_hdr span:nth-of-type(2) {
-	top: 32px;
-}
-#menubar_hdr span:nth-of-type(3) {
-	top: 42px;
-}
+/* 線の位置調整（rem換算） */
+#menubar_hdr span:nth-of-type(1) { top: 1.5rem; }
+#menubar_hdr span:nth-of-type(2) { top: 2.2rem; }
+#menubar_hdr span:nth-of-type(3) { top: 2.9rem; }
 
-/* ハンバーガーメニュー展開時 */
+/* ハンバーガーメニュー展開時（クラス名 .ham がついた時） */
 #menubar_hdr.ham span:nth-of-type(1) {
-	transform: translateY(10px) rotate(-45deg);
+    top: 2.2rem;
+    transform: rotate(45deg);
 }
 #menubar_hdr.ham span:nth-of-type(2) {
-	opacity: 0;
+    opacity: 0;
 }
 #menubar_hdr.ham span:nth-of-type(3) {
-	transform: translateY(-10px) rotate(45deg);
+    top: 2.2rem;
+    transform: rotate(-45deg);
 }
 
 
