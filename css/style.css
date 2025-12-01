@@ -23,12 +23,6 @@ html {
     }
 }
 
-/* 既存の読み込み設定などはそのまま... */
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
-@import url("inview.css");
-@import url("mainimg.css");
-
 :root {
     --primary-color: #0e28e5;
     --primary-inverse-color: #fff;
