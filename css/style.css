@@ -182,6 +182,19 @@ header a {color: inherit;}
 
 	}/*追加指定ここまで*/
 
+	/*画面幅899px以下の追加指定*/
+	@media screen and (max-width:899px) {
+
+	#header-box img {
+		display: none;
+	}
+
+	}/*追加指定ここまで*/
+
+#header-box img {
+	display: inline-block;
+    width: 10vw;
+}
 
 /*ボタンが入ったボックス*/
 #header-box .btn {
