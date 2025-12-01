@@ -179,16 +179,24 @@ header a {color: inherit;}
 	#header-box {
 		margin: 0rem 2rem;
 	}
+	#menu-pc {
+		display: none;
+	}
 
+		
 	}/*追加指定ここまで*/
 
 	/*画面幅899px以下の追加指定*/
 	@media screen and (max-width:899px) {
 
-	#header-box img {
+	#login {
+		display: none;
+	}
+	#menu-sp {
 		display: none;
 	}
 
+		
 	}/*追加指定ここまで*/
 
 #header-box img {
