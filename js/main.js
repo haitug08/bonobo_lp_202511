@@ -141,7 +141,7 @@ window.addEventListener('resize', setDynamicHeight);
 
   $(function(){
     var filesPortrait  = ['1-tate.mp4','1-tate.mp4','1-tate.mp4'],
-        filesLandscape = ['1-yoko.mp4','1-yoko.mp4','1-yoko.mp4'],
+        filesLandscape = ['1-yoko.mp4','2-yoko.mp4','1-yoko.mp4'],
         slideInterval, currentIndex = 0, currentOrientation;
 
     function setVideoSources(orientation) {
