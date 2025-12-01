@@ -56,6 +56,10 @@ html,body {
 	font-size: 13px;	/*基準となるフォントサイズ。*/
 }
 
+  #logo img {
+    display:none;
+  }
+
   /*画面幅900px以上の追加指定*/
   @media screen and (min-width:900px) {
 
@@ -71,8 +75,9 @@ html,body {
   #logo img {
     width: 14.6rem; /* 元の220pxに近い値をrem換算 (220/15=14.6) */
     max-width: none;
+	display: block;  
   }
-	  
+
 }
 
 body {
