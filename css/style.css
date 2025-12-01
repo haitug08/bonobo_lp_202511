@@ -179,7 +179,7 @@ header a {color: inherit;}
 	#header-box {
 		margin: 0rem 2rem;
 	}
-	#menu-pc {
+	#header-box img .menu-pc {
 		display: none;
 	}
 
@@ -189,10 +189,10 @@ header a {color: inherit;}
 	/*画面幅899px以下の追加指定*/
 	@media screen and (max-width:899px) {
 
-	#login {
+	#header-box img .login {
 		display: none;
 	}
-	#menu-sp {
+	#header-box img .menu-sp {
 		display: none;
 	}
 
