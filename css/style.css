@@ -17,8 +17,7 @@ html {
     }
     
     body {
-        /* 4Kモニタなどで大きくなりすぎないよう最大幅を制限 */
-        max-width: 1920px;
+        max-width: 100%;
         margin: 0 auto;
     }
 }
