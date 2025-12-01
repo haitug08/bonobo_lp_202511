@@ -393,7 +393,6 @@ main h2 {
 /*見出し内のspan（小さな装飾文字と上部のアクセントライン）*/
 main h2 span.small {
 	display: inline-block;
-	border-top: 2px solid var(--primary-color);	/*上の線の幅、線種、varは色のことで冒頭のprimary-colorを読み込みます。*/
 	font-size: 0.9rem;		/*文字サイズ90%*/
 	opacity: 0.6;			/*透明度。色が60%出た状態。*/
 	letter-spacing: 0.1rem;	/*文字間隔を少しだけ広く*/
