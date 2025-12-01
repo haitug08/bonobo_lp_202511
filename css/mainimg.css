@@ -5,8 +5,6 @@
     position: relative;
     width: 100vw; /* 親の幅ではなく、画面(Viewport)の幅にする */
     height: 100vh;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
     overflow: hidden;
     z-index: -1;
 }
