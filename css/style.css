@@ -66,7 +66,6 @@ html,body {
   html {
 	font-size: 1.0714vw; 
   }
-
   body {
     max-width: 1920px; 
     margin: 0 auto; /* 中央寄せ */
@@ -77,14 +76,7 @@ html,body {
     width: 14.6rem; /* 元の220pxに近い値をrem換算 (220/15=14.6) */
     max-width: none;
   }
-  
-  /* ハンバーガーメニューなどもremで再定義推奨 */
-  #menubar_hdr {
-    width: 4.6rem; /* 70px / 15 */
-    height: 4.6rem;
-    top: 4.6rem;
-    right: 2.6rem;
-  }
+	  
 }
 
 body {
