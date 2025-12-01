@@ -1,39 +1,42 @@
 @charset "utf-8";
 
+/* ==========================================================
+   基本設定・スケーリング設定
+   ========================================================== */
+html {
+    font-size: 13px; /* SP/タブレットの基準 */
+}
 
+@media screen and (min-width: 900px) {
+    html {
+        /* PC画面でのスケーリング計算式 
+           画面幅1400pxのときに15px相当になるように設定
+           (15 / 1400 * 100 = 1.071vw)
+        */
+        font-size: 1.0714vw; 
+    }
+    
+    body {
+        /* 4Kモニタなどで大きくなりすぎないよう最大幅を制限 */
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+}
 
-/*Font Awesomeの読み込み
----------------------------------------------------------------------------*/
+/* 既存の読み込み設定などはそのまま... */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
-
-
-/*Google Fontsの読み込み
----------------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
-
-
-/*テンプレート専用cssファイルの読み込み
----------------------------------------------------------------------------*/
 @import url("inview.css");
 @import url("mainimg.css");
 
-
-/*CSSカスタムプロパティ（サイト全体を一括管理する為の設定）
----------------------------------------------------------------------------*/
 :root {
-
-	--primary-color: #0e28e5;			/*テンプレートのテーマカラー*/
-	--primary-inverse-color: #fff;		/*上のprimary-colorの対となる色*/
-
-	--secondary-color: #121a5a;			/*テンプレートのサブカラー*/
-	--secondary-inverse-color: #fff;	/*secondary-colorの対となる色*/
-	
-	--accent-color: #c43311;			/*テンプレートのアクセントカラー*/
-	--accent-inverse-color: #fff;		/*accent-colorの対となる色*/
-
-	/*余白の一括管理用。主に左右の余白に使っています。4rem＝4文字分。*/
-	--content-space: 4rem;
-	
+    --primary-color: #0e28e5;
+    --primary-inverse-color: #fff;
+    --secondary-color: #121a5a;
+    --secondary-inverse-color: #fff;
+    --accent-color: #c43311;
+    --accent-inverse-color: #fff;
+    --content-space: 4rem;
 }
 
 
@@ -1344,3 +1347,185 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 	.pc {display: block;}
 
 	}/*追加指定ここまで*/
+
+
+
+/* ==========================================================
+   今回追加・整理したスタイル（既存CSSの末尾に追加してください）
+   ========================================================== */
+
+/* 汎用レイアウトクラス */
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.align-center { align-items: center; }
+
+/* ヘッダー周り */
+.header-wrapper {
+    display: flex;
+    justify-content: flex-end; /* 右寄せ */
+    align-items: center;
+}
+
+/* メインビジュアル画像 */
+.main-visual-img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+/* セクション1: コンセプトテキスト */
+.hero-title {
+    letter-spacing: 1.2rem;
+    font-size: 4rem; /* h4の継承サイズ */
+    margin-bottom: 2rem;
+}
+
+.hero-text {
+    font-weight: bold;
+    font-size: 1.2rem; /* large相当 */
+    letter-spacing: 0.2rem;
+    line-height: 2;
+}
+
+.mt-large { margin-top: 3.3rem; } /* 50px相当 */
+.mt-xlarge { margin-top: 10rem; } /* 150px相当 */
+
+/* セクション2: 事業内容 */
+.business-desc-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* 下揃えなどお好みで */
+}
+
+.business-icon-sm {
+    max-width: 3.3rem; /* 50px相当 */
+}
+
+/* セクション共通見出し調整 */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; /* コンテンツ幅に合わせる */
+    margin: 0 auto;
+}
+.section-header h2 {
+    margin-left: 0 !important; /* インライン打ち消し */
+}
+
+.section-padding-none {
+    padding-bottom: 0 !important;
+}
+
+/* テーブルスタイル (NEWS / IR) */
+.table-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.info-table {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 1.2rem; /* large相当 */
+    border-collapse: collapse;
+}
+
+.info-table tr {
+    border-bottom: 1px solid #8D98B2;
+}
+
+.info-table td {
+    padding: 1.3rem; /* 20px相当 */
+    vertical-align: middle;
+}
+
+/* テーブルのカラム幅定義 */
+.col-date {
+    width: 15%; /* 10%だと狭すぎる場合があるため調整 */
+    color: #8D98B2;
+}
+.col-label {
+    width: 20%;
+}
+.col-title {
+    font-weight: bold;
+    color: #000;
+}
+.col-header {
+    font-weight: bold;
+    color: #000;
+}
+
+/* タグ（お知らせ、PDFなど） */
+.tag-box {
+    font-weight: bold;
+    border: 1px solid #000;
+    text-align: center;
+    border-radius: 2rem;
+    font-size: 0.8rem; /* smaller相当 */
+    width: 70%;
+    margin: 0 auto;
+    padding: 0.2rem 0;
+}
+
+.tag-pdf {
+    background-color: #000;
+    color: #fff;
+    margin: 0 1.3rem;
+    padding: 0.2rem 1.3rem;
+    border: 1px solid #000;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+/* IRセクション用グリッド調整 */
+.ir-grid-wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 80%;
+    margin: 0 auto 10rem auto; /* bottom margin含む */
+}
+
+.ir-table-half {
+    width: 100%; /* 既存の.list-grid7内で制御されるため100%でOK */
+    font-size: 1.2rem;
+}
+
+/* お問い合わせセクション */
+.contact-title {
+    margin-left: 5%;
+    color: #fff;
+    font-size: 3rem;
+}
+.contact-btn-area {
+    margin: 0 0 3.3rem 5%;
+}
+
+/* フッター調整 */
+.footer-logo {
+    max-width: 13.3rem; /* 200px相当 */
+}
+.footer-company-name {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+.footer-license {
+    font-size: 0.8rem; /* small相当 */
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.copyright-bar {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+.copyright-text {
+    margin: 0.6rem auto;
+}
