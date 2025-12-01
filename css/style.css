@@ -523,9 +523,9 @@ main h2 {
     color: #ffffff;
     margin: 2rem 3rem 3rem 3rem;
     line-height: 2.5rem;
-    letter-spacing: 0.4rem;
+    letter-spacing: 0.2rem;
     font-family: auto;
-    font-size: small;
+    font-size: 1rem;
     padding-left: 0.5rem;
 }
 
@@ -1351,7 +1351,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 }
 
 .business-icon-sm {
-    max-width: 3.3rem; /* 50px相当 */
+     width: 3vw;
 }
 
 /* セクション共通見出し調整 */
