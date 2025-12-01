@@ -60,15 +60,32 @@ html,body {
 	font-size: 13px;	/*基準となるフォントサイズ。*/
 }
 
-	/*画面幅900px以上の追加指定*/
-	@media screen and (min-width:900px) {
+  /*画面幅900px以上の追加指定*/
+  @media screen and (min-width:900px) {
 
-	html, body {
-		font-size: 15px;	/*基準となるフォントサイズ。*/
-	}
+  html {
+	font-size: 1.0714vw; 
+  }
 
-	}/*追加指定ここまで*/
+  body {
+    max-width: 1920px; 
+    margin: 0 auto; /* 中央寄せ */
+    font-size: 1rem; 
+  }
 
+  #logo img {
+    width: 14.6rem; /* 元の220pxに近い値をrem換算 (220/15=14.6) */
+    max-width: none;
+  }
+  
+  /* ハンバーガーメニューなどもremで再定義推奨 */
+  #menubar_hdr {
+    width: 4.6rem; /* 70px / 15 */
+    height: 4.6rem;
+    top: 4.6rem;
+    right: 2.6rem;
+  }
+}
 
 body {
 	margin: 0;padding:0;
