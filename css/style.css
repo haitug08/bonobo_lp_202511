@@ -159,6 +159,7 @@ header a {color: inherit;}
 		justify-content: space-between;
 		gap: 2rem;	/*中のコンテンツ同士に空けるマージン的な余白。*/
 		align-items: center;
+		z-index: 1;
 	}
 
 	}/*追加指定ここまで*/
@@ -173,7 +174,7 @@ header a {color: inherit;}
 	@media screen and (min-width:900px) {
 
 	#header-box {
-		margin: 13px;
+		margin: 0rem 5rem;
 	}
 
 	}/*追加指定ここまで*/
