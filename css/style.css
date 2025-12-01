@@ -56,9 +56,6 @@ html,body {
 	font-size: 13px;	/*基準となるフォントサイズ。*/
 }
 
-  #logo img {
-    display:none;
-  }
 
   /*画面幅900px以上の追加指定*/
   @media screen and (min-width:900px) {
@@ -147,6 +144,14 @@ header a {color: inherit;}
 	display: block;
 	width: 10vw;	/*ロゴの幅*/
 }
+
+	/*画面幅899px以下の追加指定*/
+	@media screen and (max-width:899px) {
+
+	#logo img {
+	display: none;
+	}
+	}
 
 	/*画面幅900px以上の追加指定*/
 	@media screen and (min-width:900px) {
