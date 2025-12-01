@@ -147,7 +147,7 @@ header a {color: inherit;}
 #logo a {text-decoration: none;}
 #logo img {
 	display: block;
-	width: 220px;	/*ロゴの幅*/
+	width: 10vw;	/*ロゴの幅*/
 }
 
 	/*画面幅900px以上の追加指定*/
@@ -1371,7 +1371,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 /* メインビジュアル画像 */
 .main-visual-img {
     position: absolute;
-    width: 100%;
+    width: 100vw;
     height: auto;
 }
 
