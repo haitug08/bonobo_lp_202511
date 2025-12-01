@@ -179,8 +179,11 @@ header a {color: inherit;}
 	#header-box {
 		margin: 0rem 2rem;
 	}
-	#header-box .menu-pc {
+	#header-box .menu-sp {
 		display: none;
+	}
+	#header-box .menu-pc {
+		width: 4vw;
 	}
 
 		
@@ -192,10 +195,12 @@ header a {color: inherit;}
 	#header-box .login {
 		display: none;
 	}
-	#header-box .menu-sp {
+	#header-box .menu-pc {
 		display: none;
 	}
-
+	#header-box .menu-sp {
+        width: 12vw;;
+	}
 		
 	}/*追加指定ここまで*/
 
