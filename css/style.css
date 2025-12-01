@@ -462,8 +462,8 @@ main h2 {
 
 	/*画像を右に配置する場合*/
 	.list-half .image-r {
-		margin: 2rem 10rem 2rem 2rem;
-		max-width: 350px;
+		margin: 2rem 5rem 2rem 2rem;
+		max-width: 300px;
 	}
 
 	/*画像を左に配置する場合*/
