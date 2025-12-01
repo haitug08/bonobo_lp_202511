@@ -256,7 +256,7 @@ header a {color: inherit;}
     z-index: 1001; /* 【重要】メニュー(1000)より手前に配置してクリックできるようにする */
     cursor: pointer;
     right: 2.6rem; /* 位置調整 */
-    top: 3rem;     /* 位置調整 */
+    top: 5.2rem;     /* 位置調整 */
     width: 4.6rem; /* サイズ調整 */
     height: 4.6rem;
     background: #ffffff;
@@ -276,7 +276,7 @@ header a {color: inherit;}
 #menubar_hdr span {
     display: block;
     position: absolute;
-    left: 1rem; /* 位置調整 */
+    left: 0.9rem; /* 位置調整 */
     width: 2.6rem; /* 線の長さ */
     height: 3px;
     background: #000000;
@@ -284,8 +284,8 @@ header a {color: inherit;}
 }
 
 /* 線の位置調整（rem換算） */
-#menubar_hdr span:nth-of-type(1) { top: 1.5rem; }
-#menubar_hdr span:nth-of-type(2) { top: 2.2rem; }
+#menubar_hdr span:nth-of-type(1) { top: 1.3rem; }
+#menubar_hdr span:nth-of-type(2) { top: 2.1rem; }
 #menubar_hdr span:nth-of-type(3) { top: 2.9rem; }
 
 /* ハンバーガーメニュー展開時（クラス名 .ham がついた時） */
