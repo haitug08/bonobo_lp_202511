@@ -1621,25 +1621,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 /* 閉じるボタン（×）を表示する */
 #header-box.menu-open .menu-close {
     display: inline-block !important;
-}
-
-
-/* メニュー展開中（×ボタン表示中）は、ボタンの入った箱ごと画面に固定する */
-#header-box.menu-open.menu-close {
-    position: fixed;  /* スクロールしても動かないように固定 */
-    top: 0;
-    right: 0;
-    
-    /* 位置の微調整（元のヘッダーの位置に合わせる設定） */
-    margin: 0;
-    padding: 1.5rem 4rem; /* 上下の余白と、右の余白 */
-    
-    z-index: 1001;    /* メニュー背景より手前に表示 */
-}
-
-/* スマホ画面での位置微調整 */
-@media screen and (max-width: 899px) {
-    #header-box.menu-open.menu-close {
-        padding: 1rem 2rem; /* スマホ向けに余白を少し狭く調整 */
-    }
+	position: fixed;
+	top: 5%;
+    right: 5%;
 }
