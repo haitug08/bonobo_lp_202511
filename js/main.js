@@ -205,3 +205,58 @@ $(window).on('load', function() {
     // これにより、すでに画面内にある画像の「inview（アニメーション）」を確実にスタートさせます
     $(window).trigger('scroll');
 });
+
+
+
+// =========================================================
+// サイドメニューの制御（表示切り替え ＆ 色反転）
+// =========================================================
+$(function() {
+    const $sideMenu = $('#side-menu');
+    const $window = $(window);
+    
+    // 背景色が黒いセクションのIDやクラスを指定
+    // （style.cssで背景が黒または暗い色に設定されている箇所）
+    const darkSections = ['#sec02', '#footer', '.bg1']; 
+
+    $window.on('scroll', function() {
+        const scrollTop = $window.scrollTop();
+        const windowHeight = $window.height();
+        
+        // 1. 表示/非表示の切り替え
+        // ファーストビュー（画面の高さ分）を超えたら表示
+        if (scrollTop > windowHeight) {
+            $sideMenu.addClass('show');
+        } else {
+            $sideMenu.removeClass('show');
+        }
+
+        // 2. 背景色に応じた色反転
+        // サイドメニューが表示される位置（画面の縦中央）を計算
+        const menuCenterPos = scrollTop + (windowHeight / 2);
+        
+        let isDark = false;
+        
+        // 黒いセクションの上にいるかチェック
+        $(darkSections.join(', ')).each(function() {
+            const $target = $(this);
+            if ($target.length) {
+                const targetTop = $target.offset().top;
+                const targetBottom = targetTop + $target.outerHeight();
+
+                // メニューの位置がこのセクションの範囲内にあれば「暗い」と判定
+                if (menuCenterPos >= targetTop && menuCenterPos <= targetBottom) {
+                    isDark = true;
+                    return false; // ループを抜ける
+                }
+            }
+        });
+
+        // 暗いエリアなら .inverse クラスをつけて文字を白くする
+        if (isDark) {
+            $sideMenu.addClass('inverse');
+        } else {
+            $sideMenu.removeClass('inverse');
+        }
+    });
+});
