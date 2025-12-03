@@ -2,8 +2,25 @@
 // メニュー制御・スムーズスクロール・動画・パララックス
 //===============================================================
 $(function(){
-  // --- メニュー制御 (変更なし) ---
-  const $menubar = $('#menubar');
+// 1. 対象のボタン（画像）とメニューを定義
+  const $menuTrigger = $('.menu-pc, .menu-sp'); // クリックする画像クラス
+  const $menubar = $('#menubar');                // 表示させたいメニュー
+
+  // 2. クリック時の動作
+  $menuTrigger.on('click', function() {
+    // メニューをフェードイン・フェードアウトで切り替え
+    $menubar.fadeToggle();
+
+    // 背景固定（スクロール防止）の切り替え
+    $('body').toggleClass('noscroll');
+  });
+
+  // 3. メニュー内のリンクをクリックしたらメニューを閉じる処理
+  $menubar.find('a').on('click', function() {
+    $menubar.fadeOut();
+    $('body').removeClass('noscroll');
+  });
+  
   const $menubarHdr = $('#menubar_hdr');
   const breakPoint = 9999;
   const HIDE_MENUBAR_IF_HDR_HIDDEN = false;
