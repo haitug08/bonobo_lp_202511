@@ -1460,7 +1460,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 }
 
 .info-table td {
-    padding: 1.3rem; /* 20px相当 */
+    padding: 0.9rem; 
     vertical-align: middle;
 }
 
