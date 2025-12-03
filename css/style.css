@@ -145,6 +145,10 @@ header a {color: inherit;}
 	width: 10vw;	/*ロゴの幅*/
 }
 
+.header-logo {
+    max-width: 13.3rem;
+}
+
 	/*画面幅899px以下の追加指定*/
 	@media screen and (max-width:899px) {
 
