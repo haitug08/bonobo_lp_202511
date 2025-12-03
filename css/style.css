@@ -422,7 +422,6 @@ body:not(.home) #contents {
 #contents .btn i {
 	margin-right: 1rem;		/*アイコンの右側に１文字分のスペースを空ける*/
 	transform: scale(1.4);	/*アイコンサイズを140%に。*/
-	font-size: small;
 }
 
 	/*画面幅500px以下の追加指定*/
