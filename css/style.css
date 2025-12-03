@@ -1721,7 +1721,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
     */
     section {
         /* 上10% | 右13%(広げる) | 下10% | 左2%(狭める) */
-        padding: 10% 13% 10% 2%;
+        padding: 10% 15% 10% 10%;
     }
 
     /* フッターも右端にメニューが被らないように右余白を追加 */
