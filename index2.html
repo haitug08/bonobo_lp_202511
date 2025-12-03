@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>bonobo｜事業型弁護士費用保険 - モダン版</title>
+  <title>bonobo｜事業型弁護士費用保険</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -454,6 +454,80 @@
   .header-cv { display: none; } /* スマホではヘッダーのボタンを隠してメニュー内に入れる */
 }
 
+/* --- Pricing Section --- */
+    .pricing-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 画面幅に合わせて自動整列 */
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: flex-start; /* 高さを揃えつつ上寄せ */
+    }
+
+    .pricing-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 0; /* 画像を端まで表示するためpadding 0 */
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden; /* 角丸からはみ出さないように */
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,160,189, 0.15); /* ブランドカラーの影 */
+      border-color: var(--primary-color);
+    }
+
+    .pricing-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .plan-header {
+      padding: 15px;
+      font-weight: bold;
+      color: var(--primary-dark);
+      background: #fcfcfc;
+      border-bottom: 1px solid #eee;
+      display: none; /* 画像の中にプラン名が入っている場合は不要なので非表示（必要なら display:block に） */
+    }
+
+    /* おすすめプランの強調デザイン（真ん中のプランなどに適用） */
+    .pricing-card.recommended {
+      border: 2px solid var(--primary-color);
+      transform: scale(1.05); /* 少し大きくする */
+      z-index: 1;
+    }
+    
+    /* ホバー時の動きとの兼ね合い修正 */
+    .pricing-card.recommended:hover {
+      transform: scale(1.05) translateY(-10px);
+    }
+
+    .pricing-card .badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent-color); /* オレンジ */
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 15px;
+      border-radius: 0 0 0 10px;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-card.recommended {
+        transform: scale(1); /* スマホでは拡大しない */
+        margin-bottom: 20px;
+      }
+    }
+    
   </style>
 </head>
 
@@ -468,6 +542,7 @@
         <li><a href="#features">bonoboの特徴</a></li>
         <li><a href="#services">法務サービス</a></li>
         <li><a href="#cases">トラブル事例</a></li>
+        <li><a href="#plans">保険料プラン</a></li>
         <li><a href="#specs">商品概要</a></li>
       </ul>
     </nav>
@@ -610,6 +685,37 @@
       </div>
     </section>
 
+
+
+    <section id="plans" style="background-color: #f8fbfc;"> <div class="section-title">
+        <h2>保険料プラン</h2>
+        <p>事業形態と規模に合わせた、選べる4つのシンプルプラン。</p>
+      </div>
+
+      <div class="pricing-container">
+        <div class="pricing-card">
+          <div class="plan-header">プラン 1</div>
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_17.png" alt="Plan 1">
+        </div>
+        <div class="pricing-card recommended"> <div class="badge">おすすめ</div>
+          <div class="plan-header">プラン 2</div>
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_18.png" alt="Plan 2">
+        </div>
+        <div class="pricing-card">
+          <div class="plan-header">プラン 3</div>
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_19.png" alt="Plan 3">
+        </div>
+        <div class="pricing-card">
+          <div class="plan-header">プラン 4</div>
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_20.png" alt="Plan 4">
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: 0.85rem; color: #888; margin-top: 30px;">
+        ※詳細な適用条件については、重要事項説明書をご確認ください。
+      </p>
+    </section>
+
     <section id="specs">
       <div class="section-title">
         <h2>商品概要</h2>
@@ -625,12 +731,13 @@
           <tr><th>対象トラブル</th><td>知的財産、労務、債権回収、損害賠償、賃貸、情報漏洩など</td></tr>
         </tbody>
       </table>
-      
+<!--      
       <div style="text-align: center;">
           <a href="#" class="btn btn-solid openPlanModal">詳細な保険料プランを見る</a>
       </div>
+ -->     
     </section>
-
+    
     <section>
         <div class="agent-form-container">
             <h3>代理店経由のお申し込み</h3>
