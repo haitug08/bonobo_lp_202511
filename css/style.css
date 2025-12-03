@@ -1560,28 +1560,29 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
     cursor: pointer; /* クリックできる指マークにする */
 }
 
+
 /* ==========================================================
    メニューボタンの切り替え制御
    ========================================================== */
 
-/* 1. 閉じるボタン（×）の初期設定：最初は非表示 */
-.menu-close {
-    display: none;
+/* 1. 閉じるボタン（×）の初期設定 */
+#header-box .menu-close {
+    display: none;       /* これで display: inline-block; に勝って隠れます */
     cursor: pointer;
     position: relative;
-    z-index: 1000; /* メニューよりさらに手前 */
+    z-index: 1000;
+    width: 12vw;         /* SP時のデフォルト幅 */
 }
 
-/* 2. 閉じるボタンのサイズ調整（menu-pc/spと同じサイズ感にする） */
+/* 2. 閉じるボタンのサイズ調整（PC用） */
 @media screen and (min-width: 900px) {
-    .menu-close { width: 4vw; }
-}
-@media screen and (max-width: 899px) {
-    .menu-close { width: 12vw; }
+    #header-box .menu-close { 
+        width: 4vw;      /* PC時の幅も強く指定 */
+    }
 }
 
 
-/* 3. メニューが開いている時（#header-boxに .menu-open がついた時）の挙動 */
+/* 3. メニューが開いている時（.menu-open時）の挙動 */
 
 /* ハンバーガー（三本線）を隠す */
 #header-box.menu-open .menu-pc,
