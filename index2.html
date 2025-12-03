@@ -527,6 +527,62 @@
         margin-bottom: 20px;
       }
     }
+
+/* --- Specs List Styling --- */
+    .spec-list {
+      margin: 10px 0 0 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+    .spec-list li {
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+    .spec-sublist {
+      margin: 5px 0 10px 0;
+      padding-left: 20px;
+      font-size: 0.9em;
+      color: #555;
+      list-style-type: circle;
+    }
+    
+    /* 付帯サービスのスペック用：少し小さくグレーにするクラス */
+    .spec-list.note {
+      list-style-type: none; /* 点を消す */
+      padding-left: 0;
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #666;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .spec-list.note li {
+      margin-bottom: 3px;
+    }
+    .spec-list.note li::before {
+      content: "■ ";
+      color: var(--primary-color);
+      font-size: 0.8em;
+    }
+
+    .btn-text-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 15px;
+        margin-bottom: 5px;
+    }
+    .btn-text-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* PDFアイコン（FontAwesomeがない場合用） */
+    .fa-file-pdf::before {
+        content: "\f1c1"; 
+        /* FontAwesome読み込み済前提ですが、なければ文字で代用も可 */
+    }    
     
   </style>
 </head>
@@ -611,14 +667,14 @@
           <span class="card-num">03</span>
           <h3>シンプルなプラン</h3>
           <p>事業形態と従業員規模に応じた、明確で分かりやすい料金体系。複雑な特約に悩むことなく、必要な補償を得られます。</p>
-          <a href="#" class="card-link openPlanModal">料金プランを見る</a>
+          <a href="#plans">保険料プランを見る</a>
         </div>
       </div>
     </section>
 
     <section id="services">
       <div class="section-title">
-        <h2>付帯法務サービス</h2>
+        <h2>法務サービス</h2>
         <p>追加費用なしで、明日から使えるビジネス法務ツール。</p>
       </div>
 
@@ -716,28 +772,190 @@
       </p>
     </section>
 
-    <section id="specs">
+<section id="specs">
       <div class="section-title">
         <h2>商品概要</h2>
-        <p>安心の補償内容と明確な条件。</p>
+        <p>詳細な補償内容と利用条件について</p>
       </div>
 
+      <h3 style="max-width: 1000px; margin: 0 auto 20px; font-size: 1.2rem; border-left: 5px solid var(--primary-color); padding-left: 15px;">
+        保険（弁護士費用保険）について
+      </h3>
       <table class="spec-table">
         <tbody>
-          <tr><th>保険名称</th><td>事業型弁護士費用保険（ペットネーム：bonobo）</td></tr>
+          <tr><th>保険名称</th><td>事業型弁護士費用保険</td></tr>
+          <tr><th>ペットネーム</th><td>bonobo</td></tr>
           <tr><th>保険期間</th><td>1年（自動更新）</td></tr>
-          <tr><th>保険金</th><td>法律相談料保険金・弁護士費用保険金</td></tr>
-          <tr><th>待機期間</th><td>責任開始日から3か月（特定偶発事故を除く）</td></tr>
-          <tr><th>対象トラブル</th><td>知的財産、労務、債権回収、損害賠償、賃貸、情報漏洩など</td></tr>
+          <tr><th>払込回数</th><td>月払 または 年払</td></tr>
+          <tr><th>払込経路</th><td>クレジットカード払 または 口座振替払</td></tr>
+          <tr><th>基本となる保険金</th><td>法律相談料保険金・弁護士費用保険金</td></tr>
+          <tr><th>セットできる特約</th><td>弁護士費用保険金（報酬金等対応分）不担保特約</td></tr>
+          <tr><th>保険料・保険金</th><td><a href="#plans" style="color: var(--primary-color); text-decoration: underline;">上記の保険料プラン</a>をご確認ください。</td></tr>
+          <tr>
+            <th>責任開始日</th>
+            <td>
+              <p style="margin-top:0;">責任開始日とは、被保険者が直面した原因事故に係る損害について、保険会社が保険契約上のてん補責任を負う最初の日をいいます。責任開始日の決定方法は、保険料の払込方法によって以下の通りとなります。</p>
+              <ul class="spec-list">
+                <li>
+                  <strong>クレジットカード払の場合：</strong><br>
+                  第1回保険料のオーソリ日が属する月の翌月1日
+                  <small>※WEB申込の場合、お申込みが完了した日の翌月1日が責任開始日</small>
+                </li>
+                <li>
+                  <strong>口座振替払の場合：</strong><br>
+                  第1回保険料の振替日が属する月の翌月1日
+                  <ul class="spec-sublist">
+                    <li>WEBでの口座登録が月初～15日の場合：責任開始日は翌月1日</li>
+                    <li>WEBでの口座登録が16日～月末の場合：責任開始日は翌々月1日</li>
+                    <li>書面での口座登録で書類到着が1～20日の場合：責任開始日は翌々月1日</li>
+                    <li>書面での口座登録で書類到着が21～月末の場合：責任開始日は翌々々月1日</li>
+                  </ul>
+                  <small>※第1回保険料が口座振替によりお支払いされたことが前提となります。</small>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>待機期間</th>
+            <td>
+              待機期間は責任開始日から3か月となります。<br>
+              <small>※待機期間中に原因事実が発生した場合、保険金は支払われません。（特定偶発事故を除く）</small>
+            </td>
+          </tr>
+          <tr>
+            <th>不担保期間</th>
+            <td>
+              不担保期間中に以下に掲げる事件に係る原因事実に起因する原因事故が発生した場合、保険金は支払われません。（特定偶発事故を除く）
+              <ul class="spec-list">
+                <li>労働・勤務に係る事件で、法的請求を受けた場合：責任開始日から6か月</li>
+                <li>労働・勤務に係る事件で、法的請求をする場合：責任開始日から1年間</li>
+                <li>責任開始日前に締結した契約に係る事件で、法的請求を受けた場合：責任開始日から6か月</li>
+                <li>責任開始日前に締結した契約に係る事件で、法的請求をする場合：責任開始日から1年間</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>保険金をお支払いする場合</th>
+            <td>
+              被保険者自らの職業・事業活動に伴って直面した法的トラブル
+              <ol class="spec-list" style="list-style-type: decimal;">
+                <li>知的財産関連トラブル</li>
+                <li>退職・解雇・残業代等の労務トラブル</li>
+                <li>代金・債権回収のトラブル</li>
+                <li>損害賠償や返金の請求</li>
+                <li>賃貸物件のトラブル</li>
+                <li>情報漏洩等　など</li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <th>保険金をお支払いしない<br>主な場合</th>
+            <td>
+              <ul class="spec-list">
+                <li>国、地方公共団体、行政庁、その他行政機関を相手方とする事件のうち、国家賠償請求事件を除く事件</li>
+                <li>破産、民事再生、その他倒産処理事件および債務整理事件</li>
+                <li>金銭消費貸借契約に係る事件およびその民事執行手続きに関する事件</li>
+                <li>弁護士報酬について完全成功報酬とする事件</li>
+                <li>トラブルの相手方が契約者、被保険者、株主、出資者、当社にあたる事件</li>
+                <li>台風、暴風、竜巻、豪雨、豪雪、洪水、崖崩れ、土石流、高潮、地震、津波、噴火、地滑りまたはその付随もしくは随伴する事件　など</li>
+              </ul>
+              <p style="font-size: 0.9em; margin-top: 10px; color: #666;">
+                ※ その他の事由については
+                <a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/important_notice.pdf" target="_blank" style="color: var(--primary-color);">重要事項説明書</a>・
+                <a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/insurance_terms_and_conditions.pdf" target="_blank" style="color: var(--primary-color);">普通保険約款</a>
+                にてご確認ください。
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <th>注意事項</th>
+            <td>
+              <ul class="spec-list">
+                <li>この保険には、配当金・満期保険金はありません。</li>
+                <li>月払契約の場合、解約返戻金はありません。年払契約の場合は、契約日からの経過月数に応じて計算された金額を解約返戻金として保険契約者にお支払いします。</li>
+                <li>この保険は、保険期間が1年以内のため、クーリングオフの対象ではありません。</li>
+                <li>当社の少額短期保険募集人（募集代理店）は、お客様と当社の保険契約締結の媒介を行う者で、保険契約締結代理権・告知受領権はありません。保険契約は、お客様からの保険契約のお申し込みに対して当社が承諾したときに有効に成立します。</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>重要書類</th>
+            <td>
+               <a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/insurance_terms_and_conditions.pdf" target="_blank" class="btn-text-link"><i class="fas fa-file-pdf"></i> 普通保険約款</a><br>
+               <a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/important_notice.pdf" target="_blank" class="btn-text-link"><i class="fas fa-file-pdf"></i> 重要事項説明書（契約概要・注意喚起情報）</a>
+            </td>
+          </tr>
+          <tr>
+            <th>引受保険会社</th>
+            <td>株式会社アシロ少額短期保険（<a href="https://asiro-ssi.com/company_info/profile" target="_blank" style="color: var(--primary-color);">会社概要等</a>）</td>
+          </tr>
         </tbody>
       </table>
-<!--      
-      <div style="text-align: center;">
-          <a href="#" class="btn btn-solid openPlanModal">詳細な保険料プランを見る</a>
-      </div>
- -->     
-    </section>
-    
+
+      <h3 style="max-width: 1000px; margin: 40px auto 20px; font-size: 1.2rem; border-left: 5px solid var(--primary-color); padding-left: 15px;">
+        付帯サービス（法務サービス）について
+      </h3>
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <th>契約書/社内規定<br>ひな形提供</th>
+            <td>
+              契約書や社内規定のひな形をダウンロードできるサービスです。弁護士監修のフォーマットを利用することで、書類作成コストを省き、法改正にも対応できます。
+              <ul class="spec-list note">
+                <li>回数制限：契約書ダウンロード 3回/月・社内規定ダウンロード 3回/月</li>
+                <li>サービス提供元：株式会社アシロ</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>反社チェックサービス</th>
+            <td>
+              顧客の氏名や取引先の商号等を検索ワードとして入力することで、簡単に反社チェックすることができるサービスです。独自のデータベースとWEBニュース記事を照合します。
+              <ul class="spec-list note">
+                <li>回数制限：6回/月</li>
+                <li>サービス提供元：株式会社アシロ</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>AIリーガルチェック<br>システム</th>
+            <td>
+              契約書をAIがチェックし、そのレビューを参照できるサービスです。不利益な契約を回避できるよう不足箇所を洗い出し、修正を提案します。
+              <ul class="spec-list note">
+                <li>回数制限：3回/月</li>
+                <li>サービス提供元：株式会社アシロ</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>法務チャット相談</th>
+            <td>
+              法務に関する質問を投稿することで、複数の弁護士からの回答を得ることができるサービスです。
+              <ul class="spec-list note">
+                <li>※個人事業主プランの場合、本サービスをご利用いただけません。</li>
+                <li>回数制限：質問投稿 1回/月・個別相談チャット 3回/月</li>
+                <li>サービス提供元：株式会社アシロ</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>弁護士案内サービス</th>
+            <td>
+              法的なトラブルに巻き込まれた際に、アシログループの弁護士ネットワークから事案を得意とする弁護士を無料で案内します。
+              <ul class="spec-list note">
+                <li>※初回相談30分無料。同じ内容での繰り返し相談や継続利用は不可。</li>
+                <li>回数制限：特になし</li>
+                <li>サービス提供元：株式会社アシロ少額短期保険</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>サービスの利用開始日</th>
+            <td>責任開始日からご利用いただけます。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>    
     <section>
         <div class="agent-form-container">
             <h3>代理店経由のお申し込み</h3>
