@@ -4,8 +4,7 @@
 $(function(){
   // --- 1. 新しいメニュー制御 ---
   
-  // 3つの画像を対象にする（PC用、スマホ用、閉じるボタン）
-  const $menuTrigger = $('.menu-pc, .menu-sp, .menu-close'); 
+
   const $menubar = $('#menubar');
   const $headerBox = $('#header-box'); // クラスを付け替える親箱
 
@@ -13,7 +12,7 @@ $(function(){
   const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 
   // ▼ 画像クリック時の動作
-  $menuTrigger.on('click', function() {
+  $(document).on('click', '.menu-pc, .menu-sp, .menu-close', function() {
     $menubar.fadeToggle();            // メニューのフェードイン・アウト
     $('body').toggleClass('noscroll');// 背景スクロール固定切り替え
     $headerBox.toggleClass('menu-open'); // ★画像の切り替え用クラスをON/OFF
@@ -188,4 +187,21 @@ $(function() {
             $(this).data('animated', true);
         }
     });
+});
+
+
+// =========================================================
+// 追加対策：ページ表示時の強制再描画・スクロール発火
+// =========================================================
+$(window).on('pageshow', function(event) {
+    // ページがキャッシュ(bfcache)から復元された場合、強制的にリロードしてJSを再実行させる
+    if (event.originalEvent.persisted) {
+        window.location.reload();
+    }
+});
+
+$(window).on('load', function() {
+    // 画面読み込み完了時に、一瞬だけスクロールイベントを発火させる
+    // これにより、すでに画面内にある画像の「inview（アニメーション）」を確実にスタートさせます
+    $(window).trigger('scroll');
 });
