@@ -1633,3 +1633,79 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 	top: 5%;
     right: 5%;
 }
+
+
+/* ==========================================================
+   サイドメニュー（右端固定）の設定
+   ========================================================== */
+#side-menu {
+    position: fixed;
+    top: 50%;            /* 画面の縦中央 */
+    right: 5%;           /* 画面右端からの距離 */
+    transform: translateY(-50%); /* 縦位置の微調整（完全な中央へ） */
+    z-index: 990;        /* ヘッダーやモバイルメニューよりは下、コンテンツより上 */
+    
+    /* 初期状態：非表示 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s; /* ふわっと表示させる */
+}
+
+/* 表示用のクラス */
+#side-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#side-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* メニュー項目の間隔 */
+}
+
+#side-menu a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #000; /* デフォルトの文字色（黒） */
+    letter-spacing: 0.1em;
+    display: block;
+    position: relative;
+    padding-left: 0;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+/* ▼ ホバー時の動き（赤い目印） */
+#side-menu a:hover {
+    padding-left: 15px; /* 右に少し動く */
+}
+
+#side-menu a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 4px;       /* 赤い線の太さ */
+    height: 100%;     /* 赤い線の高さ */
+    background-color: #c43311; /* 赤色（サイトのアクセントカラーに合わせました） */
+    opacity: 0;       /* 最初は隠す */
+    transition: opacity 0.3s;
+}
+
+#side-menu a:hover::before {
+    opacity: 1;       /* ホバー時に表示 */
+}
+
+/* ▼ 色反転用のクラス（背景が暗い時に付与） */
+#side-menu.inverse a {
+    color: #fff; /* 文字色を白に */
+}
+
+/* スマホでは邪魔になるため非表示にする場合 */
+@media screen and (max-width: 900px) {
+    #side-menu {
+        display: none;
+    }
+}
