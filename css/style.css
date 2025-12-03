@@ -1559,3 +1559,39 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
     z-index: 999; /* メニューより上にする */
     cursor: pointer; /* クリックできる指マークにする */
 }
+
+/* ==========================================================
+   メニューボタンの切り替え制御
+   ========================================================== */
+
+/* 1. 閉じるボタン（×）の初期設定：最初は非表示 */
+.menu-close {
+    display: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000; /* メニューよりさらに手前 */
+}
+
+/* 2. 閉じるボタンのサイズ調整（menu-pc/spと同じサイズ感にする） */
+@media screen and (min-width: 900px) {
+    .menu-close { width: 4vw; }
+}
+@media screen and (max-width: 899px) {
+    .menu-close { width: 12vw; }
+}
+
+
+/* 3. メニューが開いている時（#header-boxに .menu-open がついた時）の挙動 */
+
+/* ハンバーガー（三本線）を隠す */
+#header-box.menu-open .menu-pc,
+#header-box.menu-open .menu-sp {
+    display: none !important;
+}
+
+/* 閉じるボタン（×）を表示する */
+#header-box.menu-open .menu-close {
+    display: inline-block !important;
+}
+
+
