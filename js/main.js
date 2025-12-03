@@ -3,24 +3,28 @@
 //===============================================================
 $(function(){
   // --- 1. 新しいメニュー制御 ---
-  const $menuTrigger = $('.menu-pc, .menu-sp'); // クリックする画像
-  const $menubar = $('#menubar');                // 表示させるメニュー
   
-  // タッチデバイス判定（ドロップダウン用）
+  // 3つの画像を対象にする（PC用、スマホ用、閉じるボタン）
+  const $menuTrigger = $('.menu-pc, .menu-sp, .menu-close'); 
+  const $menubar = $('#menubar');
+  const $headerBox = $('#header-box'); // クラスを付け替える親箱
+
+  // タッチデバイス判定
   const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 
   // ▼ 画像クリック時の動作
   $menuTrigger.on('click', function() {
-    $menubar.fadeToggle();            // フェードイン・アウト切り替え
-    $('body').toggleClass('noscroll');// 背景固定切り替え
+    $menubar.fadeToggle();            // メニューのフェードイン・アウト
+    $('body').toggleClass('noscroll');// 背景スクロール固定切り替え
+    $headerBox.toggleClass('menu-open'); // ★画像の切り替え用クラスをON/OFF
   });
 
   // ▼ メニュー内のリンクをクリックしたら閉じる
-  // （ただしドロップダウンの親メニューは除く）
   $menubar.find('a').on('click', function() {
-    if ($(this).hasClass('ddmenu')) return; // ドロップダウンの親なら閉じない
+    if ($(this).hasClass('ddmenu')) return;
     $menubar.fadeOut();
     $('body').removeClass('noscroll');
+    $headerBox.removeClass('menu-open'); // ★クラスを外して画像を三本線に戻す
   });
 
 
