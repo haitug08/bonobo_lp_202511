@@ -168,6 +168,34 @@ header a {color: inherit;}
 	}/*追加指定ここまで*/
 
 
+
+.header1 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+}
+.header2 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+}
+
+	/*画面700px以上の追加指定*/
+	@media screen and (min-width:700px) {
+	.header1 {
+		text-align: left;
+		width: 40%;	/*幅。40%。*/
+	}
+	.header2 {
+		text-align: left;
+		width: 40%;	/*幅。40%。*/
+	}	
+		
+	}/*追加指定ここまで*/
+
+
 /*header-box（ヘッダー右側にあるボタン）
 ---------------------------------------------------------------------------*/
 /*ボックス全体*/
