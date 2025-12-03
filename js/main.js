@@ -228,7 +228,7 @@ $(function() {
         const scrollBottom = scrollTop + windowHeight;
 
         // 最下部判定の調整値（50px手前で消え始める設定。0にすれば完全に底につくまで消えません）
-        const bottomOffset = 50;
+        const bottomOffset = 150;
 
         // 1. 表示/非表示の切り替え
         // 「ファーストビューを超えている」 かつ 「最下部より手前」 なら表示
