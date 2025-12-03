@@ -1547,7 +1547,14 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 }
 
 /* ヘッダーのボタン（画像）をメニューより手前に表示する設定 */
-#header-box {
+#header-box .menu-pc {
+    position: relative;
+    z-index: 999; /* メニューより上にする */
+    cursor: pointer; /* クリックできる指マークにする */
+}
+
+/* ヘッダーのボタン（画像）をメニューより手前に表示する設定 */
+#header-box .menu-sp {
     position: relative;
     z-index: 999; /* メニューより上にする */
     cursor: pointer; /* クリックできる指マークにする */
