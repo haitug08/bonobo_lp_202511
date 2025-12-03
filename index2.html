@@ -123,7 +123,7 @@
     .hero h1 {
       font-size: 36px;
       margin-bottom: 20px;
-      line-height: 1.4;
+      line-height: 1.6;
     }
     .hero h1 span {
       color: var(--primary-color);
@@ -227,7 +227,7 @@
     /* --- Services (Grid) --- */
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
       max-width: 1200px;
       margin: 0 auto;
@@ -246,7 +246,7 @@
       background: #fcfcfc;
     }
     .service-item img {
-      height: 60px;
+      height: 35px;
       margin-bottom: 15px;
       object-fit: contain;
     }
@@ -299,6 +299,7 @@
       width: 100%;
       height: auto;
       transition: transform 0.3s;
+      max-width: 386px;
     }
     .trouble-card:hover img {
       transform: scale(1.05);
@@ -628,7 +629,7 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <h1>トラブルが「起こる前」も「起こった後」も<br><span>ビジネスを法務で守る</span></h1>
+        <h1>トラブルが「起こる前」も、<br>トラブルが「起こった後」も、<br><span>ビジネスをサブスク法務で守る</span></h1>
         <p>
           アシログループとアシロ少額短期保険が提供する、<br>
           法務サービスと弁護士費用保険が一体型になった<br>
@@ -667,7 +668,7 @@
           <span class="card-num">03</span>
           <h3>シンプルなプラン</h3>
           <p>事業形態と従業員規模に応じた、明確で分かりやすい料金体系。複雑な特約に悩むことなく、必要な補償を得られます。</p>
-          <a href="#plans">保険料プランを見る</a>
+          <a href="#plans" class="card-link">保険料プランを見る</a>
         </div>
       </div>
     </section>
@@ -675,7 +676,7 @@
     <section id="services">
       <div class="section-title">
         <h2>法務サービス</h2>
-        <p>追加費用なしで、明日から使えるビジネス法務ツール。</p>
+        <p>気軽に使える、充実のビジネス法務ツール。</p>
       </div>
 
       <div class="service-grid">
@@ -956,6 +957,17 @@
         </tbody>
       </table>
     </section>    
+
+
+    <section style="background: linear-gradient(135deg, #00A0BD 0%, #007f96 100%); text-align: center; color: white; padding: 80px 20px;">
+        <h2 style="margin-bottom: 20px;">ビジネスの安心を、今すぐ手に入れる。</h2>
+        <p style="margin-bottom: 40px; opacity: 0.9;">資料請求からお申し込みまで、Webで完結します。</p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="/material_download" class="btn" style="background: white; color: var(--primary-color);">資料ダウンロード</a>
+            <a href="/form/init" class="btn" style="background: var(--accent-color); color: white; border: none;">お申し込みはこちら</a>
+        </div>
+    </section>
+
     <section>
         <div class="agent-form-container">
             <h3>代理店経由のお申し込み</h3>
@@ -968,15 +980,7 @@
             <small id="agent_address"></small>
         </div>
     </section>
-
-    <section style="background: linear-gradient(135deg, #00A0BD 0%, #007f96 100%); text-align: center; color: white; padding: 80px 20px;">
-        <h2 style="margin-bottom: 20px;">ビジネスの安心を、今すぐ手に入れる。</h2>
-        <p style="margin-bottom: 40px; opacity: 0.9;">資料請求からお申し込みまで、Webで完結します。</p>
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            <a href="/material_download" class="btn" style="background: white; color: var(--primary-color);">資料ダウンロード</a>
-            <a href="/form/init" class="btn" style="background: var(--accent-color); color: white; border: none;">お申し込みはこちら</a>
-        </div>
-    </section>
+    
   </main>
 
   <footer>
