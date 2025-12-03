@@ -181,6 +181,11 @@ header a {color: inherit;}
 	flex-direction: column;
 	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
 }
+.header2 td {
+	padding-top: 5%;
+    font-size: large;
+    font-weight: bold;
+}
 
 	/*画面700px以上の追加指定*/
 	@media screen and (min-width:700px) {
