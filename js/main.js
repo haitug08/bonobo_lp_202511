@@ -2,38 +2,29 @@
 // メニュー制御・スムーズスクロール・動画・パララックス
 //===============================================================
 $(function(){
-// 1. 対象のボタン（画像）とメニューを定義
-  const $menuTrigger = $('.menu-pc, .menu-sp'); // クリックする画像クラス
-  const $menubar = $('#menubar');                // 表示させたいメニュー
+  // --- 1. 新しいメニュー制御 ---
+  const $menuTrigger = $('.menu-pc, .menu-sp'); // クリックする画像
+  const $menubar = $('#menubar');                // 表示させるメニュー
+  
+  // タッチデバイス判定（ドロップダウン用）
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 
-  // 2. クリック時の動作
+  // ▼ 画像クリック時の動作
   $menuTrigger.on('click', function() {
-    // メニューをフェードイン・フェードアウトで切り替え
-    $menubar.fadeToggle();
-
-    // 背景固定（スクロール防止）の切り替え
-    $('body').toggleClass('noscroll');
+    $menubar.fadeToggle();            // フェードイン・アウト切り替え
+    $('body').toggleClass('noscroll');// 背景固定切り替え
   });
 
-  // 3. メニュー内のリンクをクリックしたらメニューを閉じる処理
+  // ▼ メニュー内のリンクをクリックしたら閉じる
+  // （ただしドロップダウンの親メニューは除く）
   $menubar.find('a').on('click', function() {
+    if ($(this).hasClass('ddmenu')) return; // ドロップダウンの親なら閉じない
     $menubar.fadeOut();
     $('body').removeClass('noscroll');
   });
-  
-  const $menubarHdr = $('#menubar_hdr');
-  const breakPoint = 9999;
-  const HIDE_MENUBAR_IF_HDR_HIDDEN = false;
-  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 
-  function debounce(fn, wait) {
-    let timerId;
-    return function(...args) {
-      if (timerId) clearTimeout(timerId);
-      timerId = setTimeout(() => fn.apply(this, args), wait);
-    };
-  }
 
+  // --- 2. ドロップダウンメニュー制御 (階層がある場合用) ---
   function initDropdown($menu, isTouch) {
     $menu.find('ul li').each(function() {
       if ($(this).find('ul').length) {
@@ -59,59 +50,11 @@ $(function(){
       );
     }
   }
-
-  function initHamburger($hamburger, $menu) {
-    $hamburger.on('click', function() {
-      $(this).toggleClass('ham');
-      if ($(this).hasClass('ham')) {
-        $menu.show();
-        if ($(window).width() < breakPoint) $('body').addClass('noscroll');
-      } else {
-        $menu.hide();
-        if ($(window).width() < breakPoint) $('body').removeClass('noscroll');
-      }
-      $menu.find('.ddmenu_parent ul').hide();
-    });
-  }
-
-  const handleResize = debounce(function() {
-    const windowWidth = $(window).width();
-    if (windowWidth < breakPoint) {
-      $('body').removeClass('large-screen').addClass('small-screen');
-    } else {
-      $('body').removeClass('small-screen').addClass('large-screen');
-      $menubarHdr.removeClass('ham');
-      $menubar.find('.ddmenu_parent ul').hide();
-      $('body').removeClass('noscroll');
-      if (HIDE_MENUBAR_IF_HDR_HIDDEN) {
-        $menubarHdr.hide(); $menubar.hide();
-      } else {
-        $menubarHdr.hide(); $menubar.show();
-      }
-    }
-    if (windowWidth < breakPoint) {
-      $menubarHdr.show();
-      if (!$menubarHdr.hasClass('ham')) {
-        $menubar.hide();
-        $('body').removeClass('noscroll');
-      }
-    }
-  }, 200);
-
+  
+  // ドロップダウン初期化実行
   initDropdown($menubar, isTouchDevice);
-  initHamburger($menubarHdr, $menubar);
-  handleResize();
-  $(window).on('resize', handleResize);
-
-  $menubar.find('a[href^="#"]').on('click', function() {
-    if ($(this).hasClass('ddmenu')) return;
-    if ($menubarHdr.is(':visible') && $menubarHdr.hasClass('ham')) {
-      $menubarHdr.removeClass('ham');
-      $menubar.hide();
-      $('body').removeClass('noscroll');
-    }
-  });
 });
+
 
 // --- スムーススクロール (変更なし) ---
 $(function() {
@@ -140,7 +83,7 @@ $(function() {
     }
 });
 
-// --- 画面の高さを取得 ---
+// --- 画面の高さを取得 (変更なし) ---
 function setDynamicHeight() {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
 }
@@ -204,7 +147,7 @@ window.addEventListener('resize', setDynamicHeight);
   });
 })();
 
-// --- 背景画像パララックス制御 ---
+// --- 背景画像パララックス制御 (変更なし) ---
 $(document).ready(function() {
     var $target = $('.list-grid7 .list');
     updateParallax();
@@ -227,7 +170,7 @@ $(document).ready(function() {
     }
 });
 
-// --- テキストのフェードイン効果 ---
+// --- テキストのフェードイン効果 (変更なし) ---
 $(function() {
     $('.fade-in-text').on('inview', function(event, isInView) {
         if (isInView && !$(this).data('animated')) {
