@@ -1431,7 +1431,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%; /* コンテンツ幅に合わせる */
+    width: 90%; /* コンテンツ幅に合わせる */
     margin: 0 auto;
 }
 .section-header h2 {
