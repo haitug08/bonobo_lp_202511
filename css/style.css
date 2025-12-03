@@ -1720,8 +1720,8 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
        背景はそのままで中身だけを左へずらします。
     */
     section {
-        /* 上10% | 右18%(広げる) | 下10% | 左2%(狭める) */
-        padding: 10% 18% 10% 2%;
+        /* 上10% | 右13%(広げる) | 下10% | 左2%(狭める) */
+        padding: 10% 13% 10% 2%;
     }
 
     /* フッターも右端にメニューが被らないように右余白を追加 */
@@ -1736,6 +1736,6 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
     .list-grid8 .list {
         margin-left: 0;   /* 中央寄せ(auto)をやめて左詰めにする */
         margin-right: auto;
-        width: 90%;       /* 少し幅を広げてバランスをとる */
+        width: 95%;       /* 少し幅を広げてバランスをとる */
     }
 }
