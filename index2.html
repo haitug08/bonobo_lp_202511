@@ -223,30 +223,52 @@
       border-bottom: 1px solid var(--primary-color);
     }
 
-/* --- Services (Grid) Update --- */
+/* --- Services (Grid) Improved --- */
+    
+    /* セクション全体の背景色を追加してメリハリを出す */
+    #services {
+      background-color: #f0f5f7; /* 薄い青グレー */
+    }
+
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 幅を少し広めに確保 */
-      gap: 25px;
+      /* スマホでも崩れにくいよう最小幅を280pxに調整 */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px; /* カード間の隙間を広げて重なり防止 */
       max-width: 1200px;
       margin: 0 auto;
+      align-items: stretch; /* 高さを自動で揃える */
     }
+
     .service-item {
       background: var(--white);
-      border: 1px solid #eee;
+      /* 枠線を少し濃く */
+      border: 1px solid #e0e0e0;
       border-radius: var(--border-radius);
-      padding: 30px 25px;
-      text-align: left; /* 左寄せに変更して読みやすく */
-      transition: 0.3s;
-      height: 100%; /* 高さ揃え */
+      /* 上部にアクセントカラーのラインを追加 */
+      border-top: 5px solid var(--primary-color);
+      padding: 0; /* 中身のパディングは内部で指定 */
+      text-align: left;
+      transition: all 0.3s ease;
+      height: 100%; /* グリッド内で高さを最大まで伸ばす */
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      /* 影を少し強めて存在感を出す */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
+
     .service-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
       border-color: var(--primary-color);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    
+    /* カード内部のレイアウト用コンテナ */
+    .service-inner {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex: 1; /* コンテンツが少ない場合でも高さを埋める */
     }
     
     .service-header {
@@ -254,10 +276,10 @@
       align-items: center;
       margin-bottom: 15px;
       padding-bottom: 15px;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 2px solid #f2f2f2; /* 仕切り線を太く */
     }
     .service-header img {
-      height: 40px;
+      height: 45px; /* アイコンを少し大きく */
       width: auto;
       margin-right: 15px;
       margin-bottom: 0;
@@ -267,23 +289,25 @@
       font-size: 18px;
       margin: 0;
       color: var(--primary-dark);
-      font-weight: bold;
+      font-weight: 700;
     }
 
     .service-desc {
       font-size: 14px;
-      color: #666;
+      color: #555; /* 文字色を少し濃く */
       line-height: 1.6;
-      margin-bottom: 15px;
-      flex-grow: 1; /* 下部のスペックを底に押しやる */
+      margin-bottom: 20px;
+      flex-grow: 1; /* 下部のスペックボックスを底に押しやる */
     }
 
+    /* スペックボックスのデザイン強化 */
     .service-specs {
-      background: #f9fbfc;
-      padding: 10px 15px;
+      background: #eef6f8; /* 背景色を付けて目立たせる */
+      padding: 12px 15px;
       border-radius: 6px;
-      font-size: 12px;
-      color: #555;
+      font-size: 13px;
+      color: #333;
+      border: 1px solid #daeef2;
     }
     .service-specs ul {
       margin: 0;
@@ -291,16 +315,17 @@
       list-style: none;
     }
     .service-specs li {
-      margin-bottom: 4px;
+      margin-bottom: 5px;
       display: flex;
       align-items: flex-start;
+      font-weight: 500;
     }
     .service-specs li::before {
-      content: "●";
+      content: "✔";
       color: var(--primary-color);
-      font-size: 8px;
+      font-size: 10px;
       margin-right: 8px;
-      margin-top: 5px;
+      margin-top: 4px;
     }
     .service-specs li:last-child {
       margin-bottom: 0;
@@ -1089,6 +1114,7 @@
 
       <div class="service-grid">
         <div class="service-item">
+          <div class="service-inner">
             <div class="service-header">
                 <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_21.png" alt="Icon">
                 <h4>契約書/規定ひな形</h4>
@@ -1103,9 +1129,11 @@
                     <li>提供：株式会社アシロ</li>
                 </ul>
             </div>
+          </div>
         </div>
 
         <div class="service-item">
+          <div class="service-inner">
             <div class="service-header">
                 <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_22.png" alt="Icon">
                 <h4>反社チェック</h4>
@@ -1120,9 +1148,11 @@
                     <li>提供：株式会社アシロ</li>
                 </ul>
             </div>
+          </div>
         </div>
 
         <div class="service-item">
+          <div class="service-inner">
             <div class="service-header">
                 <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_23.png" alt="Icon">
                 <h4>AIリーガルチェック</h4>
@@ -1137,9 +1167,11 @@
                     <li>提供：株式会社アシロ</li>
                 </ul>
             </div>
+          </div>
         </div>
 
         <div class="service-item">
+          <div class="service-inner">
             <div class="service-header">
                 <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_24.png" alt="Icon">
                 <h4>法務チャット相談</h4>
@@ -1154,9 +1186,11 @@
                     <li>※個人事業主プラン利用不可</li>
                 </ul>
             </div>
+          </div>
         </div>
 
         <div class="service-item">
+          <div class="service-inner">
             <div class="service-header">
                 <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_25.png" alt="Icon">
                 <h4>弁護士案内サービス</h4>
@@ -1171,6 +1205,7 @@
                     <li>提供：アシロ少額短期保険</li>
                 </ul>
             </div>
+          </div>
         </div>
       </div>
     </section>
