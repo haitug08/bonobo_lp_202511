@@ -669,93 +669,170 @@
   .header-cv { display: none; } /* スマホではヘッダーのボタンを隠してメニュー内に入れる */
 }
 
-/* --- Pricing Section (Layout Fix) --- */
-    
-    /* 上段：3つのプラン用（3列グリッド） */
-    .pricing-grid-top {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 20px;
+/* --- Pricing Section (CSS Design) --- */
+    #plans {
+      background-color: #f8fbfc;
+    }
+
+    /* プラン切り替えタブ */
+    .plan-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .plan-tab-btn {
+      padding: 12px 24px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #666;
+      transition: all 0.3s;
+      min-width: 140px;
+      text-align: center;
+    }
+    .plan-tab-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    .plan-tab-btn.active {
+      background: var(--primary-color);
+      color: var(--white);
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 10px rgba(0, 160, 189, 0.3);
+    }
+
+    /* プラン表示エリア */
+    .plan-group {
+      display: none; /* JSで切り替え */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
       max-width: 1200px;
-      margin: 0 auto 30px; /* 下段との間隔 */
-      align-items: flex-start;
-    }
-
-    /* 下段：1つのプラン用（中央寄せワイド） */
-    .pricing-row-bottom {
-      max-width: 800px; /* 17番の画像サイズに合わせて調整してください */
       margin: 0 auto;
+      align-items: stretch;
+      animation: fadeIn 0.5s;
+    }
+    .plan-group.active {
+      display: grid;
+    }
+    /* 個人事業主（3プラン）の場合の調整 */
+    .plan-group.col-3 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
-    /* 共通カードデザイン */
-    .pricing-card {
+    /* プランカード本体 */
+    .css-plan-card {
       background: #fff;
       border: 1px solid #e0e0e0;
       border-radius: 12px;
       padding: 0;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
       transition: transform 0.3s, box-shadow 0.3s;
-      overflow: hidden;
       position: relative;
-      height: 100%; /* 高さ揃え */
+      overflow: hidden;
+    }
+    /* スタンダードプラン強調（推奨） */
+    .css-plan-card.recommended {
+      border: 2px solid var(--primary-color);
+      transform: scale(1.02);
+      z-index: 1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .css-plan-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,160,189, 0.15);
-      border-color: var(--primary-color);
+    /* カード内ヘッダー */
+    .plan-name-area {
+      background: #fcfcfc;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
     }
-
-    .pricing-card img {
-      width: 100%;
-      height: auto;
+    .plan-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--accent-color); /* オレンジ */
+      margin-bottom: 10px;
       display: block;
     }
-
-    /* プラン名（画像に含まれる場合は非表示でOK） */
-    .plan-header {
-      padding: 10px;
+    .recommended .plan-name {
+        color: var(--primary-dark);
+    }
+    .plan-price {
+      font-size: 32px;
       font-weight: bold;
-      color: var(--primary-dark);
-      background: #fcfcfc;
-      border-bottom: 1px solid #eee;
-      display: none; 
+      color: var(--text-color);
+      line-height: 1;
+    }
+    .plan-price span {
+      font-size: 14px;
+      font-weight: normal;
+      color: #666;
     }
 
-    /* おすすめプラン（Plan 2 / img_18）の強調 */
-    .pricing-card.recommended {
-      border: 2px solid var(--primary-color);
-      /* 上段の中で目立たせる */
-      transform: scale(1.05);
-      z-index: 1;
+    /* カード内ボディ */
+    .plan-body {
+      padding: 20px;
+      flex: 1;
     }
-    .pricing-card.recommended:hover {
-      transform: scale(1.05) translateY(-5px);
+    
+    /* 各項目ブロック */
+    .plan-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #eee;
+      text-align: center;
     }
-    .pricing-card .badge {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: var(--accent-color);
-      color: white;
+    .plan-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .plan-label {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 5px;
+      display: block;
+    }
+    .plan-value {
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+    .plan-value.large {
+      font-size: 18px;
+      color: var(--primary-dark);
+    }
+    
+    /* 注釈テキスト */
+    .plan-alert {
+      color: #E56E2C; /* オレンジ */
       font-size: 12px;
       font-weight: bold;
-      padding: 5px 15px;
-      border-radius: 0 0 0 10px;
-      z-index: 2;
+      margin-top: 5px;
+    }
+    
+    /* 3名アイコンなど（CSSで簡易表現） */
+    .icon-person {
+        font-size: 40px;
+        color: var(--primary-dark);
+        opacity: 0.8;
+        margin-bottom: 10px;
+        display: block;
+        text-align: center;
     }
 
-    /* スマホ対応 */
     @media (max-width: 768px) {
-      .pricing-card.recommended {
-        transform: scale(1);
-        margin-bottom: 0;
-      }
-      .pricing-grid-top {
-        grid-template-columns: 1fr; /* スマホでは1列 */
-        max-width: 400px;
-      }
+        .plan-tabs { flex-direction: column; align-items: center; }
+        .plan-tab-btn { width: 80%; }
+        .css-plan-card.recommended { transform: scale(1); margin: 10px 0; }
+        .css-plan-card:hover { transform: translateY(0); }
     }
 
 /* --- Specs List Styling --- */
@@ -1493,40 +1570,240 @@
       </div>
     </section>
 
-<section id="plans" style="background-color: #f8fbfc;">
+<section id="plans">
       <div class="section-title">
         <h2>保険料プラン</h2>
-        <p>事業形態と規模に合わせたシンプルなプラン。</p>
+        <p>事業形態と規模に合わせた最適なプランをお選びください。</p>
       </div>
 
-      <div class="pricing-grid-top">
+      <div class="plan-tabs">
+        <div class="plan-tab-btn active" onclick="switchPlan(event, 'plan-indiv')">個人事業主</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp10')">法人 (10名未満)</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp100')">法人 (100名未満)</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp300')">法人 (300名未満)</div>
+      </div>
+
+      <div id="plan-indiv" class="plan-group active col-3">
         
-        <div class="pricing-card">
-          <div class="plan-header">プラン 2</div>
-          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_18.png" alt="Plan 2">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">4,600<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">5.5万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">25万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
         </div>
 
-        <div class="pricing-card">
-          <div class="plan-header">プラン 3</div>
-          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_19.png" alt="Plan 3">
+        <div class="css-plan-card recommended">
+          <div class="plan-name-area" style="background:#e0f7fa;">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">10,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">5.5万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">50万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+          </div>
         </div>
 
-        <div class="pricing-card">
-          <div class="plan-header">プラン 4</div>
-          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_20.png" alt="Plan 4">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">ワイドプラン</span>
+            <div class="plan-price">18,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <div class="pricing-row-bottom">
-        <div class="pricing-card" style="max-width: 600px;margin: auto;">
-          <div class="plan-header">プラン 1</div>
-          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_17.png" alt="Plan 1">
+      <div id="plan-corp10" class="plan-group">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">9,000<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">100万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+        </div>
+        <div class="css-plan-card recommended">
+          <div class="plan-name-area" style="background:#e0f7fa;">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">18,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="plan-corp100" class="plan-group">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">21,000<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">100万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+        </div>
+        <div class="css-plan-card recommended">
+          <div class="plan-name-area" style="background:#e0f7fa;">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">43,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="plan-corp300" class="plan-group">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">25,700<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">300万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+        </div>
+        <div class="css-plan-card recommended">
+          <div class="plan-name-area" style="background:#e0f7fa;">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">52,700<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">600万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
         </div>
       </div>
 
       <p style="text-align: center; font-size: 0.85rem; color: #888; margin-top: 30px;">
-        ※詳細な適用条件については、重要事項説明書をご確認ください。
+        ※詳細な適用条件については、重要事項説明書をご確認ください。<br>
+        ※従業員数300名以上の企業様は別途お見積りいたします。
       </p>
     </section>
 
@@ -2483,6 +2760,22 @@
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('active');
 }
+
+// Plans Tab Switching Logic
+    function switchPlan(evt, planId) {
+      // 1. すべてのプランコンテンツを隠す
+      const groups = document.querySelectorAll('.plan-group');
+      groups.forEach(g => g.classList.remove('active'));
+      
+      // 2. 指定されたプランを表示
+      document.getElementById(planId).classList.add('active');
+      
+      // 3. タブボタンのアクティブ切り替え
+      const tabs = document.querySelectorAll('.plan-tab-btn');
+      tabs.forEach(t => t.classList.remove('active'));
+      evt.currentTarget.classList.add('active');
+    }  
+  
 </script>
   
 </body>
