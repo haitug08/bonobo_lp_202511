@@ -667,6 +667,7 @@ main h2 {
 .list-grid8 .list {
 	width: 80%;
 	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/004.png);
+	background-size: cover;
 }
 }
 
