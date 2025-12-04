@@ -353,11 +353,16 @@
       max-width: 1000px;
       margin: 0 auto;
     }
-    .coverage-intro {
+     .coverage-intro {
       text-align: center;
       margin-bottom: 40px;
-      font-size: 16px;
       line-height: 1.8;
+      
+      /* 画面幅に合わせて 10px ～ 16px の間で調整 */
+      font-size: clamp(10px, 2.8vw, 16px);
+      
+      /* <br>以外での自動改行を禁止 */
+      white-space: nowrap;
     }
     .coverage-box-wrapper {
       display: flex;
@@ -940,6 +945,13 @@
       margin-bottom: 15px;
       width: 80%;
     }
+
+    @media (max-width: 768px) {
+    .ranking-list {
+      width: 100%;
+    }
+    }
+    
     .ranking-list li {
       display: flex;
       justify-content: space-between;
