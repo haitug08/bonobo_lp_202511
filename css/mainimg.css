@@ -8,11 +8,30 @@
     z-index: -1;
 }
 
-#mainimg img {
+#mainimg img.img-pc {
+    display: none;
+}
+
+#mainimg img.img-sp {
+	display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+@media screen and (min-width: 900px) {
+#mainimg img.img-pc {
+	display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#mainimg img.img-sp {
+    display: none;
+}	
 }
 
 #mainimg video {
