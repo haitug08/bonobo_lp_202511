@@ -121,16 +121,18 @@
     }
     
     .hero h1 {
-      font-size: 36px;
+      font-size: clamp(20px, 3.5vw, 38px);
       margin-bottom: 20px;
       line-height: 1.6;
+      
+      white-space: nowrap; 
     }
     .hero h1 span {
       color: var(--primary-color);
     }
     
     .hero p {
-      font-size: 16px;
+      font-size: clamp(13px, 1.2vw, 16px); 
       color: #666;
       margin-bottom: 30px;
     }
@@ -559,14 +561,42 @@
     }
     .modal.open { display: flex; }
 
-    /* --- Responsive --- */
+/* --- Responsive (Updated) --- */
     @media (max-width: 768px) {
       header { padding: 0 20px; height: 60px; }
-      .header-nav { display: none; } /* Mobile menu simplified */
+      .header-nav { display: none; }
       .hero { flex-direction: column-reverse; padding-top: 100px; }
-      .hero-content { padding-right: 0; text-align: center; }
-      .hero h1 { font-size: 26px; }
+      .hero-content { padding-right: 0; text-align: center; width: 100%; }
+      
+      /* スマホ時は画面幅いっぱい使えるので、少しサイズ感を調整 */
+      .hero h1 { 
+        font-size: clamp(22px, 5vw, 30px); 
+        /* スマホで文字がはみ出る場合は以下を normal に戻してください */
+        white-space: nowrap; 
+      }
+      
       .btn { padding: 8px 16px; font-size: 12px; }
+      
+      /* 価格表などの調整... (既存コード維持) */
+      .pricing-card.recommended {
+        transform: scale(1);
+        margin-bottom: 0;
+      }
+      .pricing-grid-top {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+      .data-flex { flex-direction: column; gap: 30px; }
+      .concern-item::after { display: none; }
+      
+      /* モーダルの2カラム解除 */
+      .wrap_09 { flex-direction: column; }
+      .case-image-column, .case-details-column {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+      .pc-img_06 { display: none; }
+      .sp-img_06 { display: block; }
     }
 
 /* ハンバーガーアイコン */
