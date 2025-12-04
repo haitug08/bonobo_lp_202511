@@ -1538,8 +1538,15 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
     justify-content: space-between;
     gap: 2rem;
     width: 100%;
+    margin: 0;
+}
+
+@media screen and (min-width: 900px) {
+.ir-grid-wrap {
     margin: 0 auto 10rem auto; /* bottom margin含む */
 }
+}
+
 
 .ir-table-half {
     width: 100%; /* 既存の.list-grid7内で制御されるため100%でOK */
