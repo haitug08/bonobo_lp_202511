@@ -650,15 +650,17 @@ main h2 {
 	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
 	padding: 2rem;			/*ボックス内の余白。２文字分。*/
 	margin-bottom: 2rem;	/*ボックスの下に空けるスペース。2文字分。*/
-	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/004.png);
+	background-image: none;
 	margin: auto;
 	width: 100%;
 	background-position: right;
+	background-color: #000000;
 }
 
 @media screen and (min-width:900px) {
 .list-grid8 .list {
 	width: 80%;
+	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/004.png);
 }
 }
 
