@@ -712,8 +712,9 @@
       gap: 25px;
       max-width: 1200px;
       margin: 0 auto;
-      align-items: stretch;
+      align-items: stretch; /* 高さを揃える */
       animation: fadeIn 0.5s;
+      padding-top: 10px; /* 拡大時の影切れ防止 */
     }
     .plan-group.active {
       display: grid;
@@ -735,41 +736,76 @@
       position: relative;
       overflow: hidden;
     }
-    /* スタンダードプラン強調（推奨） */
+    
+    /* --- おすすめプランの強調デザイン（強化版） --- */
     .css-plan-card.recommended {
-      border: 2px solid var(--primary-color);
-      transform: scale(1.02);
+      /* 枠線をオレンジ＆太くして目立たせる */
+      border: 3px solid #E56E2C; 
+      /* 少し大きく表示 */
+      transform: scale(1.05); 
       z-index: 1;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      /* 影をオレンジっぽくして浮き立たせる */
+      box-shadow: 0 15px 30px rgba(229, 110, 44, 0.15); 
     }
     .css-plan-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .css-plan-card.recommended:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 20px 40px rgba(229, 110, 44, 0.2); 
+    }
+
+    /* おすすめバッジ */
+    .recommend-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #E56E2C; /* オレンジ */
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 6px 15px;
+      border-bottom-left-radius: 8px;
+      z-index: 10;
+      box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
     }
 
     /* カード内ヘッダー */
     .plan-name-area {
       background: #fcfcfc;
-      padding: 20px;
+      padding: 25px 20px;
       text-align: center;
       border-bottom: 1px solid #eee;
     }
+    /* おすすめプランのヘッダー背景色 */
+    .css-plan-card.recommended .plan-name-area {
+      background-color: #fff8f0; /* 薄いオレンジ */
+    }
+
     .plan-name {
       font-size: 16px;
       font-weight: bold;
-      color: var(--accent-color); /* オレンジ */
+      color: var(--primary-dark);
       margin-bottom: 10px;
       display: block;
     }
-    .recommended .plan-name {
-        color: var(--primary-dark);
+    .css-plan-card.recommended .plan-name {
+        color: #E56E2C; /* オレンジ文字 */
+        font-size: 18px; /* 少し大きく */
     }
+    
     .plan-price {
       font-size: 32px;
       font-weight: bold;
       color: var(--text-color);
       line-height: 1;
     }
+    .css-plan-card.recommended .plan-price {
+      color: #E56E2C; /* 価格もオレンジに */
+      font-size: 36px;
+    }
+    
     .plan-price span {
       font-size: 14px;
       font-weight: normal;
@@ -816,23 +852,17 @@
       font-size: 12px;
       font-weight: bold;
       margin-top: 5px;
-    }
-    
-    /* 3名アイコンなど（CSSで簡易表現） */
-    .icon-person {
-        font-size: 40px;
-        color: var(--primary-dark);
-        opacity: 0.8;
-        margin-bottom: 10px;
-        display: block;
-        text-align: center;
+      background: #fff0e6;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
     }
 
     @media (max-width: 768px) {
         .plan-tabs { flex-direction: column; align-items: center; }
         .plan-tab-btn { width: 80%; }
-        .css-plan-card.recommended { transform: scale(1); margin: 10px 0; }
-        .css-plan-card:hover { transform: translateY(0); }
+        .css-plan-card.recommended { transform: scale(1); margin: 15px 0; }
+        .css-plan-card:hover, .css-plan-card.recommended:hover { transform: translateY(0); }
     }
 
 /* --- Specs List Styling --- */
@@ -1585,7 +1615,8 @@
 
       <div id="plan-indiv" class="plan-group active col-3">
         
-        <div class="css-plan-card">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
           <div class="plan-name-area">
             <span class="plan-name">ライトプラン</span>
             <div class="plan-price">4,600<span>円/月</span></div>
@@ -1609,8 +1640,8 @@
           </div>
         </div>
 
-        <div class="css-plan-card recommended">
-          <div class="plan-name-area" style="background:#e0f7fa;">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
             <span class="plan-name">スタンダードプラン</span>
             <div class="plan-price">10,400<span>円/月</span></div>
           </div>
@@ -1658,7 +1689,8 @@
       </div>
 
       <div id="plan-corp10" class="plan-group">
-        <div class="css-plan-card">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
           <div class="plan-name-area">
             <span class="plan-name">ライトプラン</span>
             <div class="plan-price">9,000<span>円/月</span></div>
@@ -1681,8 +1713,8 @@
             </div>
           </div>
         </div>
-        <div class="css-plan-card recommended">
-          <div class="plan-name-area" style="background:#e0f7fa;">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
             <span class="plan-name">スタンダードプラン</span>
             <div class="plan-price">18,400<span>円/月</span></div>
           </div>
@@ -1706,7 +1738,8 @@
       </div>
 
       <div id="plan-corp100" class="plan-group">
-        <div class="css-plan-card">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
           <div class="plan-name-area">
             <span class="plan-name">ライトプラン</span>
             <div class="plan-price">21,000<span>円/月</span></div>
@@ -1729,8 +1762,8 @@
             </div>
           </div>
         </div>
-        <div class="css-plan-card recommended">
-          <div class="plan-name-area" style="background:#e0f7fa;">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
             <span class="plan-name">スタンダードプラン</span>
             <div class="plan-price">43,400<span>円/月</span></div>
           </div>
@@ -1754,7 +1787,8 @@
       </div>
 
       <div id="plan-corp300" class="plan-group">
-        <div class="css-plan-card">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
           <div class="plan-name-area">
             <span class="plan-name">ライトプラン</span>
             <div class="plan-price">25,700<span>円/月</span></div>
@@ -1777,8 +1811,8 @@
             </div>
           </div>
         </div>
-        <div class="css-plan-card recommended">
-          <div class="plan-name-area" style="background:#e0f7fa;">
+        <div class="css-plan-card">
+          <div class="plan-name-area">
             <span class="plan-name">スタンダードプラン</span>
             <div class="plan-price">52,700<span>円/月</span></div>
           </div>
