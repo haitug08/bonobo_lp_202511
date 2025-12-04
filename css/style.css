@@ -474,10 +474,17 @@ main h2 span.small {
 /*見出しをセンタリングする場合*/
 main h2 {
     font-weight: bold;
-    font-size: 72px;
+    ont-size: 28px;
     font-family: "Fugaz One";
     letter-spacing: 0.5rem;
 	margin-left: 10%;
+}
+
+@media screen and (min-width: 900px) {
+main h2 {
+    font-size: 72px;
+}
+
 }
 
 
