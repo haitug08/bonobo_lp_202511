@@ -1221,6 +1221,79 @@
 .br-pc {display: block;}
 .br-sp {display: none;}
 }
+
+
+/* --- Button Styles Update --- */
+    
+    /* 既存のコード */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px; /* 少し縦を広げて押しやすく */
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      line-height: 1.2;
+      min-width: 160px; /* 幅を揃える */
+    }
+
+    /* 1. 資料請求用（白抜き） */
+    .btn-outline {
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      background: #ffffff;
+    }
+    .btn-outline:hover {
+      background: #f0f8ff;
+      transform: translateY(-2px);
+    }
+
+    /* 2. オンライン相談用（メインカラー・青） ★追加★ */
+    .btn-main {
+      background: var(--primary-color); /* #00A0BD */
+      color: #ffffff;
+      border: 2px solid var(--primary-color);
+    }
+    .btn-main:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 160, 189, 0.3);
+    }
+
+    /* 3. お申し込み用（アクセントカラー・オレンジ） */
+    .btn-solid {
+      background: var(--accent-color); /* #E56E2C (FF9F00から調整) */
+      color: #ffffff;
+      border: 2px solid var(--accent-color);
+    }
+    .btn-solid:hover {
+      background: #ffffff;
+      color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(229, 110, 44, 0.3);
+    }
+
+    /* スマホでのボタンエリア調整 */
+    @media (max-width: 768px) {
+      .btn {
+        width: 100%; /* スマホでは横幅いっぱいに */
+        min-width: auto;
+        padding: 12px;
+      }
+      /* ボタンコンテナを縦並びにするためのクラス */
+      .cv-area-mobile-stack {
+        flex-direction: column;
+        gap: 15px !important;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+      }
+    }
     
   </style>
 </head>
@@ -1275,11 +1348,22 @@
           法務サービスと弁護士費用保険が一体型になった<br>
           新しい時代の事業リスク対策ソリューション。
         </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-            <a href="https://asiro-ssi.com/form/init" class="btn btn-solid" style="padding: 15px 40px;">今すぐ申し込む</a>
-            <a href="https://asiro-ssi.com/material_download" class="btn btn-outline" style="padding: 15px 40px;">無料で資料請求</a>
+
+        <div class="cv-area-mobile-stack" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 30px;">
+            <a href="https://asiro-ssi.com/material_download" class="btn btn-outline">
+                <i class="fas fa-file-download" style="margin-right:8px;"></i>資料請求
+            </a>
+            
+            <a href="https://spir.ai/your-booking-url" target="_blank" class="btn btn-main">
+                <i class="fas fa-video" style="margin-right:8px;"></i>オンライン相談
+            </a>
+            
+            <a href="https://asiro-ssi.com/form/init" class="btn btn-solid">
+                <i class="fas fa-paper-plane" style="margin-right:8px;"></i>今すぐ申し込む
+            </a>
         </div>
       </div>
+      
       <div class="hero-image">
         <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_144.png" alt="bonobo concept">
       </div>
@@ -2038,6 +2122,27 @@
         </div>
     </section>
 
+
+
+    <section style="background: linear-gradient(135deg, #00A0BD 0%, #007f96 100%); text-align: center; color: white; padding: 80px 20px;">
+        <h2 style="margin-bottom: 20px;">ビジネスの安心を、<br class="br-sp">今すぐ手に入れる。</h2>
+        <p style="margin-bottom: 40px; opacity: 0.9;">資料請求・ご相談・お申し込み、<br class="br-sp">すべてWebで完結します。</p>
+        
+        <div class="cv-area-mobile-stack" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://asiro-ssi.com/material_download" class="btn" style="background: white; color: var(--primary-color); border:2px solid white;">
+                <i class="fas fa-file-download" style="margin-right:8px;"></i>資料請求
+            </a>
+
+            <a href="https://spir.ai/your-booking-url" target="_blank" class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; backdrop-filter: blur(5px);">
+                <i class="fas fa-video" style="margin-right:8px;"></i>オンライン相談
+            </a>
+
+            <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+                <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら
+            </a>
+        </div>
+        </section>
+    
     <section>
         <div class="agent-form-container">
             <h3>代理店経由のお申し込み</h3>
