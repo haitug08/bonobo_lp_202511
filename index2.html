@@ -145,20 +145,28 @@
       border-radius: 20px;
     }
 
-    /* --- Section Styling --- */
+/* --- Section Styling (Updated) --- */
     section {
       padding: 80px 20px;
+      /* 改行禁止によって文字がはみ出した場合に横スクロールが発生するのを防ぐ */
+      overflow-x: clip; 
     }
 
     .section-title {
       text-align: center;
       margin-bottom: 50px;
     }
+    
     .section-title h2 {
-      font-size: 28px;
+      /* 画面幅に合わせて 22px ～ 28px の間で可変 */
+      font-size: clamp(22px, 5vw, 28px);
       position: relative;
       display: inline-block;
+      
+      /* 勝手な改行を禁止 */
+      white-space: nowrap;
     }
+    
     .section-title h2::after {
       content: '';
       display: block;
@@ -168,9 +176,16 @@
       margin: 15px auto 0;
       border-radius: 2px;
     }
+    
     .section-title p {
+      /* 画面幅に合わせて 11px ～ 16px の間で可変 */
+      /* スマホで文字が小さくなりすぎないよう下限を11pxに設定 */
+      font-size: clamp(11px, 3.5vw, 16px);
       color: #888;
       margin-top: 15px;
+      
+      /* 勝手な改行を禁止 */
+      white-space: nowrap;
     }
 
     /* --- Features (Cards) --- */
