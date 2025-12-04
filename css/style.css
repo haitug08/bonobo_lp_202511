@@ -1474,7 +1474,9 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 }
 
 @media screen and (min-width:900px) {
+.info-table {
 	display: block;
+}
 }
 
 
