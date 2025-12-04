@@ -727,7 +727,7 @@
     /* プランカード本体 */
     .css-plan-card {
       background: #fff;
-      border: 3px solid #00A0BD;
+      border: 1px solid #e0e0e0;
       border-radius: 12px;
       padding: 0;
       display: flex;
@@ -735,6 +735,8 @@
       transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
       overflow: hidden;
+      transform: translateZ(0); 
+      will-change: transform;
     }
     
     /* --- おすすめプランの強調デザイン（強化版） --- */
@@ -757,13 +759,16 @@
     /* おすすめバッジ */
     .recommend-badge {
       position: absolute;
-      top: 0;
-      right: 0;
-      background: #E56E2C; /* オレンジ */
+      /* ▼変更: 0 から -1px にして隙間を埋める */
+      top: -1px;
+      right: -1px;
+      
+      background: #E56E2C;
       color: white;
       font-size: 12px;
       font-weight: bold;
-      padding: 6px 15px;
+      /* 余白を少し調整 */
+      padding: 7px 16px 6px 16px; 
       border-bottom-left-radius: 8px;
       z-index: 10;
       box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
