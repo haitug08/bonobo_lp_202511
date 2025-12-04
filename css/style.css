@@ -1077,6 +1077,7 @@ ul.step li:last-child::after {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+	padding: 5%;
 }
 
 #footer div.footer2 {
@@ -1084,6 +1085,7 @@ ul.step li:last-child::after {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+	padding: 5%;
 }
 
 #footer div.footer3 {
@@ -1091,6 +1093,7 @@ ul.step li:last-child::after {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+	padding: 5%;
 }
 
 #footer div.footer4 {
@@ -1098,11 +1101,12 @@ ul.step li:last-child::after {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+	padding: 5%;
 }
 
 
-	/*画面700px以上の追加指定*/
-	@media screen and (min-width:700px) {
+	/*画面900px以上の追加指定*/
+	@media screen and (min-width:900px) {
 
 	#footer {
 		display: flex;
@@ -1112,21 +1116,25 @@ ul.step li:last-child::after {
 	#footer div.footer1 {
 		text-align: left;
 		width: 40%;	/*幅。40%。*/
+		padding: 0%;
 	}
 		
 	#footer div.footer2 {
 		text-align: left;
 		width: 40%;	/*幅。40%。*/
+		padding: 0%;
 	}
 		
 	#footer div.footer3 {
 		text-align: left;
 		width: 40%;	/*幅。40%。*/
+		padding: 0%;
 	}
 		
 	#footer div.footer4 {
 		text-align: left;
 		width: 40%;	/*幅。40%。*/
+		padding: 0%;
 	}
 
 		
