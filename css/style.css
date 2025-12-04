@@ -171,8 +171,10 @@ header a {color: inherit;}
 
 	}/*追加指定ここまで*/
 
-
-
+.header0 {
+	display: block;
+    margin: 10%;
+}
 .header1 {
 	flex: 1;
 	display: flex;
@@ -191,8 +193,12 @@ header a {color: inherit;}
     font-weight: bold;
 }
 
-	/*画面700px以上の追加指定*/
-	@media screen and (min-width:700px) {
+	/*画面900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+	.header0 {
+	    display: flex;
+        margin: 10%;
+	}
 	.header1 {
 		text-align: left;
 		width: 40%;	/*幅。40%。*/
