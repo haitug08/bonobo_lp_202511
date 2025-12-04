@@ -948,6 +948,104 @@
       .data-flex { flex-direction: column; gap: 30px; }
       .concern-item::after { display: none; } /* スマホではしっぽを消してスッキリさせる */
     }
+
+/* --- Modal Inner Content (Adapted from Old LP) --- */
+    .modal-scroll-area {
+      /* モーダル内でのスクロール調整用 */
+      width: 100%;
+    }
+
+    /* 2カラムレイアウト */
+    .wrap_09 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .case-image-column {
+      flex: 0 0 40%; /* 画像カラム幅 */
+      max-width: 40%;
+    }
+    .case-details-column {
+      flex: 0 0 55%; /* テキストカラム幅 */
+      max-width: 55%;
+    }
+    
+    /* テキストスタイル */
+    .txt_12 {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--primary-dark);
+      margin-top: 0;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    .txt_07 {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    /* 画像切り替え (PC/SP) */
+    .pc-img_05, .pc-img_06 { width: 100%; height: auto; border-radius: 8px; }
+    .sp-img_06 { display: none; width: 100%; height: auto; }
+
+    /* ツールチップ（ご注意書き） */
+    .tooltip {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      color: #666;
+      font-size: 0.8rem;
+      border-bottom: 1px dashed #999;
+    }
+    .balloon_top {
+      display: none; /* 最初は隠す */
+      position: absolute;
+      bottom: 100%; /* 上に表示 */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      font-size: 11px;
+      border-radius: 5px;
+      z-index: 10;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    /* 吹き出しの三角 */
+    .balloon_top::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }
+    /* ホバー時に表示 */
+    .tooltip:hover .balloon_top {
+      display: block;
+    }
+
+    /* スマホ対応 */
+    @media (max-width: 768px) {
+      .wrap_09 { flex-direction: column; }
+      .case-image-column, .case-details-column {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+      .pc-img_06 { display: none; } /* スマホではPC用チャート画像を隠す */
+      .sp-img_06 { display: block; } /* スマホ用チャート画像を表示 */
+    }
+
     
   </style>
 </head>
@@ -1623,11 +1721,22 @@
         }
 
         // Initialize Modals  
-      setupModal('.openPlanModal', 'plan');
-      setupModal('#openTrouble1Modal', 'trouble1');
-
+        setupModal('.openPlanModal', 'plan');
+        setupModal('#openTrouble1Modal', 'trouble1');
+        setupModal('#openTrouble2Modal', 'trouble2');
+        setupModal('#openTrouble3Modal', 'trouble3');
+        setupModal('#openTrouble4Modal', 'trouble4');
+        setupModal('#openTrouble5Modal', 'trouble5');
+        setupModal('#openTrouble6Modal', 'trouble6');
+        setupModal('#openTrouble7Modal', 'trouble7');
+        setupModal('#openTrouble8Modal', 'trouble8');
+        setupModal('#openTrouble9Modal', 'trouble9');
+        setupModal('#openTrouble10Modal', 'trouble10');
+        setupModal('#openTrouble13Modal', 'trouble13');
+        setupModal('#openTrouble16Modal', 'trouble16');
+        setupModal('#openTrouble19Modal', 'trouble19');
       
-        // ... (Add other trouble modals here)
+
     });
 
     // Agent API Logic (Original)
@@ -1660,5 +1769,632 @@ function toggleMenu() {
 }
 
   </script>
+
+  <div id="trouble1" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_62.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">貸し切り客とのトラブル</p>
+          <p class="txt_07">
+            大学のサークル生20名がイタリアンレストランを貸し切りで予約。<br>
+            一部の利用客が泥酔し、店の入口に設置した非接触型の自動検温器を倒して破損。<br>
+            さらに店内の花器やトイレの便座なども壊され、約90万円の損害が発生した。<br>
+            予約をした幹事へ連絡し状況を伝えたところ、「壊した覚えはない」「人数が多かったので誰がやったか分からない」「元から壊れていたのではないか」などと話し合いにならなかったため、弁護士へ請求を依頼した。<br>
+            示談交渉の結果、約90万の全額を回収した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_117.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_98.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble2" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_64.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">食中毒によるトラブル</p>
+          <p class="txt_07">
+            低温調理した焼鳥を提供したところ、2日後に利用客から「腹痛で通院した結果カンピロバクターが検出され、医師から食中毒と診断された。そちらの焼鳥が原因だ」と入電。謝罪して食事代の返金を申し出たが、それだけでは納得されず「保健所へ通報する」と言われた。<br>
+            その後保健所の検査を受け、店は3日間の営業停止処分を受けた。<br>
+            半年ほど経過して忘れかけていた頃、相手方の弁護士から書面が届き、治療費・慰謝料・休業損害など、合計150万円の支払いを請求された。<br>
+            1審判決を不服として控訴した結果、100万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_118.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_99.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble3" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_65.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">美容院の仕上がりに関するトラブル</p>
+          <p class="txt_07">
+            女性客から「カラーの仕上がりに納得できない」との申し出があり施術をやり直したところ、今度は「頭皮が痛い」とクレームになった。<br>
+            やむを得ず代金を全額返金し帰宅してもらったが、翌日になって女性の夫が来店し、「なぜ通院させなかったのか」「返金だけで済ませるとは非常識だ」などと店内で声を荒げたため、悪質なクレーマーとして対応した。<br>
+            しかし、約1年後に裁判所から書類が届き、「頭皮に後遺障害を負った」として損害賠償を求める裁判を起こされてしまった。<br>
+            判決により請求額約90万の全額が認定された。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_119.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_100.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble4" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_66.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">従業員とのトラブル</p>
+          <p class="txt_07">
+            求人票で「正社員」として募集をかけたところ応募があり、内定を出すことになった。しかし、以前から使っていた「契約社員用の雇用契約書」をそのまま使用して契約を結び、入社させてしまった。<br>
+            所定の労働時間は10時から19時だったが、その社員は朝9時過ぎには出勤し、勤怠システムに打刻をしていた。残業代を抑えたいと考えた現場のマネージャーは、打刻時間をすべて「10時」に修正していた。<br>
+            後日、その社員から労働基準監督署へ「求人内容と実際の雇用形態が違う」「打刻時間を勝手に修正されている」と相談が入り、その後、残業代の支払いを求めて調停を申し立てられてしまった。<br>
+            約175万の請求のうち、80万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_120.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_101.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble5" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_67.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">宿泊施設内でケガした客とのトラブル</p>
+          <p class="txt_07">
+            廊下の照明が点灯しておらず暗かったため、宿泊客が階段で転倒してケガをした。<br>
+            無人チェックイン方式を採用していたためスタッフが少なく、その場での応急手当や治療費の支払いなど、十分な対応ができなかった。<br>
+            後日、ホテルに管理責任があるとして治療費・慰謝料・休業損害等を求める訴訟が提起され、賠償金を支払う形で和解となった。<br>
+            約250万の請求のうち、100万円を支払うことで裁判上で和解した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_121.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_102.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble6" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_68.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">個人事業主が配送先とトラブル</p>
+          <p class="txt_07">
+            配送先で数回インターホンを鳴らしたところ、「間隔が短くしつこい」と指摘された。<br>
+            謝罪してその場を離れようとしたところ、「態度が悪い」と言われ胸ぐらを掴まれたため、とっさにその手を振りほどいたところ、「手を怪我した」と言われ、後日、損害賠償請求を受ける事態まで発展した。<br>
+            示談交渉の結果、1日分の治療費と慰謝料あわせて3万円を支払うことで示談した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_122.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_103.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble7" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_69.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">個人事業主の配送中の事故</p>
+          <p class="txt_07">
+            渋滞中にブレーキから足を離したところ、前方の車両と接触した。<br>
+            前の車には夫婦が乗車しており、2人とも「首が痛い」と訴えて救急車で搬送された。<br>
+            車両には目立った損傷がなかったため、負傷させた認識はなかったが、後日、相手方の弁護士から損害賠償請求訴訟を提起された。<br>
+            慰謝料や休業損害あわせて約300万円が請求され、200万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_123.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_104.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble8" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_70.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">取引先と部下とのトラブル</p>
+          <p class="txt_07">
+            大口の取引先と懇親会を開催することになり、代表者、部長、若手女性社員数名で参加した。<br>
+            会食中、取引先の社員から女性社員に対してセクハラとも取れる不適切な発言があったが、“酒席での冗談”と受け止めてその場をやり過ごした。<br>
+            若手女性社員からは「取引先の発言が嫌だった」「その場で止めて欲しかった」などと申し出があったが、なだめる程度で話し合いは終わった。<br>
+            後日、若手女性社員は「会社は事態を軽視している」として、会社と取引先の双方に対して損害賠償を求める裁判が提起された。<br>
+            裁判の結果、取引先との会食は業務の延長線上であり、会社側に安全配慮義務違反があることが認められた。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_124.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_105.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble9" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_71.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">部下とのトラブル</p>
+          <p class="txt_07">
+            仕事帰りに職場メンバー約10名で食事にいった。中間管理職（係長）の女性が自身の部下に対して、「あなたは学歴が低いから地頭が悪い」と発言したことに対し、課長が「今の発言はよくない」と全員の前でたしなめた。<br>
+            後日、主任の女性は課長と会社に対して「部下の前でパワハラを受けた」との内容で慰謝料と謝罪を求める裁判を提起した。<br>
+            女性からの請求は棄却されたが、裁判に対応するための弁護士費用を負担することになった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_125.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_106.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble10" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_72.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">下請けの杜撰な管理</p>
+          <p class="txt_07">
+            商業施設から改装工事を受注した元請が、内装の仕上げを下請けへ外注した。内装業者による資材の発注ミスと職人手配の遅れで工期が遅延したことで、商業施設のオープンが遅れる事態になった。<br>
+            テナントへの違約金や逸失利益で多額の損害が発生したため、内装業者に対して契約書に基づく損害金等の賠償を請求した。<br>
+            内装業者は、「元請からの変更指示が頻繁だったことが原因」、「資材メーカーの納期遅延は不可抗力」などと主張し支払いを拒否。<br>
+            元請が損害を負担することになってしまったため、支払拒否した内装業者に対して訴訟を提起した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_126.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_107.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble11" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_73.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">外国人居住者のゴミ出しトラブル</p>
+          <p class="txt_07">
+            管理会社として管理している物件の外国人入居者が、日本の複雑なゴミの分別ルールやゴミ出しの日時・場所を正確に理解しておらず、ルール違反を繰り返していた。それにより自治体からの回収が拒否され、ゴミ集積所が荒れたことで、他の住民からも苦情が入るようになってしまった。<br>
+            管理会社として注意を促しても、言語の壁や自国との慣習の違いから話し合いが進まず、弁護士へ対応を依頼することになった。<br>
+            最終的には、調停調書による合意となり、今後のゴミ出しについて、ルールの完全な順守を確約させた。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_127.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_108.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble12" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_74.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">入居者からのクレーム対応</p>
+          <p class="txt_07">
+            管理会社として管理している物件について、共用部の清掃不足、エレベーターの故障頻発、隣室からの騒音等の改善要求が入居者よりあった。<br>
+            管理会社としては、共有部の張り紙や集合ポストへの注意喚起チラシの投函等、できる限りの対処を行ったが、入居者からの納得は得られず、「家賃を下げろ」、「引越し費用を出せ」などのクレームが入った。<br>
+            数か月間に及ぶクレーム対応の結果、賃貸借契約の解除、引越し費用、慰謝料などの損害賠償を求める裁判が提起された。<br>
+            損害賠償として約300万円が請求され、100万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_128.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_109.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble13" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_75.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">文化の違いが生んだ原状回復トラブル</p>
+          <p class="txt_07">
+            管理会社として管理している物件について、外国人居住者の退去立ち会い時、キッチン周辺の油汚れ、浴室の水垢、床のべたつき、壁の画鋲跡や複数の釘穴などを指摘した。<br>
+            通常のハウスクリーニングでは対応困難な汚れ・損耗と判断し、居住者に対して8万円の追加クリーニング費用を請求した。<br>
+            居住者は「自分なりに一生懸命掃除した」「母国ではこれで十分に清潔だ」「壁に絵を飾ってはいけないのはおかしい」と主張し、請求に応じなかった。<br>
+            賃貸借契約時に説明した退去ルールに対する理解度や、「清潔さ」の基準の違いからトラブルに発展し、弁護士を通じて交渉することになった。<br>
+            話し合いの結果、3万円を回収することで解決となった
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_129.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_110.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble14" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_76.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">不当な報酬カットの現実</p>
+          <p class="txt_07">
+            大手IT企業A社は新規顧客開拓のため、アポイント獲得代行を個人事業主のBへ業務委託。契約書は「テレアポによる月10件の新規アポイント獲得」を目標とし、「1件あたり1万円の成功報酬（最大10万円）と活動費5万円を支払う」との内容だった。<br>
+            Bはリストに基づき精力的に活動を行い、目標を上回る月12件のアポイントを獲得。しかし、A社の営業部長から「実際に訪問できたのは2件」「先方のサービスの理解度が低くニーズの引き出しが不十分」「訪問にすら至らないアポは成果ではない」と指摘を受けた。<br>
+            これに対し、Bは「アポ獲得数という契約目標は達成している。訪問に至らないのはA社側のクロージングやその後のフォロー体制にもよる」と反論したところ、トラブルへ発展。A社は「成功報酬はゼロ、活動費の5万円のみ支払う」と通告してきたため、Bは不当として弁護士へ交渉を依頼、弁護士の交渉により契約書通りの15万円を受領し、示談した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_130.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_111.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble15" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_77.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">入居者からの理不尽な要求</p>
+          <p class="txt_07">
+            今年から管理を始めた賃貸物件の入居者から、「備え付けのエアコンを最新機種に交換しろ」「壁紙をすべて張り替えろ」といった要求が度々寄せられるようになりました。<br>
+            主観的かつ過度な要求と判断し、穏便かつ丁寧にお断りしましたが、「SNSで拡散するぞ」といった発言があり、クレームがエスカレートしました。<br>
+            その後、事実と異なる情報がSNS上で拡散され、会社の評判が著しく損なわれる事態となりました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_131.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_112.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble16" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_78.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">原状回復費用を巡るトラブル</p>
+          <p class="txt_07">
+            退去した入居者に対し、原状回復費用としてガイドラインに基づいた修繕費を請求したところ、「SNS上で相談したが、払う必要はないとアドバイスされた」と支払いを拒否。<br>
+            さらに、根拠の不確かなインターネット情報を提示し、自身には負担分はないとして強硬な姿勢を崩しませんでした。<br>
+            交渉は平行線をたどり、解決しないまま時間が経過したところ、入居者側の弁護士から「1円も支払わない」との内容証明郵便が送られてきました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_132.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_113.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble17" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_79.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">近隣住民から管理会社宛のクレーム</p>
+          <p class="txt_07">
+            外国人入居者が夜間に騒音を立てているとの苦情が、近隣住民から頻繁に寄せられるようになりました。<br>
+            管理会社は注意喚起の張り紙やチラシの投函などで対応しましたが、騒音は収まらず、近隣住民からの苦情は悪化。<br>
+            最終的には入居者と近隣住民との直接の口論に発展し、「管理会社が何もしてくれない」との訴えがオーナーや警察へ寄せられる事態となりました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_133.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_114.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble18" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_80.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">執拗なカスタマーハラスメント</p>
+          <p class="txt_07">
+            マンションの入居者から共用部に関するクレームが連日、執拗に寄せられました。<br>
+            「エントランスの伸びた植物を今すぐ剪定させろ」「廊下にゴキブリが出た。駆除が遅いと家に侵入してしまう」「電球が薄暗い。転んだら責任は取れるのか」など、次第に威圧的な指摘が目立つようになりました。<br>
+            管理会社は、その都度管理人と連携し、できる限りの対応を試みましたが、状況は悪化の一途をたどり、担当者の携帯電話には業務時間外にも連絡が来るようになりました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_134.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_115.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble19" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_138.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">荷崩れによる破損トラブル</p>
+          <p class="txt_07">
+            500万円相当の資材を輸送中、荷崩れによる破損事故が発生。<br>
+            受託貨物保険を契約していたので「あとは保険会社が対応します」と伝えましたが、なんと保険会社から「この保険に示談代行はありません」との返答が。<br>
+            自動車保険とは違うと初めて知り、法律知識もないまま、怒れるお客様との高額な損害賠償の交渉をすべて自分で対応しました。<br>
+            多少費用が掛かっても早い段階で弁護士を頼っていれば、あの多大な労力や精神的な負担は無かったのでは・・・と後悔しています。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_140.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_139.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
 </body>
 </html>
