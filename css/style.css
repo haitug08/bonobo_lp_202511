@@ -1739,3 +1739,23 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
         width: 95%;       /* 少し幅を広げてバランスをとる */
     }
 }
+
+
+/* ==========================================================
+   画像のレスポンシブル対応
+   ========================================================== */
+.img-pc {
+    display: none;
+}
+.img-sp {
+	display: block;
+}
+
+@media screen and (min-width: 900px) {
+.img-pc {
+	display: block;
+}
+.img-sp {
+    display: none;
+}	
+}
