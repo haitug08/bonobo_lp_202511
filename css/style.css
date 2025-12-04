@@ -434,7 +434,7 @@ body:not(.home) #contents {
 	/*ボタンが入ったボックス*/
 	#contents .btn {
 		display: inline-block;
-		margin-bottom: 100px;
+		margin-bottom: 50px;
 	}
 	
 	/*ボタン１個あたり*/
@@ -1458,12 +1458,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 }
 
 .section-padding-none {
-    padding-bottom: 100px;
-}
-@media screen and (min-width:900px) {
-.section-padding-none {
     padding-bottom: 0px;
-}
 }
 
 
