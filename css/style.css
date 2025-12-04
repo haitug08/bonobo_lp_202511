@@ -434,6 +434,7 @@ body:not(.home) #contents {
 	/*ボタンが入ったボックス*/
 	#contents .btn {
 		display: inline-block;
+		margin-bottom: 100px;
 	}
 	
 	/*ボタン１個あたり*/
@@ -572,7 +573,7 @@ main h2 {
 	background: #fafafa;	/*背景色*/
 	color: #555;			/*文字色*/
 	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
-	padding: 2rem;			/*ボックス内の余白。２文字分。*/
+	padding: 0rem;
 	margin-bottom: 2rem;	/*ボックスの下に空けるスペース。2文字分。*/
 	background-image: url(https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/002.png);
 	margin: auto;
@@ -580,6 +581,10 @@ main h2 {
 	background-size: cover;      /* 画像を枠いっぱいに広げる */
     background-repeat: no-repeat;/* 繰り返しを防止する */
     background-position: center 0%; /* 初期位置を指定 */
+}
+
+@media screen and (min-width:900px) {
+	padding: 2rem;			/*ボックス内の余白。２文字分。*/	
 }
 
 /*ボックス内のh4見出し*/
@@ -1435,12 +1440,17 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 
 /* セクション共通見出し調整 */
 .section-header {
-    display: flex;
+    display: block;
     justify-content: space-between;
     align-items: center;
     width: 90%; /* コンテンツ幅に合わせる */
     margin: 0 auto;
 }
+
+@media screen and (min-width:900px) {
+    display: flex;
+}
+
 .section-header h2 {
     margin-left: 0 !important; /* インライン打ち消し */
 }
@@ -1456,11 +1466,17 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 }
 
 .info-table {
+	display: none;
     width: 100%;
     margin: 2rem 5rem;
     font-size: 1.0rem;
     border-collapse: collapse;
 }
+
+@media screen and (min-width:900px) {
+	display: block;
+}
+
 
 .info-table tr {
     border-bottom: 1px solid #8D98B2;
