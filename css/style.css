@@ -664,6 +664,17 @@ main h2 {
 }
 }
 
+.list-grid8 .list h2 {
+	font-size: 2.0rem;
+    margin-bottom: 10%;
+}
+@media screen and (min-width:900px) {
+.list-grid8 .list h2 {
+	font-size: 3.0rem;
+    margin-bottom: 0%;
+}
+}
+
 /*ボックス内のh4見出し*/
 .list-grid8 .list h4 {
 	text-align: center;		/*テキストをセンタリング*/
