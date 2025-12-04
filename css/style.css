@@ -536,7 +536,7 @@ main h2 {
 		flex-direction: row;			/*子要素を横並びにする*/
 		justify-content: space-between;	/*並びかたの種類の指定*/
 		align-items: center;			/*垂直揃えの指定。天地中央に配置されるように。*/
-		padding: 5%;
+		padding: 5% 15% 5% 5%;
 	}
 
 	/*画像ブロック共通*/
