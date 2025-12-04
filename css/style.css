@@ -1742,7 +1742,7 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 
 
 /* ==========================================================
-   画像のレスポンシブル対応
+   レスポンシブル対応
    ========================================================== */
 .img-pc {
     display: none;
@@ -1750,6 +1750,13 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 .img-sp {
 	display: block;
 }
+.br-pc {
+    display: none;
+}
+.br-sp {
+	display: block;
+}
+
 
 @media screen and (min-width: 900px) {
 .img-pc {
@@ -1757,5 +1764,11 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 }
 .img-sp {
     display: none;
-}	
+}
+.br-pc {
+	display: block;
+}
+.br-sp {
+    display: none;
+}
 }
