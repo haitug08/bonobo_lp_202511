@@ -59,7 +59,7 @@
 
     .header-nav ul {
       display: flex;
-      gap: 30px;
+      gap: 20px; /* 少し詰める */
     }
 
     .header-nav a {
@@ -253,6 +253,93 @@
       font-size: 16px;
       margin: 0;
       color: var(--text-color);
+    }
+
+    /* --- Coverage Section (New) --- */
+    .coverage-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .coverage-intro {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .coverage-box-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .coverage-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      flex: 1;
+      min-width: 300px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+    }
+    .coverage-header {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .coverage-body {
+      padding: 25px;
+    }
+    .coverage-icon {
+      text-align: center;
+      font-size: 40px;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+    .coverage-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .coverage-list li {
+      padding: 10px 0;
+      border-bottom: 1px dashed #eee;
+      display: flex;
+      align-items: center;
+    }
+    .coverage-list li:last-child {
+      border-bottom: none;
+    }
+    .coverage-list li::before {
+      content: '\f00c'; /* check icon */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--accent-color);
+      margin-right: 10px;
+    }
+    .coverage-note {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      margin-top: 10px;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .insurance-flow {
+      margin-top: 40px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      border: 2px dashed #ddd;
+    }
+    .insurance-flow h3 {
+      font-size: 18px;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
     }
 
     /* --- Troubles (Tabs) --- */
@@ -597,7 +684,7 @@
     .fa-file-pdf::before {
         content: "\f1c1"; 
         /* FontAwesome読み込み済前提ですが、なければ文字で代用も可 */
-    }    
+    }     
 
 /* --- Concerns Section Styles --- */
     .concern-grid {
@@ -797,10 +884,11 @@
     </div>
     <nav class="header-nav">
       <ul>
-        <li><a href="#features">bonoboの特徴</a></li>
+        <li><a href="#features">特徴</a></li>
         <li><a href="#services">法務サービス</a></li>
-        <li><a href="#cases">トラブル事例</a></li>
-        <li><a href="#plans">保険料プラン</a></li>
+        <li><a href="#coverage">補償内容</a></li>
+        <li><a href="#cases">事例</a></li>
+        <li><a href="#plans">保険料</a></li>
         <li><a href="#specs">商品概要</a></li>
       </ul>
     </nav>
@@ -818,7 +906,9 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#features" onclick="toggleMenu()">bonoboの特徴</a>
   <a href="#services" onclick="toggleMenu()">法務サービス</a>
+  <a href="#coverage" onclick="toggleMenu()">補償内容</a>
   <a href="#cases" onclick="toggleMenu()">トラブル事例</a>
+  <a href="#plans" onclick="toggleMenu()">保険料プラン</a>
   <a href="#specs" onclick="toggleMenu()">商品概要</a>
   <hr>
   <a href="/material_download">資料請求</a>
@@ -970,7 +1060,72 @@
       </div>
     </section>
 
-    <section id="cases" class="features-bg">
+    <section id="coverage" class="features-bg">
+      <div class="section-title">
+        <h2>弁護士費用の補償</h2>
+        <p>法務サービスだけではありません。<br>万が一の法務コストを軽減する「2階建て」の補償。</p>
+      </div>
+
+      <div class="coverage-container">
+        <p class="coverage-intro">
+          bonoboは、事業活動に関連するトラブルが発生した際に、<br>
+          解決のために弁護士等に支払った費用を補償します。<br>
+          大きく分けて<strong>「相談するための費用」</strong>と<strong>「依頼するための費用」</strong>の2つをカバーします。
+        </p>
+
+        <div class="coverage-box-wrapper">
+          <div class="coverage-card">
+            <div class="coverage-header">
+              <i class="fas fa-comments" style="margin-right:8px;"></i>法律相談料保険金
+            </div>
+            <div class="coverage-body">
+              <div class="coverage-icon"><i class="fas fa-user-friends"></i></div>
+              <p style="text-align:center; margin-bottom:15px; font-weight:bold;">トラブルの対処方法を相談する費用</p>
+              <ul class="coverage-list">
+                <li>法律相談料</li>
+                <li>法的書類作成費用（内容証明郵便等）</li>
+              </ul>
+              <div class="coverage-note">
+                ※てん補割合100%（限度額あり）<br>
+                ※初期対応の負担を軽減します
+              </div>
+            </div>
+          </div>
+
+          <div class="coverage-card">
+            <div class="coverage-header">
+              <i class="fas fa-gavel" style="margin-right:8px;"></i>弁護士費用保険金
+            </div>
+            <div class="coverage-body">
+              <div class="coverage-icon"><i class="fas fa-file-signature"></i></div>
+              <p style="text-align:center; margin-bottom:15px; font-weight:bold;">弁護士に解決を依頼する費用</p>
+              <ul class="coverage-list">
+                <li>着手金・報酬金</li>
+                <li>手数料（調停・示談交渉等）</li>
+                <li>日当・タイムチャージ</li>
+              </ul>
+              <div class="coverage-note">
+                ※免責金額およびてん補割合は<br>
+                <a href="#plans" style="color:var(--primary-color);">プラン</a>によって異なります
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="insurance-flow">
+            <h3><i class="fas fa-shield-alt" style="color:var(--primary-color); margin-right:5px;"></i> 事業を守る安心の仕組み</h3>
+            <p>
+                偶発的なトラブル（原因事故）が発生した際、<br>
+                被保険者が負担した費用に対して保険金をお支払いします。<br>
+                <small style="display:block; margin-top:10px; color:#666;">
+                    ※待機期間や不担保期間、免責事由（故意による事故など）がございます。<br>
+                    詳細は<a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/important_notice.pdf" target="_blank" style="text-decoration:underline; color:var(--primary-color);">重要事項説明書</a>をご確認ください。
+                </small>
+            </p>
+        </div>
+      </div>
+    </section>
+    <section id="cases">
       <div class="section-title">
         <h2>トラブル解決事例</h2>
         <p>実際に起こりうるリスクと、bonoboでの解決イメージ。</p>
