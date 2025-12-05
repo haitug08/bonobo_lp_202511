@@ -208,6 +208,69 @@
       
       .btn { width: 90%; min-width: auto; padding: 12px; }
     }
+
+    /* --- Simulation Section --- */
+    .sim-box {
+      background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid #e0e0e0; max-width: 900px; margin: 0 auto;
+    }
+    .sim-input-area {
+      text-align: center; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px dashed #ddd;
+    }
+    .sim-slider-container {
+      margin: 20px auto; max-width: 500px;
+    }
+    .sim-slider {
+      -webkit-appearance: none; width: 100%; height: 10px; border-radius: 5px; background: #ddd; outline: none;
+    }
+    .sim-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none; width: 25px; height: 25px; border-radius: 50%; 
+      background: var(--accent-color); cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .sim-value {
+      font-size: 32px; font-weight: bold; color: var(--primary-color); margin: 0 10px;
+    }
+    
+    .sim-result-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .sim-result-card {
+      background: #f8fbfc; padding: 20px; border-radius: 8px; text-align: center; border: 2px solid transparent;
+    }
+    .sim-result-card.highlight {
+      background: #fff8f0; border-color: var(--accent-color);
+    }
+    .sim-label { font-size: 14px; color: #666; font-weight: bold; display: block; margin-bottom: 10px; }
+    .sim-amount { font-size: 24px; font-weight: bold; color: #333; }
+    .sim-amount.accent { color: var(--accent-color); font-size: 32px; }
+    .sim-note { font-size: 12px; color: #888; margin-top: 20px; text-align: right; }
+
+    /* --- Flow Section --- */
+    .flow-steps {
+      display: flex; justify-content: space-between; max-width: 1000px; margin: 40px auto 0; position: relative;
+    }
+    /* Connecting Line */
+    .flow-steps::before {
+      content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: #e0e0e0; z-index: 0;
+    }
+    .flow-step {
+      background: #fff; position: relative; z-index: 1; text-align: center; flex: 1; padding: 0 10px;
+    }
+    .step-num {
+      width: 50px; height: 50px; background: var(--primary-color); color: #fff; border-radius: 50%;
+      line-height: 50px; font-weight: bold; margin: 0 auto 15px; font-size: 18px; border: 4px solid #fff;
+    }
+    .step-title { font-weight: bold; font-size: 16px; margin-bottom: 10px; color: var(--primary-dark); }
+    .step-desc { font-size: 13px; color: #666; line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .sim-result-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; gap: 30px; }
+      .flow-steps::before { display: none; } /* モバイルでは線消す */
+      .flow-step { display: flex; text-align: left; align-items: flex-start; gap: 15px; }
+      .step-num { margin: 0; min-width: 50px; }
+    }
+    
   </style>
 </head>
 
@@ -432,6 +495,72 @@
       </div>
     </section>
 
+    <section id="simulation" class="bg-gray">
+      <div class="section-title">
+        <h2>収益・コストシミュレーション</h2>
+        <p>会員制度にbonoboを組み込んだ場合の、貴社の収益インパクトを試算します。<br>
+        <small>※上位プラン会費を+3,000円、原価コスト（団体割引適用）を仮定した場合の目安です。</small></p>
+      </div>
+      
+      <div class="sim-box">
+        <div class="sim-input-area">
+          <label style="font-weight:bold; font-size:18px;">貴社の会員数</label>
+          <div class="sim-slider-container">
+            <input type="range" min="100" max="3000" step="100" value="500" class="sim-slider" id="memberSlider" oninput="updateSimulation()">
+          </div>
+          <div style="font-size:18px;">
+            <span id="memberCount" class="sim-value">500</span>名
+          </div>
+        </div>
+
+        <div class="sim-result-grid">
+          <div class="sim-result-card">
+            <span class="sim-label">① 会費収入の増加額<br><small>(月額+3,000円/人とした場合)</small></span>
+            <span id="revenueUp" class="sim-amount">1,500,000円</span>/月
+          </div>
+          
+          <div class="sim-result-card highlight">
+            <span class="sim-label">② 貴社の粗利増加（想定）<br><small>(原価コストを差し引いた手残り)</small></span>
+            <span id="profitUp" class="sim-amount accent">500,000円</span>/月
+          </div>
+        </div>
+        <div class="sim-note">
+          ※上記はシミュレーションであり、実際の契約条件や団体割引率により変動します。<br>
+          ※原価（bonobo提供価格）については、会員規模に応じて個別にお見積りいたします。
+        </div>
+      </div>
+    </section>
+
+    <section id="flow">
+      <div class="section-title">
+        <h2>導入までの流れ</h2>
+        <p>お問い合わせからサービス開始まで、最短1ヶ月で導入可能です。</p>
+      </div>
+      
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-num">01</div>
+          <div class="step-title">お問い合わせ</div>
+          <div class="step-desc">まずはフォームより現状の会員数や課題をお知らせください。</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">02</div>
+          <div class="step-title">プラン・お見積り</div>
+          <div class="step-desc">貴社の運用に合わせたスキームと、団体割引価格をご提案します。</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">03</div>
+          <div class="step-title">契約・周知準備</div>
+          <div class="step-desc">基本契約を締結し、会員様向けのチラシやLP等の準備を行います。</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">04</div>
+          <div class="step-title">サービス開始</div>
+          <div class="step-desc">会員様へ告知を開始。加入手続きやサポートは当社が代行可能です。</div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="cta-box">
       <div style="max-width:800px; margin:0 auto;">
         <h2 style="margin-bottom:20px;">会員組織への導入・提携のご相談</h2>
@@ -459,6 +588,34 @@
     function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('active');
     }
+
+
+    // Simulation Logic
+    function updateSimulation() {
+      const members = parseInt(document.getElementById('memberSlider').value);
+      document.getElementById('memberCount').innerText = members.toLocaleString();
+
+      // 仮定のロジック
+      // アップセル単価: 3,000円
+      // 想定原価(bonobo): 2,000円 (粗利1,000円/人) と仮定して計算
+      // ※あくまで「導入メリット」を見せるための仮数値です
+      
+      const priceUp = 3000; 
+      const margin = 1000; 
+
+      const revenue = members * priceUp;
+      const profit = members * margin;
+
+      document.getElementById('revenueUp').innerText = revenue.toLocaleString() + "円";
+      document.getElementById('profitUp').innerText = profit.toLocaleString() + "円";
+    }
+    
+    // 初期実行
+    window.onload = function() {
+        // 既存のonloadがあれば統合してください
+        updateSimulation(); 
+    };
+    
   </script>
 </body>
 </html>
