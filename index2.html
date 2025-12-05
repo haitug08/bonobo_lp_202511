@@ -435,6 +435,13 @@
       text-align: center;
       border: 2px dashed #ddd;
     }
+
+@media (max-width: 768px) {
+    .insurance-flow {
+      text-align: left;
+    }
+}
+    
     .insurance-flow h3 {
       font-size: 18px;
       color: var(--primary-dark);
@@ -616,6 +623,7 @@
         flex: 1 1 100%;
         max-width: 100%;
       }
+      .pc-img_05 { display: none; }
       .pc-img_06 { display: none; }
       .sp-img_06 { display: block; }
     }
@@ -1160,7 +1168,7 @@
     }
 
     /* 画像切り替え (PC/SP) */
-    .pc-img_05, .pc-img_06 { width: 100%; height: auto; border-radius: 8px; }
+    .pc-img_05, .pc-img_06 { display: block; width: 100%; height: auto; border-radius: 8px; }
     .sp-img_06 { display: none; width: 100%; height: auto; }
 
     /* ツールチップ（ご注意書き） */
@@ -1816,7 +1824,7 @@
             <h3><i class="fas fa-shield-alt" style="color:var(--primary-color); margin-right:5px;"></i> 事業を守る安心の仕組み</h3>
             <p>
                 法的なトラブル（原因事故）が発生した際、<br>
-                被保険者が負担した弁護士費用に対して保険金をお支払いします。<br>
+                被保険者が負担した弁護士費用に対して保険金をお支払いします。<br class="br-pc">
                 <small style="display:block; margin-top:10px; color:#666;">
                     ※待機期間や不担保期間、免責事由（故意による事故など）があります。<br>
                     詳細は<a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/important_notice.pdf" target="_blank" style="text-decoration:underline; color:var(--primary-color);">重要事項説明書</a>をご確認ください。
