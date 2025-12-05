@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bonobo｜団体・会員組織向け導入プラン</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
+  
+  <style>
+    /* --- Base Variables (Ver.2 Design System) --- */
+    :root {
+      --primary-color: #0068b7; /* Trust Blue (Corporate) */
+      --primary-dark: #004d8a;
+      --primary-light: #e6f0fa;
+      --accent-color: #E56E2C;  /* CTA Orange */
+      --text-color: #333333;
+      --bg-light: #F4F7F8;
+      --white: #ffffff;
+      --border-radius: 6px;
+      --shadow-card: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: var(--white);
+    }
+
+    a { text-decoration: none; transition: 0.3s; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    img { max-width: 100%; height: auto; vertical-align: bottom; }
+    
+    .br-pc { display: block; }
+    .br-sp { display: none; }
+
+    /* --- Buttons --- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 30px; border-radius: 4px; font-weight: 700; font-size: 15px;
+      cursor: pointer; transition: all 0.3s; text-decoration: none; min-width: 200px;
+    }
+    .btn-outline {
+      border: 2px solid var(--primary-color); color: var(--primary-color); background: #fff;
+    }
+    .btn-outline:hover { background: #f0f8ff; transform: translateY(-2px); }
+    .btn-solid {
+      background: var(--accent-color); color: #fff; border: 2px solid var(--accent-color);
+    }
+    .btn-solid:hover { background: #fff; color: var(--accent-color); transform: translateY(-2px); }
+
+    /* --- Header --- */
+    header {
+      position: fixed; top: 0; width: 100%; height: 80px;
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 40px; box-sizing: border-box;
+    }
+    .header-logo img { height: 40px; width: auto; }
+    .header-nav { display: flex; gap: 30px; }
+    .header-nav a { color: var(--text-color); font-weight: 700; font-size: 14px; }
+    .header-nav a:hover { color: var(--primary-color); }
+    .header-cv { display: flex; gap: 15px; }
+    .header-cv .btn { min-width: auto; padding: 10px 20px; font-size: 13px; }
+
+    /* --- Hero Section (B2B Partner Style) --- */
+    .hero {
+      padding: 160px 40px 100px;
+      background: linear-gradient(to right, #f9fbfd 55%, #fff 55%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-container {
+      max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .hero-content { flex: 1; padding-right: 50px; }
+    .hero-badge {
+      display: inline-block; background: var(--primary-light); color: var(--primary-color);
+      padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 4vw, 42px); margin-bottom: 25px; line-height: 1.4; color: var(--text-color);
+    }
+    .hero h1 span {
+      background: linear-gradient(transparent 60%, #ffeb3b 60%); font-weight: 900;
+    }
+    .hero p { font-size: 16px; color: #666; margin-bottom: 40px; }
+    .hero-image { flex: 1; text-align: right; }
+    .hero-image img { border-radius: 10px; box-shadow: 20px 20px 0 var(--primary-light); }
+
+    /* --- Section Layout --- */
+    section { padding: 100px 20px; overflow-x: clip; }
+    .bg-gray { background-color: var(--bg-light); }
+    
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 {
+      font-size: 28px; position: relative; display: inline-block; margin-bottom: 15px;
+    }
+    .section-title h2::after {
+      content: ''; display: block; width: 60px; height: 4px;
+      background: var(--primary-color); margin: 15px auto 0; border-radius: 2px;
+    }
+    .section-title p { color: #666; font-size: 15px; }
+
+    /* --- Concerns (B2B) --- */
+    .concern-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;
+    }
+    .concern-item {
+      background: #fff; padding: 30px; border-radius: 8px; border: 1px solid #eee;
+      display: flex; align-items: flex-start; gap: 20px;
+    }
+    .concern-icon {
+      font-size: 30px; color: var(--primary-color); background: var(--primary-light);
+      width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0;
+    }
+    .concern-text h3 { font-size: 18px; margin: 0 0 10px; }
+    .concern-text p { font-size: 14px; color: #666; margin: 0; }
+
+    /* --- Solution (Diagram) --- */
+    .solution-box {
+      max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 12px;
+      padding: 50px; box-shadow: var(--shadow-card); text-align: center;
+    }
+    .diagram-container {
+      display: flex; justify-content: center; align-items: stretch; gap: 20px; margin: 40px 0; flex-wrap: wrap;
+    }
+    .diagram-item {
+      flex: 1; min-width: 250px; padding: 20px; border-radius: 8px; border: 2px solid #eee; position: relative;
+    }
+    .diagram-item.center {
+      border-color: var(--primary-color); background: var(--primary-light); flex: 1.2;
+    }
+    .diagram-title { font-weight: bold; margin-bottom: 10px; display: block; font-size: 18px; }
+    .diagram-arrow {
+      align-self: center; color: var(--primary-color); font-size: 24px;
+    }
+
+    /* --- Premium Plan Proposal --- */
+    .proposal-wrapper {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: center;
+    }
+    .proposal-text h3 { font-size: 24px; margin-bottom: 20px; color: var(--primary-color); }
+    .proposal-text ul { margin-bottom: 30px; }
+    .proposal-text li { margin-bottom: 15px; display: flex; align-items: start; font-weight: bold; }
+    .proposal-text li i { color: var(--accent-color); margin-right: 10px; margin-top: 5px; }
+    
+    .plan-compare {
+      display: flex; gap: 10px; align-items: flex-end;
+    }
+    .plan-box {
+      flex: 1; background: #fff; border: 1px solid #ddd; border-radius: 8px; text-align: center; padding: 20px;
+    }
+    .plan-box.premium {
+      border: 3px solid var(--accent-color); transform: scale(1.05); position: relative; z-index: 1;
+      box-shadow: 0 10px 20px rgba(229, 110, 44, 0.2);
+    }
+    .badge-premium {
+      background: var(--accent-color); color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;
+      position: absolute; top: -15px; left: 50%; transform: translateX(-50%); border-radius: 20px; white-space: nowrap;
+    }
+    .plan-box h4 { margin: 10px 0; font-size: 16px; }
+    .plan-box .price { font-size: 20px; font-weight: bold; margin-bottom: 15px; display: block; color: #333; }
+    .plan-content { font-size: 13px; text-align: left; padding: 10px; background: #f9f9f9; border-radius: 4px; }
+    .plus-bonobo {
+      margin-top: 10px; padding: 10px; background: #e0f7fa; color: var(--primary-color); font-weight: bold;
+      border-radius: 4px; border: 1px dashed var(--primary-color);
+    }
+
+    /* --- Features Grid --- */
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;
+    }
+    .feat-card {
+      background: #fff; padding: 30px; border-radius: 8px; border-top: 4px solid var(--primary-color);
+      box-shadow: var(--shadow-card);
+    }
+    .feat-card h3 { font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; }
+    .feat-card h3 i { color: var(--primary-color); margin-right: 10px; font-size: 24px; }
+    .feat-desc { font-size: 14px; color: #666; margin-bottom: 15px; }
+    .feat-list { font-size: 13px; background: #f5f5f5; padding: 15px; border-radius: 4px; }
+    .feat-list li { margin-bottom: 5px; }
+    .feat-list li::before { content: "• "; color: var(--primary-color); }
+
+    /* --- CTA --- */
+    .cta-box {
+      background: linear-gradient(135deg, #0068b7 0%, #004d8a 100%); color: #fff;
+      text-align: center; padding: 80px 20px;
+    }
+    .cta-btns { display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      header { padding: 0 20px; height: 60px; }
+      .header-nav, .header-cv { display: none; }
+      
+      .hero { padding-top: 100px; background: #fff; }
+      .hero-container { flex-direction: column-reverse; }
+      .hero-content { padding-right: 0; text-align: center; }
+      .hero h1 { font-size: 28px; }
+      .hero-image { margin-bottom: 30px; }
+      
+      .diagram-container { flex-direction: column; }
+      .diagram-arrow { transform: rotate(90deg); margin: 10px 0; }
+      
+      .proposal-wrapper { grid-template-columns: 1fr; }
+      .plan-compare { flex-direction: column; align-items: center; gap: 30px; }
+      .plan-box { width: 100%; max-width: 350px; }
+      .plan-box.premium { transform: scale(1); }
+      
+      .br-pc { display: none; } .br-sp { display: block; }
+      .btn { width: 100%; }
+    }
+    
+    /* Hamburger (Inherited) */
+    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; margin-left: 15px; }
+    .hamburger span { width: 25px; height: 3px; background-color: #333; transition: 0.3s; }
+    .mobile-menu { position: fixed; top: 60px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 10px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 15px; transform: translateY(-150%); transition: 0.3s ease-in-out; z-index: 999; }
+    .mobile-menu.active { transform: translateY(0); }
+    .mobile-menu a { color: #333; font-weight: bold; padding: 10px 0; border-bottom: 1px solid #eee; }
+    @media (max-width: 768px) { .hamburger { display: flex; } }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-logo">
+      <a href="#"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_145.png" alt="bonobo logo"></a>
+    </div>
+    <nav class="header-nav">
+      <a href="#concerns">課題</a>
+      <a href="#scheme">活用モデル</a>
+      <a href="#merit">導入メリット</a>
+      <a href="#service">提供機能</a>
+    </nav>
+    <div class="header-cv">
+      <a href="#contact" class="btn btn-outline">資料請求</a>
+      <a href="#contact" class="btn btn-solid">提携のご相談</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#concerns" onclick="toggleMenu()">運営者の課題</a>
+      <a href="#scheme" onclick="toggleMenu()">活用モデル</a>
+      <a href="#merit" onclick="toggleMenu()">導入メリット</a>
+      <a href="#service" onclick="toggleMenu()">提供機能</a>
+      <a href="#contact" style="color:var(--primary-color);">お問い合わせ</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <span class="hero-badge">協会・協力会・FC本部様向け</span>
+          <h1>会員向けサービスを、<br>「法務」で強化する。<br><span>ビジネスを守る福利厚生。</span></h1>
+          <p>
+            既存の会員制度や上位プランに「弁護士保険」を組み込みませんか？<br>
+            会員様の満足度向上、他社との差別化、<br class="br-pc">そしてサプライチェーンのトラブル防止を同時に実現します。
+          </p>
+          <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center;">
+             <a href="#contact" class="btn btn-solid">提携・導入のご相談</a>
+             <a href="#contact" class="btn btn-outline">資料ダウンロード</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_144.png" alt="Membership Service">
+        </div>
+      </div>
+    </section>
+
+    <section id="concerns" class="bg-gray">
+      <div class="section-title">
+        <h2>運営者様が抱える課題</h2>
+        <p>会員サービスの差別化や、組織内のトラブルにお悩みではありませんか？</p>
+      </div>
+      <div class="concern-grid">
+        <div class="concern-item">
+          <div class="concern-icon"><i class="fas fa-gem"></i></div>
+          <div class="concern-text">
+            <h3>上位プランの魅力不足</h3>
+            <p>プレミアムプランを作ったが、特典が弱く加入者が増えない。差別化できる強力なフック商材が欲しい。</p>
+          </div>
+        </div>
+        <div class="concern-item">
+          <div class="concern-icon"><i class="fas fa-users-slash"></i></div>
+          <div class="concern-text">
+            <h3>会員の満足度・定着率</h3>
+            <p>競合サービスとの競争が激化し、退会が増えている。「この会に入っていて良かった」と思える実利あるメリットを提供したい。</p>
+          </div>
+        </div>
+        <div class="concern-item">
+          <div class="concern-icon"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="concern-text">
+            <h3>会員間のトラブル</h3>
+            <p>下請け会員が法的トラブルで廃業したり、会員間での揉め事が起きると、本部としての管理コストやリスクが増大する。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="scheme">
+      <div class="section-title">
+        <h2>活用モデル：上位プランへの組み込み</h2>
+        <p>「bonobo」をパッケージ化し、貴社のサービスの一部として提供可能です。</p>
+      </div>
+      
+      <div class="proposal-wrapper">
+        <div class="proposal-text">
+          <h3>会費アップの根拠として<br>「法務サービス」を提供</h3>
+          <p>bonobo（ボノボ）は、契約書チェックや弁護士へのチャット相談、万が一の費用補償までをセットにしたサービスです。<br>これを貴社の「上位プラン」や「会員特典」に付帯することで、会員様に大きな安心と実利を提供できます。</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> 上位プラン加入の決定打に</li>
+            <li><i class="fas fa-check-circle"></i> 既存会費への上乗せ（アップセル）に</li>
+            <li><i class="fas fa-check-circle"></i> 独自の福利厚生としてブランディング</li>
+          </ul>
+          <a href="#contact" class="btn-text-link">導入スキームについて相談する <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="plan-compare">
+          <div class="plan-box">
+            <h4>通常会員プラン</h4>
+            <span class="price">月額 10,000円</span>
+            <div class="plan-content">
+              ・案件紹介<br>
+              ・交流会参加<br>
+              ・メルマガ配信
+            </div>
+          </div>
+          
+          <div style="font-size:30px; color:#ccc; padding-bottom:50px;"><i class="fas fa-arrow-right br-pc"></i><i class="fas fa-arrow-down br-sp"></i></div>
+
+          <div class="plan-box premium">
+            <div class="badge-premium">おすすめ</div>
+            <h4>プレミアムプラン</h4>
+            <span class="price" style="color:var(--accent-color);">月額 15,000円</span>
+            <div class="plan-content">
+              ・案件紹介（優先）<br>
+              ・交流会参加<br>
+              ・メルマガ配信
+              <div class="plus-bonobo">
+                <i class="fas fa-plus-circle"></i> 法務サービス(bonobo)<br>
+                <small style="font-weight:normal; color:#555;">契約書チェック / 弁護士相談 / 費用保険</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="merit" class="bg-gray">
+      <div class="section-title">
+        <h2>運営者・会員双方のメリット</h2>
+      </div>
+      
+      <div class="solution-box">
+        <h3><i class="fas fa-handshake" style="color:var(--primary-color);"></i> ビジネスの土台を強くする</h3>
+        <p style="margin-bottom:30px;">
+          bonoboを導入することで、運営者様は「サービスの強化」、<br class="br-pc">会員様は「事業リスクの低減」という、Win-Winの関係を構築できます。
+        </p>
+
+        <div class="diagram-container">
+          <div class="diagram-item">
+            <span class="diagram-title" style="color:var(--primary-color);">貴社（運営元）</span>
+            <ul style="text-align:left; font-size:14px;">
+              <li>● プレミアムプランの付加価値向上</li>
+              <li>● 会員単価（ARPU）のアップ</li>
+              <li>● 下請け・会員企業の経営安定化</li>
+            </ul>
+          </div>
+          <div class="diagram-arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="diagram-item center">
+            <span class="diagram-title">bonobo（法務・保険）</span>
+            <div style="font-size:13px; margin-top:10px;">
+              運営元様を通じて<br>会員様へサービス提供
+            </div>
+          </div>
+          <div class="diagram-arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="diagram-item">
+            <span class="diagram-title" style="color:var(--primary-color);">会員様（個人・法人）</span>
+            <ul style="text-align:left; font-size:14px;">
+              <li>● 弁護士への相談ハードル低下</li>
+              <li>● 契約書チェックで予防法務</li>
+              <li>● 万が一の訴訟費用も保険でカバー</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="service">
+      <div class="section-title">
+        <h2>bonoboの提供機能</h2>
+        <p>会員様が追加費用なしで利用できる、充実のサービス群。</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <h3><i class="fas fa-file-contract"></i> 契約書・規定ひな形</h3>
+          <p class="feat-desc">弁護士監修の契約書や社内規定フォーマットをダウンロードし放題。法改正にも対応。</p>
+          <ul class="feat-list">
+            <li>契約書DL：3回/月</li>
+            <li>社内規定DL：3回/月</li>
+          </ul>
+        </div>
+        <div class="feat-card">
+          <h3><i class="fas fa-robot"></i> AIリーガルチェック</h3>
+          <p class="feat-desc">契約書をアップロードするだけでAIがリスクを判定し、修正案を提示します。</p>
+          <ul class="feat-list">
+            <li>AIレビュー：3回/月</li>
+            <li>フィードバック機能あり</li>
+          </ul>
+        </div>
+        <div class="feat-card">
+          <h3><i class="fas fa-comments"></i> 弁護士チャット相談</h3>
+          <p class="feat-desc">日常的な法務の疑問をチャットで気軽に弁護士へ相談。※法人プラン限定</p>
+          <ul class="feat-list">
+            <li>質問投稿：1回/月</li>
+            <li>複数弁護士から回答</li>
+          </ul>
+        </div>
+        <div class="feat-card">
+          <h3><i class="fas fa-shield-alt"></i> 弁護士費用保険</h3>
+          <p class="feat-desc">トラブル発生時の「相談料」や、解決を依頼する際の「着手金・報酬金」を補償します。</p>
+          <ul class="feat-list">
+            <li>相談料保険金：100%補償</li>
+            <li>弁護士費用保険金：プランにより上限あり</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta-box">
+      <h2>会員組織への導入・提携のご相談</h2>
+      <p>
+        現在の会員数、プラン構成、課題感をお聞かせください。<br>
+        貴社に最適な導入スキーム（団体割引やプラン設計）をご提案いたします。
+      </p>
+      <div class="cta-btns">
+        <a href="https://asiro-ssi.com/material_download" class="btn" style="background:white; color:var(--primary-color);">資料ダウンロード</a>
+        <a href="https://app.spirinc.com/t/75RzsksMC9evnWbkp2loX/as/zXZBNao-aADDv5ZzESAjh/confirm" target="_blank" class="btn" style="background:rgba(255,255,255,0.2); border:2px solid white; backdrop-filter:blur(5px);">オンライン相談</a>
+        <a href="https://asiro-ssi.com/form/init" class="btn" style="background:var(--accent-color); border:none;">お問い合わせフォーム</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <small>
+      サービス提供元：<a href="https://asiro.co.jp" target="_blank">株式会社アシロ</a> | 引受保険会社：<a href="https://asiro-ssi.com" target="_blank">株式会社アシロ少額短期保険</a><br>
+      Copyright 2025 ASiRO Small Amount and Short Term Insurance Co., Ltd.
+    </small>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
