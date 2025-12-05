@@ -59,7 +59,7 @@
       transition: all 0.3s;
       text-decoration: none;
       line-height: 1.2;
-      min-width: 140px;
+      min-width: 100px;
     }
 
     /* Outline Button (資料請求) */
@@ -698,12 +698,12 @@
       color: #666; font-size: 0.8rem; border-bottom: 1px dashed #999;
     }
     .balloon_top {
-      display: none; position: absolute; bottom: 100%; left: 50%;
+      display: none; position: absolute; bottom: 100%; left: 300%;
       transform: translateX(-50%); width: 250px; padding: 10px;
       background: #333; color: #fff; font-size: 11px; border-radius: 5px;
       z-index: 10; line-height: 1.4; margin-bottom: 10px;
     }
-    @media screen and (min-width: 769px) { .balloon_top { left: 300%; } }
+    @media screen and (min-width: 769px) { .balloon_top { left: 50%; } }
     .balloon_top::after {
       content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px;
       border-width: 5px; border-style: solid; border-color: #333 transparent transparent transparent;
