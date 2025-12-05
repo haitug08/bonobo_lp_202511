@@ -1381,6 +1381,115 @@
         padding: 10px;
       }
     }
+
+/* --- Voice Section (New) --- */
+    .section-voice {
+      background-color: #fff; /* 白背景で清潔感を */
+      padding: 80px 20px;
+    }
+    
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .voice-card {
+      background: #f9fbfc;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      padding: 25px;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .voice-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border-color: var(--primary-color);
+    }
+
+    /* 吹き出しのしっぽ（下向き） */
+    .voice-card::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 30px;
+      border-width: 15px 15px 0;
+      border-style: solid;
+      border-color: #f9fbfc transparent transparent transparent;
+      z-index: 1;
+    }
+    /* 枠線用のしっぽ */
+    .voice-card::before {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 30px;
+      border-width: 15px 15px 0;
+      border-style: solid;
+      border-color: #e1e4e8 transparent transparent transparent;
+      z-index: 0;
+    }
+    /* ホバー時にしっぽの色も変える */
+    .voice-card:hover::before {
+        border-color: var(--primary-color) transparent transparent transparent;
+    }
+
+    .voice-head {
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+    }
+    .voice-head i {
+      color: var(--accent-color);
+      font-size: 20px;
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+
+    .voice-text {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .voice-user {
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      background: #ddd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      margin-right: 12px;
+      background: var(--primary-color);
+    }
+    .user-info {
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+    }
+    .user-info span {
+      display: block;
+      font-size: 11px;
+      color: #888;
+      font-weight: normal;
+    }
     
   </style>
 </head>
@@ -1787,6 +1896,116 @@
       </div>
     </section>
 
+<section id="voice" class="section-voice">
+      <div class="container">
+        <div class="sec-title">
+          <h2>ご利用者様の声</h2>
+          <p>様々な業界の経営者様・個人事業主様に選ばれています。</p>
+        </div>
+        
+        <div class="voice-grid">
+          
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                本業に集中するために。<br>費用の不安が解消されました。
+              </div>
+              <p class="voice-text">
+                建設業界はトラブルが多く、本来は弁護士に依頼して本業に集中したいと考えていました。しかし費用が高額で依頼できず、自分で対応していました。月額の保険料で、いざという時に上限まで補償されるのが魅力的で加入しました。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-hard-hat"></i></div>
+              <div class="user-info">建設業<span>代表者様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                頻発する取引先トラブルの<br>「相談窓口」として活用。
+              </div>
+              <p class="voice-text">
+                ソフトウェア開発を行っていますが、取引先ともめるケースが多く困っていました。ちょっとした相談ができる窓口と、万が一の際の費用補償の両方が必要だと感じ、bonoboを選びました。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-laptop-code"></i></div>
+              <div class="user-info">情報通信業<span>経営者様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                チャット相談が便利。<br>これだけで元が取れます。
+              </div>
+              <p class="voice-text">
+                今のところトラブルはありませんが、法務チャット相談が非常に便利です。新規事業の法的見解などを気軽に質問できるので、トラブルがなくても一度でも使えば元が取れるサービスだと感じています。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+              <div class="user-info">コンサルティング業<span>役員様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                自分で作った内容証明は<br>無視された経験がありました。
+              </div>
+              <p class="voice-text">
+                過去に自分で内容証明を作成しましたが、無視されたり回収できなかった苦い経験があります。弁護士に依頼すると費用が高く諦めていましたが、bonoboならその悩みを払拭できると思い申し込みました。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-file-invoice"></i></div>
+              <div class="user-info">建設業<span>個人事業主様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                業界に強い弁護士を<br>紹介してもらえる安心感。
+              </div>
+              <p class="voice-text">
+                不動産売買は動く金額も大きいため、万が一のトラブルに備えたいと思っていました。補償はもちろんですが、不動産関連に強い弁護士を紹介（案内）してもらえる点が非常に魅力的です。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-building"></i></div>
+              <div class="user-info">不動産業<span>代表者様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                創業期の不安を解消。<br>ひな形やチェック機能も充実。
+              </div>
+              <p class="voice-text">
+                設立して間もないため漠然とした不安がありましたが、リーガルチェックや契約書のひな型が使える点が決め手でした。既存の賠償保険では対応できない示談交渉についても使えるのは心強いです。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-seedling"></i></div>
+              <div class="user-info">人材・コンサル業<span>創業1年目様</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    
 <section id="plans">
       <div class="section-title">
         <h2>保険料プラン</h2>
