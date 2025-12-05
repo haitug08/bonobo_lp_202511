@@ -844,11 +844,15 @@
           <h3>弁護士にツテがない<br>頼みにくい</h3>
           <p>「誰に相談すればいいかわからない」「日頃接点がなく、いきなり相談するのは気が引ける」</p>
         </div>
-        <div class="concern-item">
-          <div class="icon-circle"><i class="fas fa-file-invoice-dollar"></i></div>
-          <h3>費用が見えなくて<br>不安</h3>
-          <p>「相談だけでいくらかかるのか不明確」「顧問契約を結ぶほどの余裕や費用対効果が見えない」</p>
-        </div>
+        
+<div class="concern-item">
+  <div class="icon-circle"><i class="fas fa-file-invoice-dollar"></i></div>
+  <h3>費用が見えなくて<br>不安</h3>
+  <p style="margin-bottom: 15px;">「相談だけでいくらかかるのか不明確」「顧問契約を結ぶほどの余裕や費用対効果が見えない」</p>
+  <button id="openCalcModal" style="background: #fff; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s;">
+    <i class="fas fa-calculator"></i> 相場をシミュレーション
+  </button>
+</div>
         <div class="concern-item">
           <div class="icon-circle"><i class="fas fa-question-circle"></i></div>
           <h3>そもそも<br>相談すべきかわからない</h3>
@@ -2360,6 +2364,61 @@
   </div>
 </div>
 
+<div id="calcModal" class="modal">
+  <div class="modal-content" style="max-width: 600px;">
+    <button class="close-btn"><i class="fas fa-times"></i></button>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h3 style="color: var(--primary-dark); border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">弁護士費用シミュレーター</h3>
+      <p style="font-size: 12px; color: #666; margin-top: 10px;">
+        旧日本弁護士連合会報酬基準に基づく、一般的な民事訴訟の費用相場です。<br>
+        ※実際の費用は事務所や案件の難易度により異なります。
+      </p>
+    </div>
+
+    <div style="background: #f9fbfc; padding: 20px; border-radius: 8px; border: 1px solid #e1e4e8;">
+      <label style="font-weight: bold; display: block; margin-bottom: 10px; color: #333;">トラブルの金額（経済的利益）</label>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+        <input type="number" id="economicBenefit" placeholder="例：300" style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; flex: 1; font-size: 16px; text-align: right;">
+        <span style="font-weight: bold;">万円</span>
+      </div>
+      <button onclick="calculateFee()" class="btn btn-solid" style="width: 100%; box-shadow: none;">計算する</button>
+    </div>
+
+    <div id="calcResult" style="display: none; margin-top: 20px; animation: fadeIn 0.5s;">
+      <div style="background: #fff; border: 2px solid var(--primary-color); border-radius: 8px; overflow: hidden;">
+        <div style="background: var(--primary-color); color: #fff; padding: 10px; text-align: center; font-weight: bold;">相場（着手金＋報酬金）</div>
+        <div style="padding: 20px; text-align: center;">
+          <div style="font-size: 14px; color: #666; margin-bottom: 5px;">推定総額（税込）</div>
+          <div style="font-size: 32px; font-weight: bold; color: var(--accent-color);" id="totalFee">0円</div>
+        </div>
+        <div style="border-top: 1px dashed #ddd; padding: 15px; font-size: 14px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>着手金（税込）</span>
+            <span style="font-weight: bold;" id="initialFee">0円</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span>報酬金（税込）</span>
+            <span style="font-weight: bold;" id="successFee">0円</span>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 20px; text-align: center; background: #ffe0b2; padding: 15px; border-radius: 8px; border: 1px solid #ffcc80;">
+        <p style="font-weight: bold; color: #e65100; margin-bottom: 5px;">bonoboなら...</p>
+        <p style="font-size: 14px; margin: 0;">
+          月額保険料だけで、上記の弁護士費用が<br>
+          <span style="font-weight: bold; font-size: 1.1em; text-decoration: underline;">補償の対象</span>となります。
+        </p>
+      </div>
+      
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="#plans" onclick="document.querySelector('#calcModal').classList.remove('open');" class="btn btn-outline" style="font-size: 14px;">保険料プランを見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+  
   
 <script>
     // Tab Switching Logic
@@ -2484,6 +2543,58 @@ function toggleMenu() {
         body.style.maxHeight = body.scrollHeight + "px";
       }
     }
+
+// === 弁護士費用計算ロジック（旧日弁連基準） ===
+    function calculateFee() {
+        const inputVal = document.getElementById('economicBenefit').value;
+        if (!inputVal || inputVal <= 0) {
+            alert("金額を正しく入力してください");
+            return;
+        }
+
+        const benefit = parseFloat(inputVal) * 10000; // 万円 -> 円
+        let initial = 0; // 着手金
+        let success = 0; // 報酬金
+
+        // 着手金計算
+        if (benefit <= 3000000) {
+            initial = benefit * 0.08;
+        } else if (benefit <= 30000000) {
+            initial = benefit * 0.05 + 90000;
+        } else if (benefit <= 300000000) {
+            initial = benefit * 0.03 + 690000;
+        } else {
+            initial = benefit * 0.02 + 3690000;
+        }
+        // 着手金最低額（10万円）
+        if (initial < 100000) initial = 100000;
+
+        // 報酬金計算
+        if (benefit <= 3000000) {
+            success = benefit * 0.16;
+        } else if (benefit <= 30000000) {
+            success = benefit * 0.10 + 180000;
+        } else if (benefit <= 300000000) {
+            success = benefit * 0.06 + 1380000;
+        } else {
+            success = benefit * 0.04 + 7380000;
+        }
+
+        // 消費税 (10%)
+        const tax = 1.1;
+        const initialTax = Math.floor(initial * tax);
+        const successTax = Math.floor(success * tax);
+        const totalTax = initialTax + successTax;
+
+        // 表示更新
+        document.getElementById('initialFee').innerText = initialTax.toLocaleString() + "円";
+        document.getElementById('successFee').innerText = successTax.toLocaleString() + "円";
+        document.getElementById('totalFee').innerText = totalTax.toLocaleString() + "円";
+        document.getElementById('calcResult').style.display = "block";
+    }
+
+    // 計算ツールモーダルのセットアップ
+    setupModal('#openCalcModal', 'calcModal'); // トリガーIDは後ほど設置
   
 </script>
   
