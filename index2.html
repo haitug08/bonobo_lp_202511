@@ -2472,7 +2472,7 @@
         document.getElementById('mobileMenu').classList.toggle('active');
     }
 
-// === 弁護士費用計算ロジック（旧日弁連基準・区分対応版） ===
+// === 弁護士費用計算ロジック（旧日弁連基準・区分対応版・報酬金最低額あり） ===
     function calculateFee() {
         // 入力値の取得
         const inputVal = document.getElementById('economicBenefit').value;
@@ -2516,9 +2516,10 @@
         initial = initial * typeRate;
         success = success * typeRate;
 
-        // --- 3. 最低着手金の適用 ---
-        // 旧基準では民事事件の着手金最低額は10万円
+        // --- 3. 最低額の適用（着手金・報酬金ともに10万円） ---
+        // 旧基準では着手金最低額は10万円。今回は報酬金にも適用。
         if (initial < 100000) initial = 100000;
+        if (success < 100000) success = 100000; // ★追加：報酬金の最低額設定
 
         // --- 4. 消費税 (10%) 計算 ---
         const tax = 1.1;
