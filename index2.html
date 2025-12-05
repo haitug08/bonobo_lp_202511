@@ -2371,17 +2371,25 @@
     <div style="text-align: center; margin-bottom: 20px;">
       <h3 style="color: var(--primary-dark); border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">弁護士費用シミュレーター</h3>
       <p style="font-size: 12px; color: #666; margin-top: 10px;">
-        旧日本弁護士連合会報酬基準に基づく、一般的な民事訴訟の費用相場です。<br>
-        ※実際の費用は事務所や案件の難易度により異なります。
+        旧日本弁護士連合会報酬基準に基づく、一般的な民事事件の費用相場です。<br>
+        実際の費用は事務所や案件の難易度により異なります。
       </p>
     </div>
 
     <div style="background: #f9fbfc; padding: 20px; border-radius: 8px; border: 1px solid #e1e4e8;">
-      <label style="font-weight: bold; display: block; margin-bottom: 10px; color: #333;">トラブルの金額（経済的利益）</label>
+      
+      <label style="font-weight: bold; display: block; margin-bottom: 8px; color: #333;">事件等の区分</label>
+      <select id="caseType" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; margin-bottom: 20px; background: #fff;">
+        <option value="1.0">訴訟（通常裁判・第一審）</option>
+        <option value="0.67">調停・示談交渉（話し合い）</option>
+        <option value="0.5">督促手続（支払督促など）</option>
+      </select>
+      <label style="font-weight: bold; display: block; margin-bottom: 8px; color: #333;">トラブルの金額（経済的利益）</label>
       <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
         <input type="number" id="economicBenefit" placeholder="例：300" style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; flex: 1; font-size: 16px; text-align: right;">
         <span style="font-weight: bold;">万円</span>
       </div>
+      
       <button onclick="calculateFee()" class="btn btn-solid" style="width: 100%; box-shadow: none;">計算する</button>
     </div>
 
@@ -2464,18 +2472,24 @@
         document.getElementById('mobileMenu').classList.toggle('active');
     }
 
-    // Calculation Logic (Global Scope)
+// === 弁護士費用計算ロジック（旧日弁連基準・区分対応版） ===
     function calculateFee() {
+        // 入力値の取得
         const inputVal = document.getElementById('economicBenefit').value;
+        const typeRate = parseFloat(document.getElementById('caseType').value); // 事件区分の係数
+
         if (!inputVal || inputVal <= 0) {
             alert("金額を正しく入力してください");
             return;
         }
 
-        const benefit = parseFloat(inputVal) * 10000;
-        let initial = 0;
-        let success = 0;
+        const benefit = parseFloat(inputVal) * 10000; // 万円 -> 円
+        let initial = 0; // 着手金
+        let success = 0; // 報酬金
 
+        // --- 1. 基本額の計算（訴訟基準） ---
+        
+        // 着手金 (Base)
         if (benefit <= 3000000) {
             initial = benefit * 0.08;
         } else if (benefit <= 30000000) {
@@ -2485,8 +2499,8 @@
         } else {
             initial = benefit * 0.02 + 3690000;
         }
-        if (initial < 100000) initial = 100000;
 
+        // 報酬金 (Base)
         if (benefit <= 3000000) {
             success = benefit * 0.16;
         } else if (benefit <= 30000000) {
@@ -2497,11 +2511,22 @@
             success = benefit * 0.04 + 7380000;
         }
 
+        // --- 2. 事件区分による調整 ---
+        // 調停・示談交渉は2/3、督促は1/2にする（旧基準の減額規定準拠）
+        initial = initial * typeRate;
+        success = success * typeRate;
+
+        // --- 3. 最低着手金の適用 ---
+        // 旧基準では民事事件の着手金最低額は10万円
+        if (initial < 100000) initial = 100000;
+
+        // --- 4. 消費税 (10%) 計算 ---
         const tax = 1.1;
         const initialTax = Math.floor(initial * tax);
         const successTax = Math.floor(success * tax);
         const totalTax = initialTax + successTax;
 
+        // --- 5. 表示更新 ---
         document.getElementById('initialFee').innerText = initialTax.toLocaleString() + "円";
         document.getElementById('successFee').innerText = successTax.toLocaleString() + "円";
         document.getElementById('totalFee').innerText = totalTax.toLocaleString() + "円";
