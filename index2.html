@@ -2421,7 +2421,7 @@
   
   
 <script>
-    // Tab Switching Logic
+    // Tab Switching Logic (Global Scope needed for onclick attribute)
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tab-content");
@@ -2438,13 +2438,86 @@
         evt.currentTarget.className += " active";
     }
 
-    // Modal Logic (Adapted from original)
+    // Plans Tab Switching Logic (Global Scope)
+    function switchPlan(evt, planId) {
+        const groups = document.querySelectorAll('.plan-group');
+        groups.forEach(g => g.classList.remove('active'));
+        document.getElementById(planId).classList.add('active');
+        const tabs = document.querySelectorAll('.plan-tab-btn');
+        tabs.forEach(t => t.classList.remove('active'));
+        evt.currentTarget.classList.add('active');
+    }
+
+    // Accordion Logic (Global Scope)
+    function toggleAccordion(element) {
+        element.classList.toggle("active");
+        var body = element.nextElementSibling;
+        if (body.style.maxHeight) {
+            body.style.maxHeight = null;
+        } else {
+            body.style.maxHeight = body.scrollHeight + "px";
+        }
+    }
+
+    // Mobile Menu Toggle (Global Scope)
+    function toggleMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    // Calculation Logic (Global Scope)
+    function calculateFee() {
+        const inputVal = document.getElementById('economicBenefit').value;
+        if (!inputVal || inputVal <= 0) {
+            alert("金額を正しく入力してください");
+            return;
+        }
+
+        const benefit = parseFloat(inputVal) * 10000;
+        let initial = 0;
+        let success = 0;
+
+        if (benefit <= 3000000) {
+            initial = benefit * 0.08;
+        } else if (benefit <= 30000000) {
+            initial = benefit * 0.05 + 90000;
+        } else if (benefit <= 300000000) {
+            initial = benefit * 0.03 + 690000;
+        } else {
+            initial = benefit * 0.02 + 3690000;
+        }
+        if (initial < 100000) initial = 100000;
+
+        if (benefit <= 3000000) {
+            success = benefit * 0.16;
+        } else if (benefit <= 30000000) {
+            success = benefit * 0.10 + 180000;
+        } else if (benefit <= 300000000) {
+            success = benefit * 0.06 + 1380000;
+        } else {
+            success = benefit * 0.04 + 7380000;
+        }
+
+        const tax = 1.1;
+        const initialTax = Math.floor(initial * tax);
+        const successTax = Math.floor(success * tax);
+        const totalTax = initialTax + successTax;
+
+        document.getElementById('initialFee').innerText = initialTax.toLocaleString() + "円";
+        document.getElementById('successFee').innerText = successTax.toLocaleString() + "円";
+        document.getElementById('totalFee').innerText = totalTax.toLocaleString() + "円";
+        document.getElementById('calcResult').style.display = "block";
+    }
+
+    // === Initialization on DOM Load ===
     document.addEventListener('DOMContentLoaded', () => {
+        
+        // Modal Setup Function (Inner Scope OK)
         function setupModal(openBtnSelector, modalId) {
             const openBtns = document.querySelectorAll(openBtnSelector);
             const modal = document.getElementById(modalId);
             if (!openBtns.length || !modal) return;
-            const closeBtn = modal.querySelector('.close-btn');
+            
+            const closeBtns = modal.querySelectorAll('.close-btn'); // 複数ある場合に対応
 
             openBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -2453,14 +2526,19 @@
                 });
             });
 
-            closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', () => modal.classList.remove('open'));
+            });
+            
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) modal.classList.remove('open');
             });
         }
 
-        // Initialize Modals  
+        // Initialize Modals
         setupModal('.openPlanModal', 'plan');
+        
+        // Trouble Cases
         setupModal('#openTrouble1Modal', 'trouble1');
         setupModal('#openTrouble2Modal', 'trouble2');
         setupModal('#openTrouble3Modal', 'trouble3');
@@ -2475,15 +2553,17 @@
         setupModal('#openTrouble12Modal', 'trouble12');
         setupModal('#openTrouble13Modal', 'trouble13');
         setupModal('#openTrouble14Modal', 'trouble14');
-        setupModal('#openTrouble15Modal', 'trouble15');      
+        setupModal('#openTrouble15Modal', 'trouble15');
         setupModal('#openTrouble16Modal', 'trouble16');
         setupModal('#openTrouble17Modal', 'trouble17');
-        setupModal('#openTrouble18Modal', 'trouble18');      
+        setupModal('#openTrouble18Modal', 'trouble18');
         setupModal('#openTrouble19Modal', 'trouble19');
-      
+        
+        // Calculation Tool
+        setupModal('#openCalcModal', 'calcModal'); 
     });
 
-    // Agent API Logic (Original)
+    // Agent API Logic
     async function fetchAgents() {
         try {
             const response = await fetch("https://asiro-ssi.viewer.kintoneapp.com/public/api/records/agent-number/1");
@@ -2507,95 +2587,6 @@
         }
     }
     window.onload = handleAgentInput;
-
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('active');
-}
-
-// Plans Tab Switching Logic
-    function switchPlan(evt, planId) {
-      // 1. すべてのプランコンテンツを隠す
-      const groups = document.querySelectorAll('.plan-group');
-      groups.forEach(g => g.classList.remove('active'));
-      
-      // 2. 指定されたプランを表示
-      document.getElementById(planId).classList.add('active');
-      
-      // 3. タブボタンのアクティブ切り替え
-      const tabs = document.querySelectorAll('.plan-tab-btn');
-      tabs.forEach(t => t.classList.remove('active'));
-      evt.currentTarget.classList.add('active');
-    }  
-
-// Accordion Logic
-    function toggleAccordion(element) {
-      // クリックされたヘッダーのクラス切り替え（矢印回転用）
-      element.classList.toggle("active");
-      
-      // 次の要素（ボディ）を取得
-      var body = element.nextElementSibling;
-      
-      if (body.style.maxHeight) {
-        // 開いている場合は閉じる
-        body.style.maxHeight = null;
-      } else {
-        // 閉じている場合は開く（スクロール高さを取得して設定）
-        body.style.maxHeight = body.scrollHeight + "px";
-      }
-    }
-
-// === 弁護士費用計算ロジック（旧日弁連基準） ===
-    function calculateFee() {
-        const inputVal = document.getElementById('economicBenefit').value;
-        if (!inputVal || inputVal <= 0) {
-            alert("金額を正しく入力してください");
-            return;
-        }
-
-        const benefit = parseFloat(inputVal) * 10000; // 万円 -> 円
-        let initial = 0; // 着手金
-        let success = 0; // 報酬金
-
-        // 着手金計算
-        if (benefit <= 3000000) {
-            initial = benefit * 0.08;
-        } else if (benefit <= 30000000) {
-            initial = benefit * 0.05 + 90000;
-        } else if (benefit <= 300000000) {
-            initial = benefit * 0.03 + 690000;
-        } else {
-            initial = benefit * 0.02 + 3690000;
-        }
-        // 着手金最低額（10万円）
-        if (initial < 100000) initial = 100000;
-
-        // 報酬金計算
-        if (benefit <= 3000000) {
-            success = benefit * 0.16;
-        } else if (benefit <= 30000000) {
-            success = benefit * 0.10 + 180000;
-        } else if (benefit <= 300000000) {
-            success = benefit * 0.06 + 1380000;
-        } else {
-            success = benefit * 0.04 + 7380000;
-        }
-
-        // 消費税 (10%)
-        const tax = 1.1;
-        const initialTax = Math.floor(initial * tax);
-        const successTax = Math.floor(success * tax);
-        const totalTax = initialTax + successTax;
-
-        // 表示更新
-        document.getElementById('initialFee').innerText = initialTax.toLocaleString() + "円";
-        document.getElementById('successFee').innerText = successTax.toLocaleString() + "円";
-        document.getElementById('totalFee').innerText = totalTax.toLocaleString() + "円";
-        document.getElementById('calcResult').style.display = "block";
-    }
-
-    // 計算ツールモーダルのセットアップ
-    setupModal('#openCalcModal', 'calcModal'); // トリガーIDは後ほど設置
-  
 </script>
   
 </body>
