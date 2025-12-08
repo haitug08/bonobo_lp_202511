@@ -17,57 +17,7 @@
 <body class="home">
 <div id="container">
   
-  <header>
-    <h1 id="logo">
-      <a href="index.html">
-        <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/asiro-ssi_type_black.svg" alt="アシロ少額短期保険">
-      </a>
-    </h1>
-
-<div id="menubar">
-<div class="header0">
-    <div class="header1">
-          <h1 id="logo2" style="margin: auto;">
-            <a href="index.html">
-              <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/005.png" alt="アシロ少額短期保険" class="header-logo">
-            </a>
-          </h1>
-          <p class="footer-company-name">
-            株式会社アシロ少額短期保険<br>
-            <span class="footer-license">東海財務局長（少額短期保険）第６号</span>
-          </p>
-        </div>
-        <div class="header2">
-          <table>
-            <tbody>
-            <tr>
-              <td><span style="font-size: 0.7rem;">ABOUT US</span><br>わたしたちについて</td>
-              <td><span style="font-size: 0.7rem;">IR</span><br>公告情報</td>
-            </tr>
-            <tr>
-              <td><span style="font-size: 0.7rem;">SERVICE</span><br>サービス</td>
-              <td><span style="font-size: 0.7rem;">CONTACT</span><br>お問い合わせ</td>
-            </tr>
-            <tr>
-              <td><span style="font-size: 0.7rem;">NEWS</span><br>お知らせ</td>
-              <td><span style="font-size: 0.7rem;">LOGIN</span><br>ログイン</td>
-            </tr>
-          </tbody>
-          </table>
-        </div>
-    </div></div>
-    
-<div class="header-wrapper">
-<div id="header-box">
-  <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/009.png" alt="" class="login">
-  
-  <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/010.png" alt="" class="menu-sp">
-  <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/010.png" alt="" class="menu-pc">
-  
-  <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/011.png" alt="閉じる" class="menu-close">
-</div>
-    
-  </header>
+  <header id="include-header"></header>
 
   <div id="mainimg">
     <figure>
@@ -225,39 +175,8 @@
       </section>
 
       <footer id="footer">
-        <div class="footer1">
-          <h1 id="logo2" style="margin: auto;">
-            <a href="index.html">
-              <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/005.png" alt="アシロ少額短期保険" class="footer-logo">
-            </a>
-          </h1>
-          <p class="footer-company-name">
-            株式会社アシロ少額短期保険<br>
-            <span class="footer-license">東海財務局長（少額短期保険）第６号</span>
-          </p>
-        </div>
-        <div class="footer2">
-          <table>
-            <tr><td colspan="2" style="font-weight: bold;">TOP</td></tr>
-            <tr><td>私たちについて</td><td>お知らせ</td></tr>
-            <tr><td>公告情報</td><td>お問い合わせ</td></tr>
-            <tr><td>パートナー募集</td><td>各種ポリシー</td></tr>
-          </table>
-        </div>
-        <div class="footer3">
-          <table>
-            <tr><td colspan="2" style="font-weight: bold;">bonobo</td></tr>
-            <tr><td>サービスサイト</td><td>普通保険約款</td></tr>
-            <tr><td>お申込み</td><td>重要事項説明書</td></tr>
-            <tr><td colspan="2">資料請求</td></tr>
-          </table>
-        </div>
-        <div class="footer4">
-          <ul class="btn contact-btn-area">
-            <li><a href="#">ログイン　<i class="fa-solid fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
-        </footer>
+        <div id="include-footer" style="display: flex; gap: 2rem; width: 100%;"></div>
+      </footer>
 
       <div class="copyright-bar">
         <p class="copyright-text">Copyright 2025 ASiRO Small Amount and Short Term Insurance Co., Ltd.</p>
@@ -268,10 +187,18 @@
 
 <div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
   
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
-    <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
-    <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+  $(function(){
+      $("#include-header").load("parts/header.html");
+      $("#include-footer").load("parts/footer.html");
+  });
+  </script>
+  <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
+  <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/main.js"></script>
+  
   </main>
 </div>
 </body>
