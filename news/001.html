@@ -115,18 +115,23 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
   <script>
-    $(function() {
-    const path = location.pathname;
-    const depth = (path.match(/\//g) || []).length - 1; 
-    
-    let jsPath = '';
-    $('script').each(function() {
-        const src = $(this).attr('src');
-        if (src && src.indexOf('main.js') !== -1) {
-            jsPath = src.replace('main.js', ''); 
-        }
-    });
-    });
+    var rootPath = '../'; 
+  </script>
+  <script>
+  $('#include-header').load(rootPath + 'header.html', function() {
+      $('#include-header img').each(function(){
+          const src = $(this).attr('src');
+          if(src && !src.match(/^http/) && !src.match(/^\//)) {
+              $(this).attr('src', rootPath + src);
+          }
+      });      
+      $('#include-header a').each(function(){
+          const href = $(this).attr('href');
+          if(href && !href.match(/^http/) && !href.match(/^\//) && !href.match(/^#/)) {
+              $(this).attr('href', rootPath + href);
+          }
+      });
+  });
   </script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/main.js"></script>
