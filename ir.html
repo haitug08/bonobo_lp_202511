@@ -11,59 +11,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swa">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">
-  
-  <style>
-    /* タブボタンのスタイル */
-    .tab-nav {
-      width: 100%;
-      margin-bottom: 30px;
-      border-collapse: collapse;
-      cursor: pointer;
-    }
-    .tab-nav td {
-      border: 1px solid #ccc;
-      padding: 15px;
-      text-align: center;
-      background: #f9f9f9;
-      transition: all 0.3s;
-      width: 50%;
-      font-weight: bold;
-    }
-    .tab-nav td.active {
-      background: #333; /* アクティブな色（サイトに合わせて調整してください） */
-      color: #fff;
-      border-bottom: none;
-    }
-    .tab-nav td:hover {
-      opacity: 0.8;
-    }
-
-    /* タブコンテンツの表示制御 */
-    .tab-content {
-      display: none; /* 初期状態は非表示 */
-    }
-    .tab-content.active {
-      display: block; /* アクティブなものだけ表示 */
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* ページネーションのスタイル調整（必要に応じて） */
-    .disabled-btn {
-      opacity: 0.3;
-      pointer-events: none;
-    }
-  </style>
+  <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">  
 </head>
 
 <body class="home">
 <div id="container">
-  
   <header id="include-header"></header>
 
   <div id="mainimg">
@@ -89,7 +41,7 @@
 
         <div id="tab-kessan" class="tab-content active">
           <div class="list-grid7" style="margin-bottom: 50px;">
-            <table class="info-table ir-table-half pagination-target" style="margin: 0;">
+            <table class="ir-table ir-table-half pagination-target" style="margin: 0;">
               <tbody>
                 <tr>
                   <td class="col-date">2025.09.03</td>
@@ -133,7 +85,7 @@
         </div>
         <div id="tab-disclosure" class="tab-content">
           <div class="list-grid7" style="margin-bottom: 50px;">
-            <table class="info-table ir-table-half pagination-target" style="margin: 0;">
+            <table class="ir-table ir-table-half pagination-target" style="margin: 0;">
               <tbody>
                 <tr>
                   <td class="col-date">2025.09.03</td>
