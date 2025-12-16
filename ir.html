@@ -13,6 +13,52 @@
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
   <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">
   
+  <style>
+    /* タブボタンのスタイル */
+    .tab-nav {
+      width: 100%;
+      margin-bottom: 30px;
+      border-collapse: collapse;
+      cursor: pointer;
+    }
+    .tab-nav td {
+      border: 1px solid #ccc;
+      padding: 15px;
+      text-align: center;
+      background: #f9f9f9;
+      transition: all 0.3s;
+      width: 50%;
+      font-weight: bold;
+    }
+    .tab-nav td.active {
+      background: #333; /* アクティブな色（サイトに合わせて調整してください） */
+      color: #fff;
+      border-bottom: none;
+    }
+    .tab-nav td:hover {
+      opacity: 0.8;
+    }
+
+    /* タブコンテンツの表示制御 */
+    .tab-content {
+      display: none; /* 初期状態は非表示 */
+    }
+    .tab-content.active {
+      display: block; /* アクティブなものだけ表示 */
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ページネーションのスタイル調整（必要に応じて） */
+    .disabled-btn {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body class="home">
@@ -30,70 +76,94 @@
   <div id="contents">
     <main>
 
-<section id="sec01" class="bg2">
+    <section id="sec01" class="bg2">
         
-        <table style="">
-    <tbody><tr>
-        <td>決算公告</td>
-        <td>ディスクロージャー誌</td>
-    </tr>
-</tbody></table>
+        <table class="tab-nav">
+          <tbody>
+            <tr>
+              <td class="tab-btn active" data-target="#tab-kessan">決算公告</td>
+              <td class="tab-btn" data-target="#tab-disclosure">ディスクロージャー誌</td>
+            </tr>
+          </tbody>
+        </table>
 
-<div class="list-grid7" style="margin-bottom: 50px;">
-          
-<table class="info-table ir-table-half" style="margin: 0;">
-            <tbody>
-              
-              <tr>
-                <td class="col-date">2025.09.03</td>
-                <td class="col-title"><span class="tag-pdf">PDF</span>　2024年度 決算公告</td>
-              </tr>
-              <tr>
-                <td class="col-date">2025.09.03</td>
-                <td class="col-title"><span class="tag-pdf">PDF</span>　2024年度 決算公告</td>
-              </tr>
-              <tr>
-                <td class="col-date">2025.09.03</td>
-                <td class="col-title"><span class="tag-pdf">PDF</span>　2024年度 決算公告</td>
-              </tr>
-            </tbody>
-          </table>
-        </div><div class="list-grid7" style="margin-bottom: 50px;">
-          
-<table class="info-table ir-table-half" style="margin: 0;">
-            <tbody>
-              
-              <tr>
-                <td class="col-date">2025.09.03</td>
-                <td class="col-title">2025　株式会社アシロ少額短期保険の現状（PDF）</td>
-              </tr>
-              <tr>
-                <td class="col-date">2025.09.03</td>
-                <td class="col-title">2025　株式会社アシロ少額短期保険の現状（PDF）</td>
-              </tr>
-              <tr>
-                <td class="col-date">2025.09.03</td>
-                <td class="col-title">2025　株式会社アシロ少額短期保険の現状（PDF）</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="new-pagination">
-          <ul>
-            <li><a href="javascript:void(0);" id="prevPage" class="disabled-btn"><i class="fa-solid fa-chevron-left"></i></a></li>
-          </ul>
-          
-          <div class="pagination-status">
-            <span id="currentPageNum">1</span> / <span id="totalPageNum">0</span>
+        <div id="tab-kessan" class="tab-content active">
+          <div class="list-grid7" style="margin-bottom: 50px;">
+            <table class="info-table ir-table-half pagination-target" style="margin: 0;">
+              <tbody>
+                <tr>
+                  <td class="col-date">2025.09.03</td>
+                  <td class="col-title"><span class="tag-pdf">PDF</span>　2024年度 決算公告</td>
+                </tr>
+                <tr>
+                  <td class="col-date">2025.09.03</td>
+                  <td class="col-title"><span class="tag-pdf">PDF</span>　2024年度 決算公告</td>
+                </tr>
+                <tr>
+                  <td class="col-date">2025.09.03</td>
+                  <td class="col-title"><span class="tag-pdf">PDF</span>　2024年度 決算公告</td>
+                </tr>
+                <tr>
+                  <td class="col-date">2024.09.03</td>
+                  <td class="col-title"><span class="tag-pdf">PDF</span>　2023年度 決算公告</td>
+                </tr>
+                 <tr>
+                  <td class="col-date">2023.09.03</td>
+                  <td class="col-title"><span class="tag-pdf">PDF</span>　2022年度 決算公告</td>
+                </tr>
+                 <tr>
+                  <td class="col-date">2022.09.03</td>
+                  <td class="col-title"><span class="tag-pdf">PDF</span>　2021年度 決算公告 (ページ送り確認用)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <ul>
-            <li><a href="javascript:void(0);" id="nextPage"><i class="fa-solid fa-chevron-right"></i></a></li>
-          </ul>
+          <div class="new-pagination">
+            <ul>
+              <li><a href="javascript:void(0);" class="prevPage disabled-btn"><i class="fa-solid fa-chevron-left"></i></a></li>
+            </ul>
+            <div class="pagination-status">
+              <span class="currentPageNum">1</span> / <span class="totalPageNum">0</span>
+            </div>
+            <ul>
+              <li><a href="javascript:void(0);" class="nextPage"><i class="fa-solid fa-chevron-right"></i></a></li>
+            </ul>
+          </div>
         </div>
-        
-</section>
+        <div id="tab-disclosure" class="tab-content">
+          <div class="list-grid7" style="margin-bottom: 50px;">
+            <table class="info-table ir-table-half pagination-target" style="margin: 0;">
+              <tbody>
+                <tr>
+                  <td class="col-date">2025.09.03</td>
+                  <td class="col-title">2025　株式会社アシロ少額短期保険の現状（PDF）</td>
+                </tr>
+                <tr>
+                  <td class="col-date">2025.09.03</td>
+                  <td class="col-title">2025　株式会社アシロ少額短期保険の現状（PDF）</td>
+                </tr>
+                <tr>
+                  <td class="col-date">2025.09.03</td>
+                  <td class="col-title">2025　株式会社アシロ少額短期保険の現状（PDF）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="new-pagination">
+            <ul>
+              <li><a href="javascript:void(0);" class="prevPage disabled-btn"><i class="fa-solid fa-chevron-left"></i></a></li>
+            </ul>
+            <div class="pagination-status">
+              <span class="currentPageNum">1</span> / <span class="totalPageNum">0</span>
+            </div>
+            <ul>
+              <li><a href="javascript:void(0);" class="nextPage"><i class="fa-solid fa-chevron-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        </section>
 
       <section id="sec04" class="breadcrumbs">
         <div>TOP　-　IR</div>  
@@ -122,72 +192,99 @@
       $("#include-footer").load("parts/footer.html");
 
       // --------------------------------------------------
-      // お知らせページネーション機能
+      // タブ切り替え機能
       // --------------------------------------------------
-      var $table = $('#news-table');      // テーブルのID
-      var $rows = $table.find('tbody tr'); // 行の要素
-      var totalRows = $rows.length;       // 全行数
-      var perPage = 5;                    // 1ページあたりの表示数
-      var totalPages = Math.ceil(totalRows / perPage); // 全ページ数
-      var currentPage = 1;                // 現在のページ
+      $('.tab-btn').on('click', function() {
+        // 全てのタブからactiveクラスを削除し、クリックされたものに追加
+        $('.tab-btn').removeClass('active');
+        $(this).addClass('active');
 
-      // 初期表示：全ページ数を表示
-      $('#totalPageNum').text(totalPages);
+        // 対応するコンテンツを表示
+        var targetId = $(this).data('target');
+        $('.tab-content').removeClass('active');
+        $(targetId).addClass('active');
+      });
 
-      function updateTable() {
-        // 全ての行を一旦非表示にする
-        $rows.hide();
+      // --------------------------------------------------
+      // ページネーション機能（汎用関数）
+      // --------------------------------------------------
+      function setupPagination(containerId) {
+        var $container = $(containerId);
+        var $table = $container.find('.pagination-target'); // 対象のテーブル
+        var $rows = $table.find('tbody tr'); // 行の要素
+        var totalRows = $rows.length;       // 全行数
+        var perPage = 5;                    // 1ページあたりの表示数
+        var totalPages = Math.ceil(totalRows / perPage); // 全ページ数
+        var currentPage = 1;                // 現在のページ
 
-        // 表示すべき範囲を計算
-        var start = (currentPage - 1) * perPage;
-        var end = start + perPage;
+        // 要素の取得（IDではなくクラスで取得）
+        var $totalPageNum = $container.find('.totalPageNum');
+        var $currentPageNum = $container.find('.currentPageNum');
+        var $prevBtn = $container.find('.prevPage');
+        var $nextBtn = $container.find('.nextPage');
 
-        // 該当する行だけ表示（sliceは0始まりのインデックス）
-        $rows.slice(start, end).fadeIn(300); // fadeInで少しリッチに表示
+        // 初期表示：全ページ数を表示
+        $totalPageNum.text(totalPages);
 
-        // ページ番号の更新
-        $('#currentPageNum').text(currentPage);
+        // 表示更新用関数
+        function updateTable() {
+          // 全ての行を一旦非表示にする
+          $rows.hide();
 
-        // ボタンの活性・非活性制御
-        if (currentPage === 1) {
-          $('#prevPage').addClass('disabled-btn');
-        } else {
-          $('#prevPage').removeClass('disabled-btn');
+          // 表示すべき範囲を計算
+          var start = (currentPage - 1) * perPage;
+          var end = start + perPage;
+
+          // 該当する行だけ表示
+          $rows.slice(start, end).fadeIn(300);
+
+          // ページ番号の更新
+          $currentPageNum.text(currentPage);
+
+          // ボタンの活性・非活性制御
+          if (currentPage === 1) {
+            $prevBtn.addClass('disabled-btn');
+          } else {
+            $prevBtn.removeClass('disabled-btn');
+          }
+
+          if (currentPage === totalPages || totalPages === 0) {
+            $nextBtn.addClass('disabled-btn');
+          } else {
+            $nextBtn.removeClass('disabled-btn');
+          }
         }
 
-        if (currentPage === totalPages) {
-          $('#nextPage').addClass('disabled-btn');
-        } else {
-          $('#nextPage').removeClass('disabled-btn');
-        }
+        // 初回実行
+        updateTable();
+
+        // 「前へ」ボタンクリック
+        $prevBtn.on('click', function(e) {
+          e.preventDefault();
+          if (currentPage > 1) {
+            currentPage--;
+            updateTable();
+          }
+        });
+
+        // 「次へ」ボタンクリック
+        $nextBtn.on('click', function(e) {
+          e.preventDefault();
+          if (currentPage < totalPages) {
+            currentPage++;
+            updateTable();
+          }
+        });
       }
 
-      // 初回実行
-      updateTable();
-
-      // 「前へ」ボタンクリック
-      $('#prevPage').on('click', function(e) {
-        e.preventDefault(); // リンク遷移を無効化
-        if (currentPage > 1) {
-          currentPage--;
-          updateTable();
-        }
-      });
-
-      // 「次へ」ボタンクリック
-      $('#nextPage').on('click', function(e) {
-        e.preventDefault(); // リンク遷移を無効化
-        if (currentPage < totalPages) {
-          currentPage++;
-          updateTable();
-        }
-      });
+      // 各タブコンテンツに対してページネーション機能を初期化
+      setupPagination('#tab-kessan');
+      setupPagination('#tab-disclosure');
   });
   </script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/main.js"></script>
 
-  
   </main>
 </div>
 </body>
