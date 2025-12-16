@@ -12,6 +12,29 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
   <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">
+  
+  <style>
+    /* ページネーション用の追加スタイル（現在のページ番号表示など） */
+    .pagination-status {
+      text-align: center;
+      margin: 0 15px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: bold;
+      align-self: center;
+    }
+    /* ボタンが無効な場合のスタイル */
+    .disabled-btn {
+      opacity: 0.3;
+      pointer-events: none;
+      cursor: default;
+    }
+    /* ページネーションのレイアウト調整 */
+    .new-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body class="home">
@@ -36,57 +59,57 @@
         </div>
 
         <div class="list-grid7" style="margin-bottom: 50px;">
-          <table class="info-table">
+          <table class="info-table" id="news-table">
             <tbody>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">1. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">2. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">3. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">4. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">5. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">6. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">7. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">8. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">9. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
               <tr>
                 <td class="col-date">2025.09.03</td>
                 <td class="col-label"><div class="tag-box">お知らせ</div></td>
-                <td class="col-title">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
+                <td class="col-title">10. 令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
               </tr>
             </tbody>
           </table>
@@ -94,14 +117,19 @@
 
         <div class="new-pagination">
           <ul>
-            <li><a href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
+            <li><a href="#" id="prevPage"><i class="fa-solid fa-chevron-left"></i></a></li>
           </ul>
+          
+          <div class="pagination-status">
+            <span id="currentPageNum">1</span> / <span id="totalPageNum">1</span>
+          </div>
+
           <ul>
-            <li><a href="#"><i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="#" id="nextPage"><i class="fa-solid fa-chevron-right"></i></a></li>
           </ul>
         </div>
         
-      </section>   
+      </section>    
 
       <section id="sec04" class="breadcrumbs">
         <div>TOP　-　お知らせ</div>  
@@ -122,11 +150,74 @@
   
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+  
   <script>
   $(function(){
-      // パーツの読み込み
+      // 共通パーツの読み込み
       $("#include-header").load("parts/header.html");
       $("#include-footer").load("parts/footer.html");
+
+      // --------------------------------------------------
+      // お知らせページネーション機能
+      // --------------------------------------------------
+      var $table = $('#news-table');      // テーブルのID
+      var $rows = $table.find('tbody tr'); // 行の要素
+      var totalRows = $rows.length;       // 全行数
+      var perPage = 5;                    // 1ページあたりの表示数
+      var totalPages = Math.ceil(totalRows / perPage); // 全ページ数
+      var currentPage = 1;                // 現在のページ
+
+      // 初期表示：全ページ数を表示
+      $('#totalPageNum').text(totalPages);
+
+      function updateTable() {
+        // 全ての行を一旦非表示にする
+        $rows.hide();
+
+        // 表示すべき範囲を計算
+        var start = (currentPage - 1) * perPage;
+        var end = start + perPage;
+
+        // 該当する行だけ表示（sliceは0始まりのインデックス）
+        $rows.slice(start, end).fadeIn(300); // fadeInで少しリッチに表示
+
+        // ページ番号の更新
+        $('#currentPageNum').text(currentPage);
+
+        // ボタンの活性・非活性制御
+        if (currentPage === 1) {
+          $('#prevPage').addClass('disabled-btn');
+        } else {
+          $('#prevPage').removeClass('disabled-btn');
+        }
+
+        if (currentPage === totalPages) {
+          $('#nextPage').addClass('disabled-btn');
+        } else {
+          $('#nextPage').removeClass('disabled-btn');
+        }
+      }
+
+      // 初回実行
+      updateTable();
+
+      // 「前へ」ボタンクリック
+      $('#prevPage').on('click', function(e) {
+        e.preventDefault(); // リンク遷移を無効化
+        if (currentPage > 1) {
+          currentPage--;
+          updateTable();
+        }
+      });
+
+      // 「次へ」ボタンクリック
+      $('#nextPage').on('click', function(e) {
+        e.preventDefault(); // リンク遷移を無効化
+        if (currentPage < totalPages) {
+          currentPage++;
+          updateTable();
+        }
+      });
   });
   </script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
