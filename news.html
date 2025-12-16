@@ -13,28 +13,6 @@
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
   <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">
   
-  <style>
-    /* ページネーション用の追加スタイル（現在のページ番号表示など） */
-    .pagination-status {
-      text-align: center;
-      margin: 0 15px;
-      font-family: 'Noto Sans JP', sans-serif;
-      font-weight: bold;
-      align-self: center;
-    }
-    /* ボタンが無効な場合のスタイル */
-    .disabled-btn {
-      opacity: 0.3;
-      pointer-events: none;
-      cursor: default;
-    }
-    /* ページネーションのレイアウト調整 */
-    .new-pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
 </head>
 
 <body class="home">
@@ -117,7 +95,7 @@
 
         <div class="new-pagination">
           <ul>
-            <li><a href="#" id="prevPage"><i class="fa-solid fa-chevron-left"></i></a></li>
+            <li><a href="javascript:void(0);" id="prevPage"><i class="fa-solid fa-chevron-left"></i></a></li>
           </ul>
           
           <div class="pagination-status">
@@ -125,7 +103,7 @@
           </div>
 
           <ul>
-            <li><a href="#" id="nextPage"><i class="fa-solid fa-chevron-right"></i></a></li>
+            <li><a href="javascript:void(0);" id="nextPage"><i class="fa-solid fa-chevron-right"></i></a></li>
           </ul>
         </div>
         
