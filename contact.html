@@ -32,152 +32,129 @@
     <main>
 
 <section id="sec01" class="bg2" style="padding-top: 5%;">
-<form action="/inquiry/thanks" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="ZRfbJRPRNOwzk4oikz0bfxkdViij7a0r68aFsWJpns0HheaDzR20yRDVgHgEMnocltaGSzgKaXMocI5v3rJb1w" autocomplete="off" /><section id='content'>
-<div class='download-title'>
-お問い合わせ
-</div>
-<div class='contact-inner' id='contact'>
-<div class='contact-left'>
-<div class='form-title Required'>お客様情報の入力</div>
-<table class='formtable-1'>
-<tbody>
-<tr>
-<th>事業区分</th>
-<th></th>
-<td>
-<fieldset class='business-category'>
-<label>
-<input name='kubun' required='required' type='radio' value='個人事業主'>
-個人事業主
-</label>
-<label>
-<input name='kubun' type='radio' value='法人（10名未満）'>
-法人（10名未満）
-</label>
-<label>
-<input name='kubun' type='radio' value='法人（100名未満）'>
-法人（100名未満）
-</label>
-<label>
-<input name='kubun' type='radio' value='法人（100名未満）'>
-法人（100名未満）
-</label>
-<label>
-<input name='kubun' type='radio' value='法人（300名未満）'>
-法人（300名未満）
-</label>
-<label>
-<input name='kubun' type='radio' value='法人（300名以上）'>
-法人（300名以上）
-</label>
-</fieldset>
-</td>
-</tr>
-<tr>
-<th colspan='2'>担当者名</th>
-<td>
-<input class='textbox-1' name='name' required='required' type='text'>
-</td>
-</tr>
-<tr>
-<th colspan='2'>役職（任意）</th>
-<td>
-<input class='textbox-1' name='position' type='text'>
-</td>
-</tr>
-<tr>
-<th colspan='2'>法人名（または屋号）</th>
-<td>
-<input class='textbox-1' name='company_name' required='required' type='text'>
-</td>
-</tr>
-<tr>
-<th colspan='2'>電話番号</th>
-<td>
-<input class='textbox-1' name='phone' required='required' type='text'>
-</td>
-</tr>
-<tr>
-<th colspan='2'>メールアドレス</th>
-<td>
-<input class='textbox-1' name='email' required='required' type='email'>
-</td>
-</tr>
-<tr>
-<th colspan='2'>URL（任意）</th>
-<td>
-<input class='textbox-1' name='url' type='url'>
-</td>
-</tr>
-<tr>
-<th colspan='2'>お問い合わせ内容</th>
-<td>
-<label class='selectbox-1 selectbox-w1'>
-<select name='inquiry' onchange='Color(this)' required='required'>
-<option value=''>選択してください</option>
-<option value='申込方法について'>申込方法について</option>
-<option value='保険料について'>保険料について</option>
-<option value='補償内容について'>補償内容について</option>
-<option value='付帯サービスについて'>付帯サービスについて</option>
-<option value='代理店について'>代理店について</option>
-<option value='その他'>その他</option>
-</select>
-</label>
-</td>
-</tr>
-<tr>
-<th class='th-top' colspan='2'>お問い合わせ詳細</th>
-<td>
-<textarea class='textarea-1' name='detail' required='required'></textarea>
-</td>
-</tr>
-</tbody>
-</table>
-<hr class='borderline'>
-<div class='pb-next-l'>
-<div class='privacy-policy'>
-<fieldset class='privacy-policy-cb'>
-<label for='privacy-checkbox'>
-<input id='privacy-checkbox' name='privacy-policy' required='required' type='checkbox' value='個人情報の取扱方針'>
-<span class='checkbox-custom'></span>
-<a href='/company_info/policy' target='_blank'>個人情報の取扱方針</a>
-に同意
-</label>
-</fieldset>
-</div>
-<script src="https://www.recaptcha.net/recaptcha/api.js" async defer ></script>
-<div data-sitekey="6LdWC38rAAAAABoG7LqntFPrfADib9j3Ef39oo3S" class="g-recaptcha "></div>
-          <noscript>
-            <div>
-              <div style="width: 302px; height: 422px; position: relative;">
-                <div style="width: 302px; height: 422px; position: absolute;">
-                  <iframe
-                    src="https://www.recaptcha.net/recaptcha/api/fallback?k=6LdWC38rAAAAABoG7LqntFPrfADib9j3Ef39oo3S"
-                    name="ReCAPTCHA"
-                    style="width: 302px; height: 422px; border-style: none; border: 0; overflow: hidden;">
-                  </iframe>
-                </div>
-              </div>
-              <div style="width: 300px; height: 60px; border-style: none;
-                bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
-                background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
-                <textarea name="g-recaptcha-response"
-                  class="g-recaptcha-response"
-                  style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
-                  margin: 10px 25px; padding: 0px; resize: none;">
-                </textarea>
-              </div>
-            </div>
-          </noscript>
+  
+  <div class="dads-form-container">
+          <form action="/inquiry/thanks" accept-charset="UTF-8" method="post">
+            <input type="hidden" name="authenticity_token" value="ZRfbJRPRNOwzk4oikz0bfxkdViij7a0r68aFsWJpns0HheaDzR20yRDVgHgEMnocltaGSzgKaXMocI5v3rJb1w" autocomplete="off" />
+            
+            <h1 class="dads-form-title">お問い合わせ</h1>
+            <p class="mb-4">お客様情報の入力をお願いいたします。</p>
 
-<div class='next-btn'>
-<button type='submit'>送信する</button>
+            <div class="dads-input-group">
+              <fieldset style="border:none; padding:0; margin:0;">
+                <legend class="dads-label-row">
+                  <span class="dads-label">事業区分</span>
+                  <span class="dads-badge dads-badge-require">必須</span>
+                </legend>
+                <div class="dads-radio-group">
+                  <label class="dads-radio-label"><input type="radio" name="kubun" value="個人事業主" class="dads-radio-input" required> 個人事業主</label>
+                  <label class="dads-radio-label"><input type="radio" name="kubun" value="法人（10名未満）" class="dads-radio-input"> 法人（10名未満）</label>
+                  <label class="dads-radio-label"><input type="radio" name="kubun" value="法人（100名未満）" class="dads-radio-input"> 法人（100名未満）</label>
+                  <label class="dads-radio-label"><input type="radio" name="kubun" value="法人（300名未満）" class="dads-radio-input"> 法人（300名未満）</label>
+                  <label class="dads-radio-label"><input type="radio" name="kubun" value="法人（300名以上）" class="dads-radio-input"> 法人（300名以上）</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="name" class="dads-label">担当者名</label>
+                <span class="dads-badge dads-badge-require">必須</span>
+              </div>
+              <input type="text" id="name" name="name" class="dads-input-text" required placeholder="例：山田 太郎">
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="position" class="dads-label">役職</label>
+                <span class="dads-badge dads-badge-optional">任意</span>
+              </div>
+              <input type="text" id="position" name="position" class="dads-input-text">
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="company_name" class="dads-label">法人名（または屋号）</label>
+                <span class="dads-badge dads-badge-require">必須</span>
+              </div>
+              <input type="text" id="company_name" name="company_name" class="dads-input-text" required>
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="phone" class="dads-label">電話番号</label>
+                <span class="dads-badge dads-badge-require">必須</span>
+              </div>
+              <input type="tel" id="phone" name="phone" class="dads-input-text" required placeholder="例：03-1234-5678">
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="email" class="dads-label">メールアドレス</label>
+                <span class="dads-badge dads-badge-require">必須</span>
+              </div>
+              <input type="email" id="email" name="email" class="dads-input-text" required placeholder="例：info@example.com">
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="url" class="dads-label">URL</label>
+                <span class="dads-badge dads-badge-optional">任意</span>
+              </div>
+              <input type="url" id="url" name="url" class="dads-input-text" placeholder="https://">
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="inquiry" class="dads-label">お問い合わせ内容</label>
+                <span class="dads-badge dads-badge-require">必須</span>
+              </div>
+              <div style="position: relative;">
+                <select id="inquiry" name="inquiry" class="dads-select" required onchange='Color(this)'>
+                  <option value=''>選択してください</option>
+                  <option value='申込方法について'>申込方法について</option>
+                  <option value='保険料について'>保険料について</option>
+                  <option value='補償内容について'>補償内容について</option>
+                  <option value='付帯サービスについて'>付帯サービスについて</option>
+                  <option value='代理店について'>代理店について</option>
+                  <option value='その他'>その他</option>
+                </select>
+                </div>
+            </div>
+
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="detail" class="dads-label">お問い合わせ詳細</label>
+                <span class="dads-badge dads-badge-require">必須</span>
+              </div>
+              <textarea id="detail" name="detail" class="dads-textarea" required></textarea>
+            </div>
+
+            <div class="dads-privacy">
+              <label class="dads-checkbox-label">
+                <input type="checkbox" name="privacy-policy" value="個人情報の取扱方針" class="dads-checkbox-input" required id="privacy-checkbox">
+                <span>
+                  <a href='/company_info/policy' target='_blank' style="text-decoration: underline; color:#005CAF;">個人情報の取扱方針</a>
+                  に同意する
+                </span>
+              </label>
+            </div>
+
+            <div class="recaptcha-wrapper">
+              <script src="https://www.recaptcha.net/recaptcha/api.js" async defer></script>
+              <div data-sitekey="6LdWC38rAAAAABoG7LqntFPrfADib9j3Ef39oo3S" class="g-recaptcha"></div>
+            </div>
+            <noscript>
+              <div>
+                 </div>
+            </noscript>
+
+            <div class="next-btn">
+              <button type="submit" class="dads-submit-btn">送信する</button>
+            </div>
+
+          </form>
 </div>
-</div>
-</div>
-</div>
-</section>
-</form>
   
 </section>
 
