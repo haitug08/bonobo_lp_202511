@@ -12,6 +12,57 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
   <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">
+  <link href='https://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+<style>
+  .glitch{
+  color:white;
+  font-size:100px;
+  position:relative;
+  width:400px;
+  margin:0 auto;
+}
+@keyframes noise-anim{
+  $steps:20;
+  @for $i from 0 through $steps{
+    #{percentage($i*(1/$steps))}{
+      clip:rect(random(100)+px,9999px,random(100)+px,0);
+    }
+  }
+}
+.glitch:after{
+  content:attr(data-text);
+  position:absolute;
+  left:2px;
+  text-shadow:-1px 0 red;
+  top:0;
+  color:white;
+  background:black;
+  overflow:hidden;
+  clip:rect(0,900px,0,0); 
+  animation:noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim-2{
+  $steps:20;
+  @for $i from 0 through $steps{
+    #{percentage($i*(1/$steps))}{
+      clip:rect(random(100)+px,9999px,random(100)+px,0);
+    }
+  }
+}
+.glitch:before{
+  content:attr(data-text);
+  position:absolute;
+  left:-2px;
+  text-shadow:1px 0 blue; 
+  top:0;
+  color:white;
+  background:black;
+  overflow:hidden;
+  clip:rect(0,900px,0,0); 
+  animation:noise-anim-2 3s infinite linear alternate-reverse;
+}
+</style>
 </head>
 
 <body class="home">
@@ -78,6 +129,7 @@
     <p style="top: -70%; color: #ffffff; font-size: 20rem; opacity: 0.5; white-space: nowrap; left: 0%; letter-spacing: 3rem;">
       解き放て
     </p>
+    <div class="glitch" data-text="GLITCH">GLITCH</div> 
   </div>
 
   <div id="contents">
