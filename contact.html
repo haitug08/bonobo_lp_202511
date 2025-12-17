@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swa">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">
-  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">  
 </head>
 
 <body class="home">
@@ -41,20 +40,19 @@
             <p class="mb-4">お客様情報の入力をお願いいたします。</p>
 
             <div class="dads-input-group">
-              <fieldset style="border:none; padding:0; margin:0;">
-                <legend class="dads-label-row">
-                  <span class="dads-label">事業区分</span>
-                  <span class="dads-badge dads-badge-require">必須</span>
-                </legend>
-                            
-            <div class="dads-input-group">
               <div class="dads-label-row">
                 <label for="company_name" class="dads-label">法人名（または屋号）</label>
                 <span class="dads-badge dads-badge-require">必須</span>
               </div>
               <input type="text" id="company_name" name="company_name" class="dads-input-text" required>
-            </div>
-                
+            </div>            
+
+            <div class="dads-input-group">
+              <fieldset style="border:none; padding:0; margin:0;">            
+                <legend class="dads-label-row">
+                  <span class="dads-label">事業区分</span>
+                  <span class="dads-badge dads-badge-require">必須</span>
+                </legend>
                 <div class="dads-radio-group">
                   <label class="dads-radio-label"><input type="radio" name="kubun" value="個人事業主" class="dads-radio-input" required> 個人事業主</label>
                   <label class="dads-radio-label"><input type="radio" name="kubun" value="法人（10名未満）" class="dads-radio-input"> 法人（10名未満）</label>
@@ -72,7 +70,7 @@
               </div>
               <input type="text" id="position" name="position" class="dads-input-text">
             </div>
-                        
+
             <div class="dads-input-group">
               <div class="dads-label-row">
                 <label for="name" class="dads-label">担当者名</label>
