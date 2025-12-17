@@ -32,34 +32,153 @@
     <main>
 
 <section id="sec01" class="bg2" style="padding-top: 5%;">
-        <div class="list-grid7">
-          <table id="news-table">
-            <tbody>
-              <tr style="border-bottom: 0px solid #8D98B2;">
-                <td class="col-date">2025.09.03</td>
-                <td class="col-label" style="width: 30%;"><div class="tag-box">お知らせ</div></td><td></td>
-              </tr>
-              <tr>  
-                <td class="col-title" colspan="3" style="font-size: x-large;">令和7年9月2日からの大雨により被害を受けられた皆様へ</td>
-              </tr>
-              <tr style="border-bottom: 0px solid #8D98B2;">  
-                <td class="col-title" colspan="3" style="font-weight: normal;">
-                  令和7年9月12日からの大雨に伴う災害により被害を受けられた皆さまに、心よりお見舞い申し上げます。<br>
-                  弊社では、災害救助法が適用された地域のご契約者様を対象に「保険料のお支払い」につきまして、一定期間の猶予を設ける等の特別措置を実施いたします。<br>
-                  本措置の適用をご希望されるお客さまは、お問い合わせフォームよりお申出ください。<br>
-                  災害救助法適用地域の詳細につきましては、内閣府ホームページをご確認ください。<br>
-                </td>  
-              </tr>
-              <tr style="border-bottom: 0px solid #8D98B2;">
-                <td colspan="3">
-                  <ul class="btn mt-large">
-                    <li><a href="news.html"><i class="fa-solid fa-chevron-left"></i>　お知らせ一覧へ</a></li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<form action="/inquiry/thanks" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="ZRfbJRPRNOwzk4oikz0bfxkdViij7a0r68aFsWJpns0HheaDzR20yRDVgHgEMnocltaGSzgKaXMocI5v3rJb1w" autocomplete="off" /><section id='content'>
+<div class='download-title'>
+お問い合わせ
+</div>
+<div class='contact-inner' id='contact'>
+<div class='contact-left'>
+<div class='form-title Required'>お客様情報の入力</div>
+<table class='formtable-1'>
+<tbody>
+<tr>
+<th>事業区分</th>
+<th></th>
+<td>
+<fieldset class='business-category'>
+<label>
+<input name='kubun' required='required' type='radio' value='個人事業主'>
+個人事業主
+</label>
+<label>
+<input name='kubun' type='radio' value='法人（10名未満）'>
+法人（10名未満）
+</label>
+<label>
+<input name='kubun' type='radio' value='法人（100名未満）'>
+法人（100名未満）
+</label>
+<label>
+<input name='kubun' type='radio' value='法人（100名未満）'>
+法人（100名未満）
+</label>
+<label>
+<input name='kubun' type='radio' value='法人（300名未満）'>
+法人（300名未満）
+</label>
+<label>
+<input name='kubun' type='radio' value='法人（300名以上）'>
+法人（300名以上）
+</label>
+</fieldset>
+</td>
+</tr>
+<tr>
+<th colspan='2'>担当者名</th>
+<td>
+<input class='textbox-1' name='name' required='required' type='text'>
+</td>
+</tr>
+<tr>
+<th colspan='2'>役職（任意）</th>
+<td>
+<input class='textbox-1' name='position' type='text'>
+</td>
+</tr>
+<tr>
+<th colspan='2'>法人名（または屋号）</th>
+<td>
+<input class='textbox-1' name='company_name' required='required' type='text'>
+</td>
+</tr>
+<tr>
+<th colspan='2'>電話番号</th>
+<td>
+<input class='textbox-1' name='phone' required='required' type='text'>
+</td>
+</tr>
+<tr>
+<th colspan='2'>メールアドレス</th>
+<td>
+<input class='textbox-1' name='email' required='required' type='email'>
+</td>
+</tr>
+<tr>
+<th colspan='2'>URL（任意）</th>
+<td>
+<input class='textbox-1' name='url' type='url'>
+</td>
+</tr>
+<tr>
+<th colspan='2'>お問い合わせ内容</th>
+<td>
+<label class='selectbox-1 selectbox-w1'>
+<select name='inquiry' onchange='Color(this)' required='required'>
+<option value=''>選択してください</option>
+<option value='申込方法について'>申込方法について</option>
+<option value='保険料について'>保険料について</option>
+<option value='補償内容について'>補償内容について</option>
+<option value='付帯サービスについて'>付帯サービスについて</option>
+<option value='代理店について'>代理店について</option>
+<option value='その他'>その他</option>
+</select>
+</label>
+</td>
+</tr>
+<tr>
+<th class='th-top' colspan='2'>お問い合わせ詳細</th>
+<td>
+<textarea class='textarea-1' name='detail' required='required'></textarea>
+</td>
+</tr>
+</tbody>
+</table>
+<hr class='borderline'>
+<div class='pb-next-l'>
+<div class='privacy-policy'>
+<fieldset class='privacy-policy-cb'>
+<label for='privacy-checkbox'>
+<input id='privacy-checkbox' name='privacy-policy' required='required' type='checkbox' value='個人情報の取扱方針'>
+<span class='checkbox-custom'></span>
+<a href='/company_info/policy' target='_blank'>個人情報の取扱方針</a>
+に同意
+</label>
+</fieldset>
+</div>
+<script src="https://www.recaptcha.net/recaptcha/api.js" async defer ></script>
+<div data-sitekey="6LdWC38rAAAAABoG7LqntFPrfADib9j3Ef39oo3S" class="g-recaptcha "></div>
+          <noscript>
+            <div>
+              <div style="width: 302px; height: 422px; position: relative;">
+                <div style="width: 302px; height: 422px; position: absolute;">
+                  <iframe
+                    src="https://www.recaptcha.net/recaptcha/api/fallback?k=6LdWC38rAAAAABoG7LqntFPrfADib9j3Ef39oo3S"
+                    name="ReCAPTCHA"
+                    style="width: 302px; height: 422px; border-style: none; border: 0; overflow: hidden;">
+                  </iframe>
+                </div>
+              </div>
+              <div style="width: 300px; height: 60px; border-style: none;
+                bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                <textarea name="g-recaptcha-response"
+                  class="g-recaptcha-response"
+                  style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                  margin: 10px 25px; padding: 0px; resize: none;">
+                </textarea>
+              </div>
+            </div>
+          </noscript>
+
+<div class='next-btn'>
+<button type='submit'>送信する</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</form>
+  
 </section>
 
       <section id="sec04" class="breadcrumbs">
