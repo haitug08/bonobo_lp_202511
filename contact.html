@@ -46,6 +46,15 @@
                   <span class="dads-label">事業区分</span>
                   <span class="dads-badge dads-badge-require">必須</span>
                 </legend>
+                            
+            <div class="dads-input-group">
+              <div class="dads-label-row">
+                <label for="company_name" class="dads-label">法人名（または屋号）</label>
+                <span class="dads-badge dads-badge-require">必須</span>
+              </div>
+              <input type="text" id="company_name" name="company_name" class="dads-input-text" required>
+            </div>
+                
                 <div class="dads-radio-group">
                   <label class="dads-radio-label"><input type="radio" name="kubun" value="個人事業主" class="dads-radio-input" required> 個人事業主</label>
                   <label class="dads-radio-label"><input type="radio" name="kubun" value="法人（10名未満）" class="dads-radio-input"> 法人（10名未満）</label>
@@ -58,26 +67,18 @@
 
             <div class="dads-input-group">
               <div class="dads-label-row">
-                <label for="name" class="dads-label">担当者名</label>
-                <span class="dads-badge dads-badge-require">必須</span>
-              </div>
-              <input type="text" id="name" name="name" class="dads-input-text" required placeholder="例：山田 太郎">
-            </div>
-
-            <div class="dads-input-group">
-              <div class="dads-label-row">
-                <label for="position" class="dads-label">役職</label>
+                <label for="position" class="dads-label">役職（または部署）</label>
                 <span class="dads-badge dads-badge-optional">任意</span>
               </div>
               <input type="text" id="position" name="position" class="dads-input-text">
             </div>
-
+                        
             <div class="dads-input-group">
               <div class="dads-label-row">
-                <label for="company_name" class="dads-label">法人名（または屋号）</label>
+                <label for="name" class="dads-label">担当者名</label>
                 <span class="dads-badge dads-badge-require">必須</span>
               </div>
-              <input type="text" id="company_name" name="company_name" class="dads-input-text" required>
+              <input type="text" id="name" name="name" class="dads-input-text" required placeholder="例：山田 太郎">
             </div>
 
             <div class="dads-input-group">
