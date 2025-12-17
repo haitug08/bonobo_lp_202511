@@ -81,74 +81,11 @@
   
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
-  
   <script>
   $(function(){
-      // 共通パーツの読み込み
+      // パーツの読み込み
       $("#include-header").load("parts/header.html");
       $("#include-footer").load("parts/footer.html");
-
-      // --------------------------------------------------
-      // お知らせページネーション機能
-      // --------------------------------------------------
-      var $table = $('#news-table');      // テーブルのID
-      var $rows = $table.find('tbody tr'); // 行の要素
-      var totalRows = $rows.length;       // 全行数
-      var perPage = 5;                    // 1ページあたりの表示数
-      var totalPages = Math.ceil(totalRows / perPage); // 全ページ数
-      var currentPage = 1;                // 現在のページ
-
-      // 初期表示：全ページ数を表示
-      $('#totalPageNum').text(totalPages);
-
-      function updateTable() {
-        // 全ての行を一旦非表示にする
-        $rows.hide();
-
-        // 表示すべき範囲を計算
-        var start = (currentPage - 1) * perPage;
-        var end = start + perPage;
-
-        // 該当する行だけ表示（sliceは0始まりのインデックス）
-        $rows.slice(start, end).fadeIn(300); // fadeInで少しリッチに表示
-
-        // ページ番号の更新
-        $('#currentPageNum').text(currentPage);
-
-        // ボタンの活性・非活性制御
-        if (currentPage === 1) {
-          $('#prevPage').addClass('disabled-btn');
-        } else {
-          $('#prevPage').removeClass('disabled-btn');
-        }
-
-        if (currentPage === totalPages) {
-          $('#nextPage').addClass('disabled-btn');
-        } else {
-          $('#nextPage').removeClass('disabled-btn');
-        }
-      }
-
-      // 初回実行
-      updateTable();
-
-      // 「前へ」ボタンクリック
-      $('#prevPage').on('click', function(e) {
-        e.preventDefault(); // リンク遷移を無効化
-        if (currentPage > 1) {
-          currentPage--;
-          updateTable();
-        }
-      });
-
-      // 「次へ」ボタンクリック
-      $('#nextPage').on('click', function(e) {
-        e.preventDefault(); // リンク遷移を無効化
-        if (currentPage < totalPages) {
-          currentPage++;
-          updateTable();
-        }
-      });
   });
   </script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
