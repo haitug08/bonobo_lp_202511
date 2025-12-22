@@ -28,6 +28,16 @@
   <div id="contents">
     <main>
 
+     <section id="sec00">
+<div class="fv">
+  <canvas id="bg"></canvas>
+  <div class="fv-content">
+    <h1>解き放て</h1>
+    <p>限界を超えるスピードで</p>
+  </div>
+</div>
+
+     </section>
       <section id="sec01">
         <div class="list-half">
           <div class="list up">
@@ -202,6 +212,60 @@
   </script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/main.js"></script>
+  <script>
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class Line {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.speed = Math.random() * 8 + 6;
+    this.length = Math.random() * 80 + 40;
+    this.alpha = Math.random() * 0.5 + 0.3;
+  }
+  update() {
+    this.x += this.speed;
+    if (this.x > w) this.reset();
+  }
+  draw() {
+    ctx.strokeStyle = `rgba(255,255,255,${this.alpha})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x - this.length, this.y);
+    ctx.stroke();
+  }
+}
+
+const lines = Array.from({ length: 120 }, () => new Line());
+
+function animate() {
+  ctx.fillStyle = 'rgba(0,0,0,0.25)';
+  ctx.fillRect(0, 0, w, h);
+
+  lines.forEach(l => {
+    l.update();
+    l.draw();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+    
   
   </main>
 </div>
