@@ -10,6 +10,134 @@
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
   <link rel="stylesheet" href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/css/style_lp001.css">
   <link rel="canonical" href="https://asiro-ssi.com/lp">  
+
+<style>
+/* サービスセクション専用スタイル（AUBA風レイアウト） */
+#services {
+  background-color: #f8fbff; /* 背景を薄いブルーグレーにしてカードを際立たせる */
+  padding: 80px 20px;
+}
+
+.service-grid-new {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-card-new {
+  background: #fff;
+  border: 1px solid #e1e8ef;
+  border-radius: 12px;
+  width: calc(33.33% - 24px); /* PCは3列 */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 160, 189, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.service-card-new:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 160, 189, 0.15);
+}
+
+/* カード上部：アイコンとタイトル */
+.card-header-new {
+  padding: 24px 20px 10px;
+  text-align: center;
+}
+
+.card-icon-new {
+  width: 60px;
+  height: 60px;
+  background: #eef9fb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+.card-icon-new img {
+  width: 32px;
+  height: auto;
+}
+
+.card-title-new {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* カード中部：説明文 */
+.card-body-new {
+  padding: 0 20px 20px;
+  flex-grow: 1;
+}
+
+.card-desc-new {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  text-align: justify;
+}
+
+/* カード下部：スペック情報（グレーの枠） */
+.card-footer-new {
+  background: #f9fbfc;
+  padding: 15px 20px;
+  border-top: 1px solid #edf2f5;
+}
+
+.specs-list-new {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.specs-list-new li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.specs-list-new li::before {
+  content: "✔";
+  color: #00A0BD; /* ブランドカラー */
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.specs-list-new li:last-child {
+  margin-bottom: 0;
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.specs-list-new li:last-child::before {
+  content: none; /* 提供元にはチェックマークをつけない */
+}
+
+/* モバイル対応（1列表示） */
+@media (max-width: 768px) {
+  .service-card-new {
+    width: 100%;
+    max-width: 400px;
+  }
+  .card-desc-new {
+    text-align: left;
+  }
+}
+</style>  
+
 </head>
 
 <body>
@@ -186,106 +314,119 @@
     </section>
 
 <section id="services">
-      <div class="section-title">
-        <h2>法務サービス</h2>
-        <p>bonoboで使える、充実のビジネス法務ツール。</p>
+  <div class="section-title">
+    <h2>法務サービス</h2>
+    <p>bonoboで使える、充実のビジネス法務ツール。</p>
+  </div>
+
+  <div class="service-grid-new">
+    
+    <div class="service-card-new">
+      <div class="card-header-new">
+        <div class="card-icon-new">
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_21.png" alt="契約書ひな形">
+        </div>
+        <h4 class="card-title-new">契約書/規定ひな形</h4>
       </div>
-
-      <div class="service-grid">
-        <div class="service-item">
-          <div class="service-inner">
-            <div class="service-header">
-                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_21.png" alt="Icon">
-                <h4>契約書/規定ひな形</h4>
-            </div>
-            <p class="service-desc">
-                弁護士監修の契約書や社内規定のひな形をダウンロードできます。作成コストを削減し、法改正にも対応した書類整備が可能です。
-            </p>
-            <div class="service-specs">
-                <ul>
-                    <li>契約書DL：3回/月</li>
-                    <li>社内規定DL：3回/月</li>
-                    <li>提供：株式会社アシロ</li>
-                </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-item">
-          <div class="service-inner">
-            <div class="service-header">
-                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_22.png" alt="Icon">
-                <h4>反社チェック</h4>
-            </div>
-            <p class="service-desc">
-                取引先や顧客のコンプライアンスチェックをWEB上で完結。独自のDBとニュース記事を照合し、リスクを早期発見します。
-            </p>
-            <div class="service-specs">
-                <ul>
-                    <li>検索実行：6回/月</li>
-                    <li>即時レポート出力</li>
-                    <li>提供：株式会社アシロ</li>
-                </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-item">
-          <div class="service-inner">
-            <div class="service-header">
-                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_23.png" alt="Icon">
-                <h4>AIリーガルチェック</h4>
-            </div>
-            <p class="service-desc">
-                契約書をアップロードするだけでAIがリスクを判定。不利な条項の洗い出しや修正案の提示を行い、契約業務をサポートします。
-            </p>
-            <div class="service-specs">
-                <ul>
-                    <li>AIレビュー：3回/月</li>
-                    <li>修正案提示機能あり</li>
-                    <li>提供：株式会社アシロ</li>
-                </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-item">
-          <div class="service-inner">
-            <div class="service-header">
-                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_24.png" alt="Icon">
-                <h4>法務チャット相談</h4>
-            </div>
-            <p class="service-desc">
-                日常的な法務の疑問をチャットで弁護士に相談できます。複数の弁護士から回答が得られるため、多角的な視点を持てます。
-            </p>
-            <div class="service-specs">
-                <ul>
-                    <li>質問投稿：1回/月<br class="br-sp">　※法人プランのみ利用可</li>
-                    <li>提供：株式会社アシロ</li>
-                </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-item">
-          <div class="service-inner">
-            <div class="service-header">
-                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_25.png" alt="Icon">
-                <h4>弁護士案内サービス</h4>
-            </div>
-            <p class="service-desc">
-                いざという法的トラブルの際、内容に合わせて最適な弁護士をご案内します。
-            </p>
-            <div class="service-specs">
-                <ul>
-                    <li>初回相談：30分無料</li>
-                    <li>提供：株式会社アシロ少額短期保険</li>
-                </ul>
-            </div>
-          </div>
-        </div>
+      <div class="card-body-new">
+        <p class="card-desc-new">
+          弁護士監修の契約書や社内規定のひな形をダウンロードできます。作成コストを削減し、法改正にも対応した書類整備が可能です。
+        </p>
       </div>
-    </section>
+      <div class="card-footer-new">
+        <ul class="specs-list-new">
+          <li>契約書DL：3回/月</li>
+          <li>社内規定DL：3回/月</li>
+          <li>提供：株式会社アシロ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card-new">
+      <div class="card-header-new">
+        <div class="card-icon-new">
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_22.png" alt="反社チェック">
+        </div>
+        <h4 class="card-title-new">反社チェック</h4>
+      </div>
+      <div class="card-body-new">
+        <p class="card-desc-new">
+          取引先や顧客のコンプライアンスチェックをWEB上で完結。独自のDBとニュース記事を照合し、リスクを早期発見します。
+        </p>
+      </div>
+      <div class="card-footer-new">
+        <ul class="specs-list-new">
+          <li>検索実行：6回/月</li>
+          <li>即時レポート出力</li>
+          <li>提供：株式会社アシロ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card-new">
+      <div class="card-header-new">
+        <div class="card-icon-new">
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_23.png" alt="AIリーガルチェック">
+        </div>
+        <h4 class="card-title-new">AIリーガルチェック</h4>
+      </div>
+      <div class="card-body-new">
+        <p class="card-desc-new">
+          契約書をアップロードするだけでAIがリスクを判定。不利な条項の洗い出しや修正案の提示を行い、契約業務をサポートします。
+        </p>
+      </div>
+      <div class="card-footer-new">
+        <ul class="specs-list-new">
+          <li>AIレビュー：3回/月</li>
+          <li>修正案提示機能あり</li>
+          <li>提供：株式会社アシロ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card-new">
+      <div class="card-header-new">
+        <div class="card-icon-new">
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_24.png" alt="法務チャット相談">
+        </div>
+        <h4 class="card-title-new">法務チャット相談</h4>
+      </div>
+      <div class="card-body-new">
+        <p class="card-desc-new">
+          日常的な法務の疑問をチャットで弁護士に相談できます。複数の弁護士から回答が得られるため、多角的な視点を持てます。
+        </p>
+      </div>
+      <div class="card-footer-new">
+        <ul class="specs-list-new">
+          <li>質問投稿：1回/月</li>
+          <li style="font-size:0.75rem; color:#E56E2C;">※法人プランのみ利用可</li>
+          <li>提供：株式会社アシロ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-card-new">
+      <div class="card-header-new">
+        <div class="card-icon-new">
+          <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_25.png" alt="弁護士案内サービス">
+        </div>
+        <h4 class="card-title-new">弁護士案内サービス</h4>
+      </div>
+      <div class="card-body-new">
+        <p class="card-desc-new">
+          いざという法的トラブルの際、内容に合わせて最適な弁護士をご案内します。
+        </p>
+      </div>
+      <div class="card-footer-new">
+        <ul class="specs-list-new">
+          <li>初回相談：30分無料</li>
+          <li>提供：株式会社アシロ少額短期保険</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <section id="coverage" class="features-bg">
       <div class="section-title">
