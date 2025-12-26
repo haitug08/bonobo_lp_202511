@@ -4,705 +4,1827 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>bonobo｜団体・会員組織向け導入プラン</title>
-  
+  <title>bonobo｜事業型弁護士費用保険</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
-  
-  <style>
-    /* =========================================
-       1. Base Variables & Reset (Ver.2 Exact Copy)
-       ========================================= */
-    :root {
-      --primary-color: #00A0BD; /* bonobo Blue */
-      --primary-dark: #007f96;
-      --accent-color: #E56E2C;  /* CTA Orange */
-      --text-color: #333333;
-      --bg-light: #F4F7F8;
-      --white: #ffffff;
-      --border-radius: 8px;
-      --shadow-card: 0 4px 20px rgba(0,0,0,0.05);
-    }
-
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text-color);
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: var(--white);
-    }
-
-    a { text-decoration: none; transition: 0.3s; }
-    ul { list-style: none; padding: 0; margin: 0; }
-    img { max-width: 100%; height: auto; vertical-align: bottom; }
-
-    .br-pc { display: block; }
-    .br-sp { display: none; }
-
-    /* =========================================
-       2. Common Components
-       ========================================= */
-    /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 14px 24px; border-radius: 4px; font-weight: 700; font-size: 14px;
-      cursor: pointer; transition: all 0.3s; text-decoration: none; line-height: 1.2; min-width: 160px;
-    }
-    .btn-outline {
-      border: 2px solid var(--primary-color); color: var(--primary-color); background: #ffffff;
-    }
-    .btn-outline:hover { background: #f0f8ff; transform: translateY(-2px); }
-    
-    .btn-solid {
-      background: var(--accent-color); color: #ffffff; border: 2px solid var(--accent-color);
-    }
-    .btn-solid:hover { background: #ffffff; color: var(--accent-color); transform: translateY(-2px); }
-
-    /* Section Layout */
-    section { padding: 80px 20px; overflow-x: clip; }
-    .bg-light { background-color: var(--bg-light); }
-
-    .section-title { text-align: center; margin-bottom: 50px; }
-    .section-title h2 {
-      font-size: clamp(22px, 5vw, 28px); position: relative; display: inline-block; white-space: nowrap;
-    }
-    .section-title h2::after {
-      content: ''; display: block; width: 60px; height: 4px;
-      background: var(--primary-color); margin: 15px auto 0; border-radius: 2px;
-    }
-    .section-title p {
-      font-size: clamp(11px, 3.5vw, 16px); color: #888; margin-top: 15px; white-space: nowrap;
-    }
-
-    /* =========================================
-       3. Header & Footer (Ver.2 Exact Copy)
-       ========================================= */
-    header {
-      position: fixed; top: 0; width: 100%; height: 80px;
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between; padding: 0 40px; box-sizing: border-box;
-    }
-    .header-logo img { height: 40px; width: auto; }
-    .header-nav ul { display: flex; gap: 20px; }
-    .header-nav a { color: var(--text-color); font-weight: 700; font-size: 14px; }
-    .header-nav a:hover { color: var(--primary-color); }
-    .header-cv { display: flex; gap: 15px; }
-
-    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; margin-left: 15px; }
-    .hamburger span { width: 25px; height: 3px; background-color: #333; transition: 0.3s; }
-    .mobile-menu {
-      position: fixed; top: 60px; left: 0; width: 100%; background: white;
-      padding: 20px; box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-      display: flex; flex-direction: column; gap: 15px;
-      transform: translateY(-150%); transition: 0.3s ease-in-out; z-index: 999;
-    }
-    .mobile-menu.active { transform: translateY(0); }
-    .mobile-menu a { color: #333; font-weight: bold; padding: 10px 0; border-bottom: 1px solid #eee; }
-
-    footer { background: #333; color: #999; padding: 60px 20px; text-align: center; font-size: 12px; }
-    footer a { color: #fff; }
-
-    /* =========================================
-       4. Specific Sections for Ver.3
-       ========================================= */
-    
-    /* Hero */
-    .hero {
-      padding: 140px 40px 80px; display: flex; align-items: center; justify-content: space-between;
-      max-width: 1200px; margin: 0 auto;
-    }
-    .hero-content { flex: 1; padding-right: 40px; }
-    .hero-badge {
-      display: inline-block; background: #e0f7fa; color: var(--primary-color);
-      padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: clamp(20px, 3.5vw, 38px); margin-bottom: 20px; line-height: 1.6; white-space: nowrap;
-    }
-    .hero h1 span { color: var(--primary-color); }
-    .hero p {
-      font-size: clamp(12px, 1.2vw, 16px); color: #666; margin-bottom: 30px;
-    }
-    .hero-image { flex: 1; text-align: right; }
-    .hero-image img { border-radius: 20px; }
-
-    /* Target Grid (New) */
-    .target-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px; max-width: 1100px; margin: 0 auto;
-    }
-    .target-item {
-      background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 25px 20px;
-      text-align: center; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-    }
-    .target-item:hover { transform: translateY(-5px); border-color: var(--primary-color); }
-    .target-icon {
-      font-size: 32px; color: var(--primary-color); margin-bottom: 15px;
-      background: #e0f7fa; width: 70px; height: 70px; line-height: 70px; border-radius: 50%; margin: 0 auto 15px;
-    }
-    .target-item h3 { font-size: 18px; margin-bottom: 10px; color: var(--primary-dark); }
-    .target-item p { font-size: 13px; color: #666; line-height: 1.6; }
-
-    /* Scheme / Proposal */
-    .proposal-wrapper {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: center;
-    }
-    .proposal-text h3 { font-size: 24px; margin-bottom: 20px; color: var(--primary-dark); border-left: 5px solid var(--accent-color); padding-left: 15px; }
-    .proposal-text ul { margin-bottom: 30px; }
-    .proposal-text li { margin-bottom: 15px; display: flex; align-items: start; font-weight: bold; }
-    .proposal-text li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--accent-color); margin-right: 10px; }
-    
-    .plan-compare { display: flex; gap: 15px; align-items: flex-end; }
-    .plan-box {
-      flex: 1; background: #fff; border: 1px solid #ddd; border-radius: 8px; text-align: center; padding: 20px; position: relative;
-    }
-    .plan-box.premium {
-      border: 3px solid var(--accent-color); transform: scale(1.05); z-index: 1; box-shadow: 0 10px 20px rgba(229, 110, 44, 0.2);
-    }
-    .badge-premium {
-      background: var(--accent-color); color: #fff; padding: 5px 12px; font-size: 12px; font-weight: bold;
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%); border-radius: 20px; white-space: nowrap;
-    }
-    .plan-box h4 { margin: 10px 0; font-size: 16px; font-weight: bold; }
-    .plan-content { font-size: 13px; text-align: left; padding: 15px; background: #f9f9f9; border-radius: 4px; line-height: 1.8; }
-    .plus-bonobo {
-      margin-top: 10px; padding: 10px; background: #e0f7fa; color: var(--primary-color); font-weight: bold;
-      border-radius: 4px; border: 1px dashed var(--primary-color); text-align: center;
-    }
-
-    /* Features Grid (Simple) */
-    .feat-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto;
-    }
-    .feat-card {
-      background: #fff; padding: 25px; border-radius: 8px; border-left: 5px solid var(--primary-color);
-      box-shadow: var(--shadow-card);
-    }
-    .feat-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--text-color); }
-    .feat-card p { font-size: 13px; color: #666; }
-
-    /* CTA Section */
-    .cta-box {
-      background: linear-gradient(135deg, #00A0BD 0%, #007f96 100%); color: #fff; text-align: center; padding: 80px 20px;
-    }
-    .cta-btns { display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
-
-    /* --- Responsive Adjustments --- */
-    @media (max-width: 768px) {
-      header { padding: 0 20px; height: 60px; }
-      .header-nav, .header-cv { display: none; }
-      .hamburger { display: flex; }
-      .br-pc { display: none; } .br-sp { display: block; }
-
-      .hero { flex-direction: column-reverse; padding-top: 100px; }
-      .hero-content { padding-right: 0; text-align: center; width: 100%; }
-      .hero h1 { font-size: clamp(22px, 5vw, 30px); white-space: nowrap; }
-      
-      .proposal-wrapper { grid-template-columns: 1fr; gap: 30px; }
-      .plan-compare { flex-direction: column; align-items: center; gap: 30px; }
-      .plan-box { width: 100%; max-width: 350px; }
-      .plan-box.premium { transform: scale(1); }
-      
-      .btn { width: 90%; min-width: auto; padding: 12px; }
-    }
-
-    /* --- Simulation Section --- */
-    .sim-box {
-      background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      border: 1px solid #e0e0e0; max-width: 900px; margin: 0 auto;
-    }
-    .sim-input-area {
-      text-align: center; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px dashed #ddd;
-    }
-    .sim-slider-container {
-      margin: 20px auto; max-width: 500px;
-    }
-    .sim-slider {
-      -webkit-appearance: none; width: 100%; height: 10px; border-radius: 5px; background: #ddd; outline: none;
-    }
-    .sim-slider::-webkit-slider-thumb {
-      -webkit-appearance: none; appearance: none; width: 25px; height: 25px; border-radius: 50%; 
-      background: var(--accent-color); cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .sim-value {
-      font-size: 32px; font-weight: bold; color: var(--primary-color); margin: 0 10px;
-    }
-    
-    .sim-result-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    }
-    .sim-result-card {
-      background: #f8fbfc; padding: 20px; border-radius: 8px; text-align: center; border: 2px solid transparent;
-    }
-    .sim-result-card.highlight {
-      background: #fff8f0; border-color: var(--accent-color);
-    }
-    .sim-label { font-size: 14px; color: #666; font-weight: bold; display: block; margin-bottom: 10px; }
-    .sim-amount { font-size: 24px; font-weight: bold; color: #333; }
-    .sim-amount.accent { color: var(--accent-color); font-size: 32px; }
-    .sim-note { font-size: 12px; color: #888; margin-top: 20px; text-align: right; }
-
-    /* --- Flow Section --- */
-    .flow-steps {
-      display: flex; justify-content: space-between; max-width: 1000px; margin: 40px auto 0; position: relative;
-    }
-    /* Connecting Line */
-    .flow-steps::before {
-      content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: #e0e0e0; z-index: 0;
-    }
-    .flow-step {
-      background: #fff; position: relative; z-index: 1; text-align: center; flex: 1; padding: 0 10px;
-    }
-    .step-num {
-      width: 50px; height: 50px; background: var(--primary-color); color: #fff; border-radius: 50%;
-      line-height: 50px; font-weight: bold; margin: 0 auto 15px; font-size: 18px; border: 4px solid #fff;
-    }
-    .step-title { font-weight: bold; font-size: 16px; margin-bottom: 10px; color: var(--primary-dark); }
-    .step-desc { font-size: 13px; color: #666; line-height: 1.5; }
-
-    @media (max-width: 768px) {
-      .sim-result-grid { grid-template-columns: 1fr; }
-      .flow-steps { flex-direction: column; gap: 30px; }
-      .flow-steps::before { display: none; } /* モバイルでは線消す */
-      .flow-step { display: flex; text-align: left; align-items: flex-start; gap: 15px; }
-      .step-num { margin: 0; min-width: 50px; }
-    }
-
-
-    /* --- Concerns Section (B2B Fixed) --- */
-    /* 背景色などは共通設定を利用 */
-    
-    .concern-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .concern-item {
-      background: #fff;
-      padding: 30px 25px;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-      /* フレックスボックスで横並びを強制 */
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      text-align: left; /* Ver.2の中央揃えを上書き */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-      transition: transform 0.3s;
-    }
-    
-    .concern-item:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary-color);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    /* アイコンエリア */
-    .concern-icon-box {
-      width: 60px;
-      height: 60px;
-      background: #e0f7fa; /* 薄い青 */
-      color: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      flex-shrink: 0; /* アイコンが潰れないように固定 */
-    }
-
-    /* テキストエリア */
-    .concern-text-box {
-      flex: 1;
-    }
-    
-    .concern-text-box h3 {
-      font-size: 18px;
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: var(--primary-dark); /* 濃い青で引き締め */
-      font-weight: bold;
-    }
-
-    .concern-text-box p {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    /* スマホ対応 */
-    @media (max-width: 768px) {
-      .concern-item {
-        flex-direction: column; /* スマホでは縦並びに戻す */
-        align-items: center;
-        text-align: center;
-      }
-      .concern-icon-box {
-        margin-bottom: 15px;
-      }
-    }
-    
-  </style>
+  <link rel="stylesheet" href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/css/style_lp001.css">
+  <link rel="canonical" href="https://asiro-ssi.com/lp">  
 </head>
 
 <body>
 
-  <header>
+<header>
     <div class="header-logo">
       <a href="#"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_145.png" alt="bonobo logo"></a>
     </div>
     <nav class="header-nav">
       <ul>
-        <li><a href="#target">対象</a></li>
-        <li><a href="#concerns">課題</a></li>
-        <li><a href="#scheme">活用モデル</a></li>
-        <li><a href="#merit">導入メリット</a></li>
-        <li><a href="#features">機能</a></li>
+        <li><a href="#features">特徴</a></li>
+        <li><a href="#services">法務サービス</a></li>
+        <li><a href="#coverage">補償内容</a></li>
+        <li><a href="#plans">保険料</a></li>
+        <li><a href="#cases">事例</a></li>
+        <li><a href="#specs">商品概要</a></li>
       </ul>
     </nav>
     <div class="header-cv">
-      <a href="https://asiro-ssi.com/material_download" class="btn btn-outline">資料請求</a>
-      <a href="https://asiro-ssi.com/contact" class="btn btn-solid">提携の相談</a>
+      <a href="/material_download" class="btn btn-outline">資料請求</a>
+      <a href="https://app.spirinc.com/t/75RzsksMC9evnWbkp2loX/as/zXZBNao-aADDv5ZzESAjh/confirm" class="btn btn-main">オンライン相談</a>
+      <a href="/form/init" class="btn btn-solid">お申込み</a>
     </div>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-    
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#target" onclick="toggleMenu()">対象のお客様</a>
-      <a href="#concerns" onclick="toggleMenu()">運営者の課題</a>
-      <a href="#scheme" onclick="toggleMenu()">活用モデル</a>
-      <a href="#merit" onclick="toggleMenu()">導入メリット</a>
-      <a href="#features" onclick="toggleMenu()">提供機能</a>
-      <hr>
-      <a href="https://asiro-ssi.com/material_download">資料請求</a>
-      <a href="https://asiro-ssi.com/contact" style="color: var(--primary-color); font-weight:bold;">提携のご相談</a>
-    </div>
+
+<div class="hamburger" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="toggleMenu()">bonoboの特徴</a>
+  <a href="#services" onclick="toggleMenu()">法務サービス</a>  
+  <a href="#coverage" onclick="toggleMenu()">補償内容</a>
+  <a href="#plans" onclick="toggleMenu()">保険料プラン</a>
+  <a href="#cases" onclick="toggleMenu()">トラブル事例</a>
+  <a href="#specs" onclick="toggleMenu()">商品概要</a>
+  <hr>
+  <a href="/material_download">資料請求</a>
+  <a href="https://app.spirinc.com/t/75RzsksMC9evnWbkp2loX/as/zXZBNao-aADDv5ZzESAjh/confirm">オンライン相談</a>
+  <a href="/form/init" style="color: var(--primary-color); font-weight:bold;">お申し込み</a>
+</div>
+
   </header>
 
   <main>
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-badge">協力会・FC本部・協会・SaaS運営者様に朗報です</div>
-        <h1>会員向けサービスを、<br>「法務」で強化する。<br><span>ビジネスを守る福利厚生。</span></h1>
+        <h1>トラブルが「起こる前」も、<br>トラブルが「起こった後」も、<br><span>あなたのビジネスを<br>サブスク法務「bonobo」で守る</span></h1>
         <p>
-          既存の会員制度や上位プランに「弁護士保険」を組み込みませんか？<br>
-          会員様の満足度向上、他社との差別化、<br class="br-pc">
-          そしてサプライチェーンのトラブル防止を同時に実現します。
+          アシログループとアシロ少額短期保険が提供する、<br>
+          法務サービスと弁護士費用保険が一体型になった<br>
+          新しい時代の事業リスク対策ソリューション。
         </p>
-        <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:30px;">
-           <a href="https://asiro-ssi.com/contact" class="btn btn-solid">提携・導入のご相談</a>
-           <a href="https://asiro-ssi.com/material_download" class="btn btn-outline">資料ダウンロード</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_144.png" alt="Membership Service">
-      </div>
-    </section>
 
-    <section id="target" class="bg-light">
-      <div class="section-title">
-        <h2>このような運営者様に最適です</h2>
-        <p>会員・加盟店を抱えるあらゆる組織で導入可能です。</p>
-      </div>
-      <div class="target-grid">
-        <div class="target-item">
-          <div class="target-icon"><i class="fas fa-handshake"></i></div>
-          <h3>協力会・安全衛生会</h3>
-          <p>下請け企業の経営安定化、現場でのトラブル防止、一人親方の保護に。</p>
+        <div class="cv-area-mobile-stack" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 30px;">
+            <a href="/material_download" class="btn btn-outline">
+                <i class="fas fa-file-download" style="margin-right:8px;"></i>資料請求
+            </a>
+            
+            <a href="https://app.spirinc.com/t/75RzsksMC9evnWbkp2loX/as/zXZBNao-aADDv5ZzESAjh/confirm" target="_blank" class="btn btn-main">
+                <i class="fas fa-video" style="margin-right:8px;"></i>オンライン相談
+            </a>
+            
+            <a href="/form/init" class="btn btn-solid">
+                <i class="fas fa-paper-plane" style="margin-right:8px;"></i>今すぐ申し込む
+            </a>
         </div>
-        <div class="target-item">
-          <div class="target-icon"><i class="fas fa-store"></i></div>
-          <h3>FC本部</h3>
-          <p>加盟店のコンプライアンス強化、本部に寄せられる法的相談の削減に。</p>
-        </div>
-        <div class="target-item">
-          <div class="target-icon"><i class="fas fa-users"></i></div>
-          <h3>協会・組合</h3>
-          <p>会員特典の拡充、退会防止策、会費に対する付加価値の向上に。</p>
-        </div>
-        <div class="target-item">
-          <div class="target-icon"><i class="fas fa-laptop-code"></i></div>
-          <h3>SaaS・プラットフォーマー</h3>
-          <p>ユーザー企業の定着率（リテンション）向上、上位プランのフック商材として。</p>
-        </div>
-      </div>
-    </section>
-
-<section id="concerns">
-      <div class="section-title">
-        <h2>運営者様が抱える課題</h2>
-        <p>会員サービスの差別化や、組織内のトラブルにお悩みではありませんか？</p>
       </div>
       
+      <div class="hero-image">
+        <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_144.png" alt="bonobo concept">
+      </div>
+    </section>
+
+<section id="concerns" style="background-color: #fff; padding-bottom: 40px;">
+      <div class="section-title" style="margin-bottom: 30px;">
+        <h2 style="margin-top: 0;">こんな「法務の悩み」<br class="br-sp">抱えていませんか？</h2>
+        <p>多くの中小企業経営者が、<br class="br-sp">弁護士への「敷居」と「コスト」に<br class="br-sp">課題を感じています。</p>
+      </div>
+
       <div class="concern-grid">
         <div class="concern-item">
-          <div class="concern-icon-box">
-            <i class="fas fa-gem"></i>
+          <div class="icon-circle"><i class="fas fa-comments"></i></div>
+          <h3>弁護士にツテがない<br>頼みにくい</h3>
+          <p>「誰に相談すればいいかわからない」「日頃接点がなく、いきなり相談するのは気が引ける」</p>
+        </div>
+        
+<div class="concern-item">
+  <div class="icon-circle"><i class="fas fa-file-invoice-dollar"></i></div>
+  <h3>費用が見えなくて<br>不安</h3>
+  <p style="margin-bottom: 15px; text-align: left;">
+    「相談料は払えても、実際に解決を依頼した時の<strong>『着手金』や『報酬金』がいくらになるか</strong>見当もつかない」
+  </p>
+  <button id="openCalcModal">
+    <i class="fas fa-calculator"></i> 相場をシミュレーション
+  </button>
+</div>
+        <div class="concern-item">
+          <div class="icon-circle"><i class="fas fa-question-circle"></i></div>
+          <h3>そもそも<br>相談すべきかわからない</h3>
+          <p>「契約書のチェックや従業員トラブルなど、弁護士に相談するほどの内容か判断できない」</p>
+        </div>
+      </div>
+
+<div class="data-evidence-box">
+        <h3 class="data-title">
+          <i class="fas fa-chart-pie" style="color: var(--primary-color);"></i>
+          データで見る中小企業のリアル
+        </h3>
+        
+        <div class="data-flex">
+          <div class="data-content">
+            <h4>約6割の企業が弁護士利用経験なし</h4>
+            <div class="bar-chart-container">
+              <div class="bar-label">利用経験なし</div>
+              <div class="bar-area">
+                <div class="bar-fill" style="width: 59.6%;">59.6%</div>
+              </div>
+            </div>
+            <p class="data-caption">
+              理由の最多は「相談する問題と思わなかった」。「ツテがない」「費用がわかりにくい」も大きな要因です。
+            </p>
           </div>
-          <div class="concern-text-box">
-            <h3>上位プランの魅力不足</h3>
-            <p>「プレミアムプラン」を作ったものの、特典が弱く加入者が増えない。他社と明確に差別化できる強力なフック商材を探している。</p>
+
+          <div class="data-content">
+            <h4>今後相談したい内容 (上位)</h4>
+            <ul class="ranking-list">
+              <li><span class="rank">1</span> 契約内容の相談・作成 <span class="percent">41.9%</span></li>
+              <li><span class="rank">2</span> 雇用問題（採用・解雇等） <span class="percent">35.3%</span></li>
+              <li><span class="rank">3</span> ハラスメント等の社内問題 <span class="percent">24.7%</span></li>
+            </ul>
+            <p class="data-caption">
+              紛争解決だけでなく、契約や労務、コンプライアンスなど「予防法務」のニーズが高まっています。
+            </p>
           </div>
         </div>
 
-        <div class="concern-item">
-          <div class="concern-icon-box">
-            <i class="fas fa-users-slash"></i>
-          </div>
-          <div class="concern-text-box">
-            <h3>会員の満足度・定着率</h3>
-            <p>競合サービスとの競争が激化し、退会が増えている。「この会に入っていて良かった」と会員が実感できる、実利あるメリットを提供したい。</p>
+        <p style="text-align: right; font-size: 0.7rem; color: #999; margin-top: 25px; border-top: 1px dashed #ddd; padding-top: 10px; line-height: 1.4;">
+          出典：法務省ウェブサイト「<a href="https://www.moj.go.jp/housei/shihouseido/housei10_00259.html" target="_blank" rel="noopener noreferrer" style="color: #999; text-decoration: underline;">新たな法的ニーズの把握及び法曹に期待される役割を検討するための調査結果報告書</a>」（令和7年）をもとに作成
+        </p>
+      </div>
+          <div class="solution-bridge">
+          <div class="arrow-down">▼</div>
+        </div>
+    </section>
+    
+    <section id="features" class="features-bg">
+      <div class="section-title">
+        <h2><span style="color:#00A0BD;">bonobo</span>が選ばれる3つの理由</h2>
+        <p>予防から解決まで、ワンストップでサポートします。</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-num">01</span>
+          <h3>充実の法務サービス</h3>
+          <p>弁護士案内のサービスだけでなく、日常的に使える法務サービスを提供。トラブルの予防段階からサポートします。</p>
+          <a href="#services" class="card-link">サービス詳細へ</a>
+        </div>
+        <div class="card">
+          <span class="card-num">02</span>
+          <h3>弁護士費用をしっかり補償</h3>
+          <p>一般的な費用保険で生じがちな「差額」を極力減らし、できる限り実損害をてん補することを目指した安心の商品設計です。</p>
+          <a href="#coverage" class="card-link">弁護士費用の補償へ</a>
+        </div>
+        <div class="card">
+          <span class="card-num">03</span>
+          <h3>シンプルなプラン</h3>
+          <p>事業形態と従業員規模に応じた、明確で分かりやすいプラン体系。複雑な特約に悩むことなく、必要な補償を得られます。</p>
+          <a href="#plans" class="card-link">保険料プランを見る</a>
+        </div>
+      </div>
+    </section>
+
+<section id="services">
+      <div class="section-title">
+        <h2>法務サービス</h2>
+        <p>bonoboで使える、充実のビジネス法務ツール。</p>
+      </div>
+
+      <div class="service-grid">
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-header">
+                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_21.png" alt="Icon">
+                <h4>契約書/規定ひな形</h4>
+            </div>
+            <p class="service-desc">
+                弁護士監修の契約書や社内規定のひな形をダウンロードできます。作成コストを削減し、法改正にも対応した書類整備が可能です。
+            </p>
+            <div class="service-specs">
+                <ul>
+                    <li>契約書DL：3回/月</li>
+                    <li>社内規定DL：3回/月</li>
+                    <li>提供：株式会社アシロ</li>
+                </ul>
+            </div>
           </div>
         </div>
 
-        <div class="concern-item">
-          <div class="concern-icon-box">
-            <i class="fas fa-exclamation-triangle"></i>
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-header">
+                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_22.png" alt="Icon">
+                <h4>反社チェック</h4>
+            </div>
+            <p class="service-desc">
+                取引先や顧客のコンプライアンスチェックをWEB上で完結。独自のDBとニュース記事を照合し、リスクを早期発見します。
+            </p>
+            <div class="service-specs">
+                <ul>
+                    <li>検索実行：6回/月</li>
+                    <li>即時レポート出力</li>
+                    <li>提供：株式会社アシロ</li>
+                </ul>
+            </div>
           </div>
-          <div class="concern-text-box">
-            <h3>会員間のトラブルリスク</h3>
-            <p>下請け会員が法的トラブルで廃業したり、会員間で揉め事が起きると、本部としての管理コストやサプライチェーンのリスクが増大する。</p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-header">
+                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_23.png" alt="Icon">
+                <h4>AIリーガルチェック</h4>
+            </div>
+            <p class="service-desc">
+                契約書をアップロードするだけでAIがリスクを判定。不利な条項の洗い出しや修正案の提示を行い、契約業務をサポートします。
+            </p>
+            <div class="service-specs">
+                <ul>
+                    <li>AIレビュー：3回/月</li>
+                    <li>修正案提示機能あり</li>
+                    <li>提供：株式会社アシロ</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-header">
+                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_24.png" alt="Icon">
+                <h4>法務チャット相談</h4>
+            </div>
+            <p class="service-desc">
+                日常的な法務の疑問をチャットで弁護士に相談できます。複数の弁護士から回答が得られるため、多角的な視点を持てます。
+            </p>
+            <div class="service-specs">
+                <ul>
+                    <li>質問投稿：1回/月<br class="br-sp">　※法人プランのみ利用可</li>
+                    <li>提供：株式会社アシロ</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-header">
+                <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_25.png" alt="Icon">
+                <h4>弁護士案内サービス</h4>
+            </div>
+            <p class="service-desc">
+                いざという法的トラブルの際、内容に合わせて最適な弁護士をご案内します。
+            </p>
+            <div class="service-specs">
+                <ul>
+                    <li>初回相談：30分無料</li>
+                    <li>提供：株式会社アシロ少額短期保険</li>
+                </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="scheme" class="bg-light">
+    <section id="coverage" class="features-bg">
       <div class="section-title">
-        <h2>活用モデル：上位プランへの組み込み</h2>
-        <p>「bonobo」をパッケージ化し、貴社のサービスの一部として提供可能です。</p>
+        <h2>弁護士費用の補償</h2>
+        <p>法務サービスだけではありません。<br>万が一の法務コストを軽減する「2階建て」の補償。</p>
       </div>
-      
-      <div class="proposal-wrapper">
-        <div class="proposal-text">
-          <h3>会費アップの根拠として<br>「法務サービス」を提供</h3>
-          <p>bonobo（ボノボ）は、契約書チェックや弁護士へのチャット相談、万が一の費用補償までをセットにしたサービスです。<br>これを貴社の「上位プラン」や「会員特典」に付帯することで、会員様に大きな安心と実利を提供できます。</p>
-          <ul>
-            <li>上位プラン加入の決定打に</li>
-            <li>既存会費への上乗せ（アップセル）に</li>
-            <li>独自の福利厚生としてブランディング</li>
-          </ul>
-          <a href="https://asiro-ssi.com/contact" class="btn-text-link">導入スキームについて相談する <i class="fas fa-arrow-right"></i></a>
-        </div>
-        
-        <div class="plan-compare">
-          <div class="plan-box">
-            <h4>通常会員プラン</h4>
-            <span class="price">月額 10,000円</span>
-            <div class="plan-content">
-              ・案件紹介<br>
-              ・交流会参加<br>
-              ・メルマガ配信
+
+      <div class="coverage-container">
+        <p class="coverage-intro">
+          bonoboは、事業活動に関連するトラブルが発生した際に、<br>
+          解決のために弁護士等に支払った費用を補償します。<br>
+          大きく分けて<strong>「相談するための費用」</strong>と<br class="br-sp"><strong>「依頼するための費用」</strong>の2つをカバーします。
+        </p>
+
+        <div class="coverage-box-wrapper">
+          <div class="coverage-card">
+            <div class="coverage-header">
+              <i class="fas fa-comments" style="margin-right:8px;"></i>法律相談料保険金
+            </div>
+            <div class="coverage-body">
+              <div class="coverage-icon"><i class="fas fa-user-friends"></i></div>
+              <p style="text-align:center; margin-bottom:15px; font-weight:bold;">弁護士にトラブルの相談をする費用</p>
+              <ul class="coverage-list">
+                <li>法律相談料</li>
+              </ul>
+              <div class="coverage-note">
+                ※てん補割合100%（支払限度額・支払回数制限あり）
+              </div>
             </div>
           </div>
-          
-          <div style="font-size:30px; color:#ccc; padding-bottom:50px;">
-            <i class="fas fa-arrow-right br-pc"></i>
-            <i class="fas fa-arrow-down br-sp"></i>
-          </div>
 
-          <div class="plan-box premium">
-            <div class="badge-premium">おすすめ</div>
-            <h4>プレミアムプラン</h4>
-            <span class="price" style="color:var(--accent-color);">月額 15,000円</span>
-            <div class="plan-content">
-              ・案件紹介（優先）<br>
-              ・交流会参加<br>
-              ・メルマガ配信
-              <div class="plus-bonobo">
-                <i class="fas fa-plus-circle"></i> 法務サービス(bonobo)<br>
-                <span style="font-weight:normal; font-size:11px;">契約書チェック / 弁護士相談 / 費用保険</span>
+          <div class="coverage-card">
+            <div class="coverage-header">
+              <i class="fas fa-gavel" style="margin-right:8px;"></i>弁護士費用保険金
+            </div>
+            <div class="coverage-body">
+              <div class="coverage-icon"><i class="fas fa-file-signature"></i></div>
+              <p style="text-align:center; margin-bottom:15px; font-weight:bold;">弁護士に解決を依頼する費用</p>
+              <ul class="coverage-list">
+                <li>着手金・手数料</li>
+                <li>報酬金・日当・実費</li>
+              </ul>
+              <div class="coverage-note">
+                ※報酬金・日当・実費を不担保（補償対象外）とし、保険料を抑えた
+                <a href="#plans" style="color:var(--primary-color);">ライトプラン</a>もあります。
               </div>
             </div>
           </div>
         </div>
+
+        <div class="insurance-flow">
+            <h3><i class="fas fa-shield-alt" style="color:var(--primary-color); margin-right:5px;"></i> 事業を守る安心の仕組み</h3>
+            <p>
+                法的なトラブル（原因事故）が発生した際、<br>
+                被保険者が負担した弁護士費用に対して保険金をお支払いします。<br class="br-pc">
+                <small style="display:block; margin-top:10px; color:#666;">
+                    ※待機期間や不担保期間、免責事由（故意による事故など）があります。<br>
+                    詳細は<a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/important_notice.pdf" target="_blank" style="text-decoration:underline; color:var(--primary-color);">重要事項説明書</a>をご確認ください。
+                </small>
+            </p>
+        </div>
       </div>
     </section>
 
-    <section id="merit">
+<section id="plans">
       <div class="section-title">
-        <h2>運営者・会員双方のメリット</h2>
-        <p>運営者様は「サービスの強化」、会員様は「事業リスクの低減」を実現。</p>
+        <h2>保険料プラン</h2>
+        <p>事業形態/規模を選択して、保険料をご確認ください。</p>
+      </div>
+
+      <div class="plan-tabs">
+        <div class="plan-tab-btn active" onclick="switchPlan(event, 'plan-indiv')">個人事業主</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp10')">法人 (10名未満)</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp100')">法人 (100名未満)</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp300')">法人 (300名未満)</div>
+      </div>
+
+      <div id="plan-indiv" class="plan-group active col-3">
+        
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">4,600<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">5.5万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">25万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">10,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">5.5万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">50万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">ワイドプラン</span>
+            <div class="plan-price">18,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="plan-corp10" class="plan-group">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">9,000<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">100万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">18,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="plan-corp100" class="plan-group">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">21,000<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">100万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">43,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="plan-corp300" class="plan-group">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">25,700<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">300万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">52,700<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">600万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+          <div style="margin: 15px auto;">
+           <a href="https://asiro-ssi.com/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+           <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: 0.85rem; color: #888; margin-top: 30px;">
+        ※詳細はパンフレット・重要事項説明書等をご確認ください。
+      </p>
+    </section>
+
+    
+    <section style="background: linear-gradient(135deg, #00A0BD 0%, #007f96 100%); text-align: center; color: white; padding: 80px 20px;">
+        <h2 style="margin-bottom: 20px;">ビジネスの安心を、<br class="br-sp">今すぐ手に入れる。</h2>
+        <p style="margin-bottom: 40px; opacity: 0.9;">資料請求・ご相談・お申し込み、<br class="br-sp">すべてWebで完結します。</p>
+        
+        <div class="cv-area-mobile-stack" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="/material_download" class="btn" style="background: white; color: var(--primary-color); border:2px solid white;">
+                <i class="fas fa-file-download" style="margin-right:8px;"></i>資料請求
+            </a>
+
+            <a href="https://app.spirinc.com/t/75RzsksMC9evnWbkp2loX/as/zXZBNao-aADDv5ZzESAjh/confirm"
+              target="_blank" class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; backdrop-filter: blur(5px);">
+                <i class="fas fa-video" style="margin-right:8px;"></i>オンライン相談
+            </a>
+
+            <a href="/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+                <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら
+            </a>
+        </div>
+        </section>
+    
+    <section id="cases">
+      <div class="section-title">
+        <h2>トラブル解決事例</h2>
+        <p>実際に起こりうるリスクと、bonoboでの解決イメージ。</p>
       </div>
       
-      <div class="feat-grid">
-        <div class="feat-card">
-          <h3><i class="fas fa-building" style="color:var(--primary-color); margin-right:10px;"></i> 貴社（運営元）のメリット</h3>
-          <p style="margin-bottom:15px; font-weight:bold;">会員組織の価値向上と収益化</p>
-          <ul class="spec-list">
-            <li>プレミアムプランの付加価値向上</li>
-            <li>会員単価（ARPU）のアップ</li>
-            <li>下請け・会員企業の経営安定化</li>
-            <li>他団体との差別化要因に</li>
-          </ul>
+      <div class="tab-container">
+        <div class="tabs">
+            <div class="tab-btn active" onclick="openTab(event, 'content01')">飲食・店舗</div>
+            <div class="tab-btn" onclick="openTab(event, 'content02')">従業員・労務</div>
+            <div class="tab-btn" onclick="openTab(event, 'content03')">配送・事故</div>
+            <div class="tab-btn" onclick="openTab(event, 'content04')">不動産・賃貸</div>
+            <div class="tab-btn" onclick="openTab(event, 'content05')">カスハラ</div>
+            <div class="tab-btn" onclick="openTab(event, 'content06')">その他</div>
         </div>
-        <div class="feat-card" style="border-left-color:var(--accent-color);">
-          <h3><i class="fas fa-user-tie" style="color:var(--accent-color); margin-right:10px;"></i> 会員様（個人・法人）のメリット</h3>
-          <p style="margin-bottom:15px; font-weight:bold;">法務コスト削減と安心感</p>
-          <ul class="spec-list">
-            <li>弁護士への相談ハードル低下</li>
-            <li>契約書チェックで予防法務</li>
-            <li>万が一の訴訟費用も保険でカバー</li>
-            <li>追加費用なしで使えるツール群</li>
-          </ul>
+
+        <div id="content01" class="tab-content active">
+            <div class="trouble-card" id="openTrouble1Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_43.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble2Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_44.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble3Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_45.png" alt="Case"></div>
         </div>
+        <div id="content02" class="tab-content">
+            <div class="trouble-card" id="openTrouble4Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_46.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble9Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_52.png" alt="Case"></div>          
+            <div class="trouble-card" id="openTrouble8Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_51.png" alt="Case"></div>          
+        </div>
+        <div id="content03" class="tab-content">
+            <div class="trouble-card" id="openTrouble7Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_50.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble6Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_48.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble19Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_137.png" alt="Case"></div>
+        </div>
+        <div id="content04" class="tab-content">
+            <div class="trouble-card" id="openTrouble13Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_56.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble17Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_60.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble11Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_54.png" alt="Case"></div>          
+        </div>
+        <div id="content05" class="tab-content">
+            <div class="trouble-card" id="openTrouble18Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_61.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble15Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_58.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble12Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_55.png" alt="Case"></div>        
+        </div>
+        <div id="content06" class="tab-content">
+            <div class="trouble-card" id="openTrouble5Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_47.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble10Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_53.png" alt="Case"></div>
+            <div class="trouble-card" id="openTrouble14Modal"><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_57.png" alt="Case"></div>
+        </div>
+       
       </div>
     </section>
 
-    <section id="features" class="bg-light">
-      <div class="section-title">
-        <h2>bonoboの提供機能</h2>
-        <p>会員様が追加費用なしで利用できる、充実のサービス群。</p>
-      </div>
-      <div class="feat-grid">
-        <div class="feat-card">
-          <h3><i class="fas fa-file-contract" style="color:var(--primary-color); margin-right:10px;"></i> 契約書・規定ひな形</h3>
-          <p>弁護士監修の契約書や社内規定フォーマットをダウンロードし放題。法改正にも対応。</p>
+<section id="voice" class="section-voice">
+      <div class="container">
+        <div class="section-title">
+          <h2>ご利用者様の声</h2>
+          <p>様々な業界の経営者様・個人事業主様に選ばれています。</p>
         </div>
-        <div class="feat-card">
-          <h3><i class="fas fa-robot" style="color:var(--primary-color); margin-right:10px;"></i> AIリーガルチェック</h3>
-          <p>契約書をアップロードするだけでAIがリスクを判定し、修正案を提示します。</p>
-        </div>
-        <div class="feat-card">
-          <h3><i class="fas fa-comments" style="color:var(--primary-color); margin-right:10px;"></i> 弁護士チャット相談</h3>
-          <p>日常的な法務の疑問をチャットで気軽に弁護士へ相談。※法人プラン限定</p>
-        </div>
-        <div class="feat-card">
-          <h3><i class="fas fa-shield-alt" style="color:var(--primary-color); margin-right:10px;"></i> 弁護士費用保険</h3>
-          <p>トラブル発生時の「相談料」や、解決を依頼する際の「着手金・報酬金」を補償します。</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="simulation" class="bg-gray">
-      <div class="section-title">
-        <h2>収益・コストシミュレーション</h2>
-        <p>会員制度にbonoboを組み込んだ場合の、貴社の収益インパクトを試算します。<br>
-        <small>※上位プラン会費を+3,000円、原価コスト（団体割引適用）を仮定した場合の目安です。</small></p>
-      </div>
-      
-      <div class="sim-box">
-        <div class="sim-input-area">
-          <label style="font-weight:bold; font-size:18px;">貴社の会員数</label>
-          <div class="sim-slider-container">
-            <input type="range" min="100" max="3000" step="100" value="500" class="sim-slider" id="memberSlider" oninput="updateSimulation()">
-          </div>
-          <div style="font-size:18px;">
-            <span id="memberCount" class="sim-value">500</span>名
-          </div>
-        </div>
-
-        <div class="sim-result-grid">
-          <div class="sim-result-card">
-            <span class="sim-label">① 会費収入の増加額<br><small>(月額+3,000円/人とした場合)</small></span>
-            <span id="revenueUp" class="sim-amount">1,500,000円</span>/月
-          </div>
+        
+        <div class="voice-grid">
           
-          <div class="sim-result-card highlight">
-            <span class="sim-label">② 貴社の粗利増加（想定）<br><small>(原価コストを差し引いた手残り)</small></span>
-            <span id="profitUp" class="sim-amount accent">500,000円</span>/月
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                本業に集中するために。<br>費用の不安が解消されました。
+              </div>
+              <p class="voice-text">
+                建設業界はトラブルが多く、本来は弁護士に依頼して本業に集中したいと考えていました。しかし費用が高額で依頼できず、自分で対応していました。月額の保険料で、いざという時に上限まで補償されるのが魅力的で加入しました。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-hard-hat"></i></div>
+              <div class="user-info">建設業<span>代表者様</span></div>
+            </div>
           </div>
-        </div>
-        <div class="sim-note">
-          ※上記はシミュレーションであり、実際の契約条件や団体割引率により変動します。<br>
-          ※原価（bonobo提供価格）については、会員規模に応じて個別にお見積りいたします。
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                頻発する取引先トラブルの<br>「相談窓口」として活用。
+              </div>
+              <p class="voice-text">
+                ソフトウェア開発を行っていますが、取引先ともめるケースが多く困っていました。ちょっとした相談ができる窓口と、万が一の際の費用補償の両方が必要だと感じ、bonoboを選びました。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-laptop-code"></i></div>
+              <div class="user-info">情報通信業<span>経営者様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                チャット相談が便利。<br>これだけで元が取れます。
+              </div>
+              <p class="voice-text">
+                今のところトラブルはありませんが、法務チャット相談が非常に便利です。新規事業の法的見解などを気軽に質問できるので、トラブルがなくても一度でも使えば元が取れるサービスだと感じています。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+              <div class="user-info">コンサルティング業<span>役員様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                自分で作った内容証明は<br>無視された経験がありました。
+              </div>
+              <p class="voice-text">
+                過去に自分で内容証明を作成しましたが、無視されたり回収できなかった苦い経験があります。弁護士に依頼すると費用が高く諦めていましたが、bonoboならその悩みを払拭できると思い申し込みました。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-file-invoice"></i></div>
+              <div class="user-info">建設業<span>個人事業主様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                業界に強い弁護士を<br>紹介してもらえる安心感。
+              </div>
+              <p class="voice-text">
+                不動産売買は動く金額も大きいため、万が一のトラブルに備えたいと思っていました。<br>補償はもちろんですが、不動産関連に強い弁護士を案内してもらえる点が非常に魅力的だと感じました。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-building"></i></div>
+              <div class="user-info">不動産業<span>代表者様</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="voice-card">
+              <div class="voice-head">
+                <i class="fas fa-quote-left"></i>
+                創業期の不安を解消。<br>ひな形やチェック機能も充実。
+              </div>
+              <p class="voice-text">
+                設立して間もないため漠然とした不安がありましたが、リーガルチェックや契約書のひな形が使える点が決め手でした。既存の賠償保険では対応できない示談交渉についても使えるのは心強いです。
+              </p>
+            </div>
+            <div class="voice-user">
+              <div class="user-icon"><i class="fas fa-seedling"></i></div>
+              <div class="user-info">人材・コンサル業<span>創業1年目様</span></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <section id="flow">
+    
+
+<section id="specs">
       <div class="section-title">
-        <h2>導入までの流れ</h2>
-        <p>お問い合わせからサービス開始まで、最短1ヶ月で導入可能です。</p>
+        <h2>商品概要</h2>
+        <p>詳細な補償内容と利用条件について</p>
+      </div>
+
+      <div class="accordion-container">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          <h3 class="accordion-title">
+            <i class="fas fa-shield-alt"></i> 保険（弁護士費用保険）について
+          </h3>
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-body">
+          <table class="spec-table">
+            <tbody>
+              <tr><th>正式名称</th><td>事業型弁護士費用保険</td></tr>
+              <tr><th>ペットネーム</th><td>bonobo</td></tr>
+              <tr><th>保険期間</th><td>1年（自動更新）</td></tr>
+              <tr><th>払込回数</th><td>月払 または 年払</td></tr>
+              <tr><th>払込経路</th><td>クレジットカード払 または 口座振替払</td></tr>
+              <tr><th>保険金の種類</th><td>法律相談料保険金・弁護士費用保険金</td></tr>
+              <tr><th>セットできる特約</th><td>弁護士費用保険金（報酬金等対応分）不担保特約</td></tr>
+              <tr><th>保険料・保険金</th><td><a href="#plans" style="color: var(--primary-color); text-decoration: underline;">保険料プラン</a>をご確認ください。</td></tr>
+              <tr>
+                <th>責任開始日</th>
+                <td>
+                  <p style="margin-top:0;">責任開始日とは、被保険者が直面した原因事故に係る損害について、保険会社がてん補責任を負う最初の日をいいます。</p>
+                  <ul class="spec-list">
+                    <li><strong>クレカ払：</strong>第1回保険料のオーソリ日が属する月の翌月1日</li>
+                    <li><strong>口座振替：</strong>第1回保険料の振替日が属する月の翌月1日</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>待機期間</th>
+                <td>責任開始日から3か月（特定偶発事故を除く）</td>
+              </tr>
+              <tr>
+                <th>不担保期間</th>
+                <td>
+                  責任開始日から一定期間、特定の原因事実（元々抱えていたトラブル等）については保険金が支払われません。
+                  <ul class="spec-list">
+                    <li>労働・勤務に係る事件：法的請求を受けた場合6ヶ月 / する場合1年</li>
+                    <li>契約に係る事件：法的請求を受けた場合6ヶ月 / する場合1年</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>保険金をお支払いする場合</th>
+                <td>
+                  被保険者自らの職業・事業活動に伴って直面した法的トラブル
+                  <ul class="spec-sublist">
+                    <li>知的財産、労務、債権回収、損害賠償、賃貸トラブルなど</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>主な免責事由<br><small>（お支払いしない場合）</small></th>
+                <td>
+                  <ul class="spec-list">
+                    <li>国や行政機関を相手方とする事件（国賠請求を除く）</li>
+                    <li>倒産処理、債務整理、金銭消費貸借契約</li>
+                    <li>完全成功報酬の事件</li>
+                    <li>契約者・被保険者・親族間のトラブル</li>
+                    <li>天災（地震・噴火・津波等）に起因する事件　など</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>重要書類</th>
+                <td>
+                   <a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/insurance_terms_and_conditions.pdf" target="_blank" class="btn-text-link"><i class="fas fa-file-pdf"></i> 普通保険約款</a><br>
+                   <a href="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/important_notice.pdf" target="_blank" class="btn-text-link"><i class="fas fa-file-pdf"></i> 重要事項説明書</a>
+                </td>
+              </tr>
+              <tr>
+                <th>引受保険会社</th>
+                <td>株式会社アシロ少額短期保険</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion-container">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          <h3 class="accordion-title">
+            <i class="fas fa-briefcase"></i> 付帯サービス（法務サービス）について
+          </h3>
+          <i class="fas fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-body">
+          <table class="spec-table">
+            <tbody>
+              <tr>
+                <th>契約書/社内規定<br>ひな形提供</th>
+                <td>
+                  弁護士監修のフォーマットをダウンロードできるサービスです。
+                  <ul class="spec-list note">
+                    <li>回数制限：契約書 3回/月・規定 3回/月</li>
+                    <li>提供：株式会社アシロ</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>反社チェックサービス</th>
+                <td>
+                  取引先等のコンプライアンスチェックができるサービスです。
+                  <ul class="spec-list note">
+                    <li>回数制限：6回/月</li>
+                    <li>提供：株式会社アシロ</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>AIリーガルチェック</th>
+                <td>
+                  契約書をAIがレビューし、リスクや修正案を提示します。
+                  <ul class="spec-list note">
+                    <li>回数制限：3回/月</li>
+                    <li>提供：株式会社アシロ</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>法務チャット相談</th>
+                <td>
+                  法務に関する質問を弁護士にチャットで相談できます。
+                  <ul class="spec-list note">
+                    <li>※個人事業主プラン利用不可</li>
+                    <li>回数制限：質問投稿 1回/月</li>
+                    <li>提供：株式会社アシロ</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>弁護士案内サービス</th>
+                <td>
+                  トラブル発生時に適切な弁護士を無料でご案内します。
+                  <ul class="spec-list note">
+                    <li>※初回相談30分無料</li>
+                    <li>提供：株式会社アシロ少額短期保険</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>利用開始日</th>
+                <td>責任開始日からご利用いただけます。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="step-num">01</div>
-          <div class="step-title">お問い合わせ</div>
-          <div class="step-desc">まずはフォームより現状の会員数や課題をお知らせください。</div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">02</div>
-          <div class="step-title">プラン・お見積り</div>
-          <div class="step-desc">貴社の運用に合わせたスキームと、団体割引価格をご提案します。</div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">03</div>
-          <div class="step-title">契約・周知準備</div>
-          <div class="step-desc">基本契約を締結し、会員様向けのチラシやLP等の準備を行います。</div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">04</div>
-          <div class="step-title">サービス開始</div>
-          <div class="step-desc">会員様へ告知を開始。加入手続きやサポートは当社が代行可能です。</div>
-        </div>
-      </div>
-    </section>
+      <p style="text-align:center; font-size:0.85rem; color:#888; margin-top:10px;">
+        ※各項目の詳細はクリックしてご確認ください。
+      </p>
+    </section>   
 
-    <section id="contact" class="cta-box">
-      <div style="max-width:800px; margin:0 auto;">
-        <h2 style="margin-bottom:20px;">会員組織への導入・提携のご相談</h2>
-        <p style="margin-bottom:40px; opacity:0.9;">
-          現在の会員数、プラン構成、課題感をお聞かせください。<br>
-          貴社に最適な導入スキーム（団体割引やプラン設計）をご提案いたします。
-        </p>
-        <div class="cta-btns" style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-          <a href="https://asiro-ssi.com/material_download" class="btn" style="background:white; color:var(--primary-color);">資料ダウンロード</a>
-          <a href="https://asiro-ssi.com/contact" class="btn" style="background:var(--accent-color); color:white;">お問い合わせフォーム</a>
-        </div>
-      </div>
-    </section>
 
+    <section style="background: linear-gradient(135deg, #00A0BD 0%, #007f96 100%); text-align: center; color: white; padding: 80px 20px;">
+        <h2 style="margin-bottom: 20px;">ビジネスの安心を、<br class="br-sp">今すぐ手に入れる。</h2>
+        <p style="margin-bottom: 40px; opacity: 0.9;">資料請求・ご相談・お申し込み、<br class="br-sp">すべてWebで完結します。</p>
+        
+        <div class="cv-area-mobile-stack" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <a href="/material_download" class="btn" style="background: white; color: var(--primary-color); border:2px solid white;">
+                <i class="fas fa-file-download" style="margin-right:8px;"></i>資料請求
+            </a>
+
+            <a href="https://app.spirinc.com/t/75RzsksMC9evnWbkp2loX/as/zXZBNao-aADDv5ZzESAjh/confirm"
+              target="_blank" class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; backdrop-filter: blur(5px);">
+                <i class="fas fa-video" style="margin-right:8px;"></i>オンライン相談
+            </a>
+
+            <a href="/form/init" class="btn" style="background: #E56E2C; color: white; border: 2px solid #E56E2C;">
+                <i class="fas fa-paper-plane" style="margin-right:8px;"></i>お申込みはこちら
+            </a>
+        </div>
+        </section>
+    
+    <section>
+        <div class="agent-form-container">
+            <h3>代理店経由のお申し込み</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 15px;">代理店番号をお持ちの方はご入力ください</p>
+            <div>
+                <label for="agent_number">代理店番号：</label>
+                <input id="agent_number" class="agent-input" name="agent_number" oninput="handleAgentInput()" pattern="^[A-Z0-9]+$" type="text" value="AG9999">
+            </div>
+            <p id="agent_name" style="font-weight: bold; margin-top: 10px; color: var(--primary-color);"></p>
+            <small id="agent_address"></small>
+        </div>
+    </section>
+    
   </main>
 
   <footer>
     <small>
-      サービス提供元：<a href="https://asiro.co.jp" target="_blank">株式会社アシロ</a> | 引受保険会社：<a href="https://asiro-ssi.com" target="_blank">株式会社アシロ少額短期保険</a><br>
-      Copyright 2025 ASiRO Small Amount and Short Term Insurance Co., Ltd.
+      サービス提供元：<a href="https://asiro.co.jp" target="_blank">株式会社アシロ</a> | <br class="br-sp">引受保険会社：<a href="https://asiro-ssi.com" target="_blank">株式会社アシロ少額短期保険</a><br>
+      Copyright 2025 ASiRO Small Amount and Short Term Insurance Co., Ltd.<br>
+      KL2025・IS・520（作成年月：2025年12月）
     </small>
   </footer>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('active');
-    }
+  <div id="plan" class="modal">
+    <div class="modal-content">
+        <button class="close-btn">閉じる</button>
+        <h3 style="text-align: center; color: var(--primary-color);">保険料プラン</h3>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+            <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_17.png" alt="plan1" style="max-width: 200px;">
+            <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_18.png" alt="plan2" style="max-width: 200px;">
+            <img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_19.png" alt="plan3" style="max-width: 200px;">
+        </div>
+    </div>
+  </div>
 
+  <div id="service1" class="modal"><div class="modal-content"><button class="close-btn">閉じる</button><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_21.png"><p>契約書ひな形サービス詳細...</p></div></div>
+  <div id="service2" class="modal"><div class="modal-content"><button class="close-btn">閉じる</button><p>反社チェックサービス詳細...</p></div></div>
+  <div id="service3" class="modal"><div class="modal-content"><button class="close-btn">閉じる</button><p>AIリーガルチェック詳細...</p></div></div>
+  <div id="service4" class="modal"><div class="modal-content"><button class="close-btn">閉じる</button><p>チャット相談詳細...</p></div></div>
+  <div id="service5" class="modal"><div class="modal-content"><button class="close-btn">閉じる</button><p>弁護士案内詳細...</p></div></div>
+  <div id="trouble1" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_62.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">貸し切り客とのトラブル</p>
+          <p class="txt_07">
+            大学のサークル生20名がイタリアンレストランを貸し切りで予約。<br>
+            一部の利用客が泥酔し、店の入口に設置した非接触型の自動検温器を倒して破損。<br>
+            さらに店内の花器やトイレの便座なども壊され、約90万円の損害が発生した。<br>
+            予約をした幹事へ連絡し状況を伝えたところ、「壊した覚えはない」「人数が多かったので誰がやったか分からない」「元から壊れていたのではないか」などと話し合いにならなかったため、弁護士へ請求を依頼した。<br>
+            示談交渉の結果、約90万の全額を回収した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_117.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_98.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
 
-    // Simulation Logic
-    function updateSimulation() {
-      const members = parseInt(document.getElementById('memberSlider').value);
-      document.getElementById('memberCount').innerText = members.toLocaleString();
+<div id="trouble2" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_64.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">食中毒によるトラブル</p>
+          <p class="txt_07">
+            低温調理した焼鳥を提供したところ、2日後に利用客から「腹痛で通院した結果カンピロバクターが検出され、医師から食中毒と診断された。そちらの焼鳥が原因だ」と入電。謝罪して食事代の返金を申し出たが、それだけでは納得されず「保健所へ通報する」と言われた。<br>
+            その後保健所の検査を受け、店は3日間の営業停止処分を受けた。<br>
+            半年ほど経過して忘れかけていた頃、相手方の弁護士から書面が届き、治療費・慰謝料・休業損害など、合計150万円の支払いを請求された。<br>
+            1審判決を不服として控訴した結果、100万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_118.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_99.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
 
-      // 仮定のロジック
-      // アップセル単価: 3,000円
-      // 想定原価(bonobo): 2,000円 (粗利1,000円/人) と仮定して計算
-      // ※あくまで「導入メリット」を見せるための仮数値です
+<div id="trouble3" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_65.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">美容院の仕上がりに関するトラブル</p>
+          <p class="txt_07">
+            女性客から「カラーの仕上がりに納得できない」との申し出があり施術をやり直したところ、今度は「頭皮が痛い」とクレームになった。<br>
+            やむを得ず代金を全額返金し帰宅してもらったが、翌日になって女性の夫が来店し、「なぜ通院させなかったのか」「返金だけで済ませるとは非常識だ」などと店内で声を荒げたため、悪質なクレーマーとして対応した。<br>
+            しかし、約1年後に裁判所から書類が届き、「頭皮に後遺障害を負った」として損害賠償を求める裁判を起こされてしまった。<br>
+            判決により請求額約90万の全額が認定された。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_119.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_100.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble4" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_66.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">従業員とのトラブル</p>
+          <p class="txt_07">
+            求人票で「正社員」として募集をかけたところ応募があり、内定を出すことになった。しかし、以前から使っていた「契約社員用の雇用契約書」をそのまま使用して契約を結び、入社させてしまった。<br>
+            所定の労働時間は10時から19時だったが、その社員は朝9時過ぎには出勤し、勤怠システムに打刻をしていた。残業代を抑えたいと考えた現場のマネージャーは、打刻時間をすべて「10時」に修正していた。<br>
+            後日、その社員から労働基準監督署へ「求人内容と実際の雇用形態が違う」「打刻時間を勝手に修正されている」と相談が入り、その後、残業代の支払いを求めて調停を申し立てられてしまった。<br>
+            約175万の請求のうち、80万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_120.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_101.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble5" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_67.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">宿泊施設内でケガした客とのトラブル</p>
+          <p class="txt_07">
+            廊下の照明が点灯しておらず暗かったため、宿泊客が階段で転倒してケガをした。<br>
+            無人チェックイン方式を採用していたためスタッフが少なく、その場での応急手当や治療費の支払いなど、十分な対応ができなかった。<br>
+            後日、ホテルに管理責任があるとして治療費・慰謝料・休業損害等を求める訴訟が提起され、賠償金を支払う形で和解となった。<br>
+            約250万の請求のうち、100万円を支払うことで裁判上で和解した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_121.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_102.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble6" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_68.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">個人事業主が配送先とトラブル</p>
+          <p class="txt_07">
+            配送先で数回インターホンを鳴らしたところ、「間隔が短くしつこい」と指摘された。<br>
+            謝罪してその場を離れようとしたところ、「態度が悪い」と言われ胸ぐらを掴まれたため、とっさにその手を振りほどいたところ、「手を怪我した」と言われ、後日、損害賠償請求を受ける事態まで発展した。<br>
+            示談交渉の結果、1日分の治療費と慰謝料あわせて3万円を支払うことで示談した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_122.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_103.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble7" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_69.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">個人事業主の配送中の事故</p>
+          <p class="txt_07">
+            渋滞中にブレーキから足を離したところ、前方の車両と接触した。<br>
+            前の車には夫婦が乗車しており、2人とも「首が痛い」と訴えて救急車で搬送された。<br>
+            車両には目立った損傷がなかったため、負傷させた認識はなかったが、後日、相手方の弁護士から損害賠償請求訴訟を提起された。<br>
+            慰謝料や休業損害あわせて約300万円が請求され、200万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_123.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_104.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble8" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_70.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">取引先と部下とのトラブル</p>
+          <p class="txt_07">
+            大口の取引先と懇親会を開催することになり、代表者、部長、若手女性社員数名で参加した。<br>
+            会食中、取引先の社員から女性社員に対してセクハラとも取れる不適切な発言があったが、“酒席での冗談”と受け止めてその場をやり過ごした。<br>
+            若手女性社員からは「取引先の発言が嫌だった」「その場で止めて欲しかった」などと申し出があったが、なだめる程度で話し合いは終わった。<br>
+            後日、若手女性社員は「会社は事態を軽視している」として、会社と取引先の双方に対して損害賠償を求める裁判が提起された。<br>
+            裁判の結果、取引先との会食は業務の延長線上であり、会社側に安全配慮義務違反があることが認められた。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_124.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_105.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble9" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_71.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">部下とのトラブル</p>
+          <p class="txt_07">
+            仕事帰りに職場メンバー約10名で食事にいった。中間管理職（係長）の女性が自身の部下に対して、「あなたは学歴が低いから地頭が悪い」と発言したことに対し、課長が「今の発言はよくない」と全員の前でたしなめた。<br>
+            後日、主任の女性は課長と会社に対して「部下の前でパワハラを受けた」との内容で慰謝料と謝罪を求める裁判を提起した。<br>
+            女性からの請求は棄却されたが、裁判に対応するための弁護士費用を負担することになった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_125.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_106.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble10" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_72.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">下請けの杜撰な管理</p>
+          <p class="txt_07">
+            商業施設から改装工事を受注した元請が、内装の仕上げを下請けへ外注した。内装業者による資材の発注ミスと職人手配の遅れで工期が遅延したことで、商業施設のオープンが遅れる事態になった。<br>
+            テナントへの違約金や逸失利益で多額の損害が発生したため、内装業者に対して契約書に基づく損害金等の賠償を請求した。<br>
+            内装業者は、「元請からの変更指示が頻繁だったことが原因」、「資材メーカーの納期遅延は不可抗力」などと主張し支払いを拒否。<br>
+            元請が損害を負担することになってしまったため、支払拒否した内装業者に対して訴訟を提起した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_126.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_107.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble11" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_73.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">外国人居住者のゴミ出しトラブル</p>
+          <p class="txt_07">
+            管理会社として管理している物件の外国人入居者が、日本の複雑なゴミの分別ルールやゴミ出しの日時・場所を正確に理解しておらず、ルール違反を繰り返していた。それにより自治体からの回収が拒否され、ゴミ集積所が荒れたことで、他の住民からも苦情が入るようになってしまった。<br>
+            管理会社として注意を促しても、言語の壁や自国との慣習の違いから話し合いが進まず、弁護士へ対応を依頼することになった。<br>
+            最終的には、調停調書による合意となり、今後のゴミ出しについて、ルールの完全な順守を確約させた。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_127.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_108.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble12" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_74.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">入居者からのクレーム対応</p>
+          <p class="txt_07">
+            管理会社として管理している物件について、共用部の清掃不足、エレベーターの故障頻発、隣室からの騒音等の改善要求が入居者よりあった。<br>
+            管理会社としては、共有部の張り紙や集合ポストへの注意喚起チラシの投函等、できる限りの対処を行ったが、入居者からの納得は得られず、「家賃を下げろ」、「引越し費用を出せ」などのクレームが入った。<br>
+            数か月間に及ぶクレーム対応の結果、賃貸借契約の解除、引越し費用、慰謝料などの損害賠償を求める裁判が提起された。<br>
+            損害賠償として約300万円が請求され、100万円を支払うことで和解となった。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_128.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_109.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble13" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_75.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">文化の違いが生んだ原状回復トラブル</p>
+          <p class="txt_07">
+            管理会社として管理している物件について、外国人居住者の退去立ち会い時、キッチン周辺の油汚れ、浴室の水垢、床のべたつき、壁の画鋲跡や複数の釘穴などを指摘した。<br>
+            通常のハウスクリーニングでは対応困難な汚れ・損耗と判断し、居住者に対して8万円の追加クリーニング費用を請求した。<br>
+            居住者は「自分なりに一生懸命掃除した」「母国ではこれで十分に清潔だ」「壁に絵を飾ってはいけないのはおかしい」と主張し、請求に応じなかった。<br>
+            賃貸借契約時に説明した退去ルールに対する理解度や、「清潔さ」の基準の違いからトラブルに発展し、弁護士を通じて交渉することになった。<br>
+            話し合いの結果、3万円を回収することで解決となった
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_129.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_110.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble14" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_76.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">不当な報酬カットの現実</p>
+          <p class="txt_07">
+            大手IT企業A社は新規顧客開拓のため、アポイント獲得代行を個人事業主のBへ業務委託。契約書は「テレアポによる月10件の新規アポイント獲得」を目標とし、「1件あたり1万円の成功報酬（最大10万円）と活動費5万円を支払う」との内容だった。<br>
+            Bはリストに基づき精力的に活動を行い、目標を上回る月12件のアポイントを獲得。しかし、A社の営業部長から「実際に訪問できたのは2件」「先方のサービスの理解度が低くニーズの引き出しが不十分」「訪問にすら至らないアポは成果ではない」と指摘を受けた。<br>
+            これに対し、Bは「アポ獲得数という契約目標は達成している。訪問に至らないのはA社側のクロージングやその後のフォロー体制にもよる」と反論したところ、トラブルへ発展。A社は「成功報酬はゼロ、活動費の5万円のみ支払う」と通告してきたため、Bは不当として弁護士へ交渉を依頼、弁護士の交渉により契約書通りの15万円を受領し、示談した。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_130.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_111.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble15" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_77.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">入居者からの理不尽な要求</p>
+          <p class="txt_07">
+            今年から管理を始めた賃貸物件の入居者から、「備え付けのエアコンを最新機種に交換しろ」「壁紙をすべて張り替えろ」といった要求が度々寄せられるようになりました。<br>
+            主観的かつ過度な要求と判断し、穏便かつ丁寧にお断りしましたが、「SNSで拡散するぞ」といった発言があり、クレームがエスカレートしました。<br>
+            その後、事実と異なる情報がSNS上で拡散され、会社の評判が著しく損なわれる事態となりました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_131.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_112.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble16" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_78.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">原状回復費用を巡るトラブル</p>
+          <p class="txt_07">
+            退去した入居者に対し、原状回復費用としてガイドラインに基づいた修繕費を請求したところ、「SNS上で相談したが、払う必要はないとアドバイスされた」と支払いを拒否。<br>
+            さらに、根拠の不確かなインターネット情報を提示し、自身には負担分はないとして強硬な姿勢を崩しませんでした。<br>
+            交渉は平行線をたどり、解決しないまま時間が経過したところ、入居者側の弁護士から「1円も支払わない」との内容証明郵便が送られてきました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_132.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_113.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble17" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_79.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">近隣住民から管理会社宛のクレーム</p>
+          <p class="txt_07">
+            外国人入居者が夜間に騒音を立てているとの苦情が、近隣住民から頻繁に寄せられるようになりました。<br>
+            管理会社は注意喚起の張り紙やチラシの投函などで対応しましたが、騒音は収まらず、近隣住民からの苦情は悪化。<br>
+            最終的には入居者と近隣住民との直接の口論に発展し、「管理会社が何もしてくれない」との訴えがオーナーや警察へ寄せられる事態となりました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_133.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_114.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble18" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_80.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">執拗なカスタマーハラスメント</p>
+          <p class="txt_07">
+            マンションの入居者から共用部に関するクレームが連日、執拗に寄せられました。<br>
+            「エントランスの伸びた植物を今すぐ剪定させろ」「廊下にゴキブリが出た。駆除が遅いと家に侵入してしまう」「電球が薄暗い。転んだら責任は取れるのか」など、次第に威圧的な指摘が目立つようになりました。<br>
+            管理会社は、その都度管理人と連携し、できる限りの対応を試みましたが、状況は悪化の一途をたどり、担当者の携帯電話には業務時間外にも連絡が来るようになりました。<br>
+            早い段階で弁護士を頼っていれば、結果は違っていたかもしれません。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_134.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_115.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="trouble19" class="modal">
+  <div class="modal-content">
+    <div class="modal-scroll-area">
+      <div class="wrap_09">
+        <div class="case-image-column">
+          <img class="pc-img_05" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_138.png" alt="事例イメージ">
+        </div>
+        <div class="case-details-column">
+          <p class="txt_12">荷崩れによる破損トラブル</p>
+          <p class="txt_07">
+            500万円相当の資材を輸送中、荷崩れによる破損事故が発生。<br>
+            受託貨物保険を契約していたので「あとは保険会社が対応します」と伝えましたが、なんと保険会社から「この保険に示談代行はありません」との返答が。<br>
+            自動車保険とは違うと初めて知り、法律知識もないまま、怒れるお客様との高額な損害賠償の交渉をすべて自分で対応しました。<br>
+            多少費用が掛かっても早い段階で弁護士を頼っていれば、あの多大な労力や精神的な負担は無かったのでは・・・と後悔しています。
+          </p>
+          <img class="pc-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_140.png" alt="解決チャート">
+          <img class="sp-img_06" src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/images/img_139.png" alt="解決チャート">
+          <p class="txt_07">
+            <span class="tooltip">ご注意<span class="balloon_top">
+              bonoboの支払額は、スタンダードプランでの試算となります。<br>
+              bonoboの支払額は、被保険者がアシロ少額短期保険の同意を得て、弁護士に支出した金額に限ります。<br>
+              このトラブルは実在の事件・事故をもとにしていますが、案件が特定されないよう一部脚色しております。<br>
+              保険の契約内容や事故内容によっては、自己負担が発生する場合もございます。必ずしも自己負担が0円となるわけではございません。<br>
+              詳細はパンフレット・重要事項説明書・普通保険約款等をご確認ください。
+            </span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="close-btn">閉じる</button>
+  </div>
+</div>
+
+<div id="calcModal" class="modal">
+  <div class="modal-content" style="max-width: 600px;">
+    <button class="close-btn"><i class="fas fa-times"></i></button>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h3 style="color: var(--primary-dark); border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">弁護士費用シミュレーター</h3>
+      <p style="font-size: 12px; color: #666; margin-top: 10px;">
+        旧日本弁護士連合会報酬基準に基づく、一般的な民事事件の費用相場です。<br>
+        実際の費用は事務所や案件の難易度により異なります。
+      </p>
+    </div>
+
+    <div style="background: #f9fbfc; padding: 20px; border-radius: 8px; border: 1px solid #e1e4e8;">
       
-      const priceUp = 3000; 
-      const margin = 1000; 
+      <label style="font-weight: bold; display: block; margin-bottom: 8px; color: #333;">事件等の区分</label>
+      <select id="caseType" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; margin-bottom: 20px; background: #fff;">
+        <option value="1.0">訴訟（通常裁判・第一審）</option>
+        <option value="0.67">調停・示談交渉（話し合い）</option>
+        <option value="0.5">督促手続（支払督促など）</option>
+      </select>
+      <label style="font-weight: bold; display: block; margin-bottom: 8px; color: #333;">トラブルの金額（経済的利益）</label>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+        <input type="number" id="economicBenefit" placeholder="例：300" style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; flex: 1; font-size: 16px; text-align: right;">
+        <span style="font-weight: bold;">万円</span>
+      </div>
+      
+      <button onclick="calculateFee()" class="btn btn-solid" style="width: 100%; box-shadow: none;">計算する</button>
+    </div>
 
-      const revenue = members * priceUp;
-      const profit = members * margin;
-
-      document.getElementById('revenueUp').innerText = revenue.toLocaleString() + "円";
-      document.getElementById('profitUp').innerText = profit.toLocaleString() + "円";
+    <div id="calcResult" style="display: none; margin-top: 20px; animation: fadeIn 0.5s;">
+      <div style="background: #fff; border: 2px solid var(--primary-color); border-radius: 8px; overflow: hidden;">
+        <div style="background: var(--primary-color); color: #fff; padding: 10px; text-align: center; font-weight: bold;">相場（着手金＋報酬金）</div>
+        <div style="padding: 20px; text-align: center;">
+          <div style="font-size: 14px; color: #666; margin-bottom: 5px;">推定総額（税込）</div>
+          <div style="font-size: 32px; font-weight: bold; color: var(--accent-color);" id="totalFee">0円</div>
+        </div>
+        <div style="border-top: 1px dashed #ddd; padding: 15px; font-size: 14px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span>着手金（税込）</span>
+            <span style="font-weight: bold;" id="initialFee">0円</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span>報酬金（税込）</span>
+            <span style="font-weight: bold;" id="successFee">0円</span>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 20px; text-align: center; background: #ffe0b2; padding: 15px; border-radius: 8px; border: 1px solid #ffcc80;">
+        <p style="font-weight: bold; color: #e65100; margin-bottom: 5px;">bonoboなら...</p>
+        <p style="font-size: 14px; margin: 0;">この弁護士費用が<span style="font-weight: bold; font-size: 1.1em; text-decoration: underline;">補償の対象</span>となります。<br>
+          <span style="font-size: 11px;">※ 保険金支払には審査があり、免責事由等に該当した場合、補償の対象外となります。</span>
+        </p>
+      </div>
+      
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="#plans" onclick="document.querySelector('#calcModal').classList.remove('open');" class="btn btn-outline" style="font-size: 14px;">保険料プランを見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<script async src="https://helpfeel.com/projects/js/helpfeel-element.js" data-project-name="asiro-bonobo-customer-faq"></script>
+<script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/lp/js/main_lp001.js"></script>  
+<script>
+  // 1. Kintone APIから代理店リストを取得
+  async function fetchAgents() {
+    try {
+      const response = await fetch("https://asiro-ssi.viewer.kintoneapp.com/public/api/records/agent-number/1");
+      if (!response.ok) throw new Error("Network response was not ok");
+      const data = await response.json();
+      return data.records;
+    } catch (error) {
+      console.error("Agent Fetch Error:", error);
+      return [];
     }
+  }
+
+  // 2. 入力された番号に基づいて表示を更新
+  async function handleAgentInput() {
+    const inputNumber = document.getElementById("agent_number").value.trim();
+    const nameEl = document.getElementById("agent_name");
+    const addrEl = document.getElementById("agent_address");
+
+    // 空の場合はクリア
+    if (inputNumber === "") {
+      nameEl.textContent = "";
+      addrEl.textContent = "";
+      return;
+    }
+
+    const records = await fetchAgents();
+    const match = records.find(r => r.Agency_No.value === inputNumber);
+
+    if (match) {
+      nameEl.textContent = match.officename.value;
+      addrEl.textContent = match.Address_S6.value;
+      nameEl.style.color = "#00A0BD"; 
+    } else {
+      nameEl.textContent = "該当する代理店が見つかりません";
+      nameEl.style.color = "red";
+      addrEl.textContent = "";
+    }
+  }
+
+  // 3. 画面読み込み時の初期処理（URLパラメータ・Cookie対応）
+  window.addEventListener('DOMContentLoaded', () => {
     
-    // 初期実行
-    window.onload = function() {
-        // 既存のonloadがあれば統合してください
-        updateSimulation(); 
+    // --- 1. 既存の処理: URLパラメータ/Cookieからの初期値セット ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const agencyNoFromUrl = urlParams.get('agency_no');
+    
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    const agencyNoFromCookie = getCookie("agency_no");
+    
+    const agentNumberInput = document.getElementById("agent_number");
+
+    // 優先順位: URL > Cookie > HTML初期値
+    if (agencyNoFromUrl) {
+      agentNumberInput.value = agencyNoFromUrl;
+    } else if (agencyNoFromCookie) {
+      agentNumberInput.value = agencyNoFromCookie;
+    }
+
+    // 初期値があれば代理店情報を表示
+    if (agentNumberInput.value) {
+      handleAgentInput();
+    }
+
+    const applyLinks = document.querySelectorAll('a[href*="/form/init"]');
+
+    const updateApplyLinks = () => {
+      const currentVal = agentNumberInput.value.trim();
+
+      applyLinks.forEach(link => {
+        // 現在のhrefを取得し、URLオブジェクトに変換（相対パス対応のため第2引数が必要）
+        // link.getAttribute('href') だと相対パスが取れますが、計算用に link.href (絶対パス) を使います
+        const urlObj = new URL(link.href);
+
+        if (currentVal) {
+          // 入力値があればパラメータにセット (?agency_no=XXX)
+          urlObj.searchParams.set('agency_no', currentVal);
+        } else {
+          // 空ならパラメータ削除
+          urlObj.searchParams.delete('agency_no');
+        }
+
+        // href属性を更新
+        link.href = urlObj.toString();
+      });
     };
-    
-  </script>
+
+    // (A) 画面表示時に一度実行（初期値があればリンクに付与）
+    updateApplyLinks();
+
+    // (B) 入力内容が変わるたびに実行
+    agentNumberInput.addEventListener('input', () => {
+      handleAgentInput(); // 代理店名表示の更新
+      updateApplyLinks(); // リンクURLの更新
+    });
+
+  });
+</script>
+
 </body>
-</html>
+</html>  
