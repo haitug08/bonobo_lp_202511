@@ -64,27 +64,27 @@
           
         <div class="accordion-body">
                       
-        <table class="tab-nav">
+        <table class="tab2-nav">
           <tbody>
             <tr>
-              <td class="tab-btn active" data-target="#tab-1">はじめに</td>
-              <td class="tab-btn" data-target="#tab-2">Googleでログイン</td>
-              <td class="tab-btn" data-target="#tab-3">Microsoftアカウントでログイン</td>
-              <td class="tab-btn" data-target="#tab-4">メールアドレスでログイン</td>            
+              <td class="tab2-btn active" data-target="#tab-1">はじめに</td>
+              <td class="tab2-btn" data-target="#tab-2">Googleでログイン</td>
+              <td class="tab2-btn" data-target="#tab-3">Microsoftアカウントでログイン</td>
+              <td class="tab2-btn" data-target="#tab-4">メールアドレスでログイン</td>            
             </tr>
           </tbody>
         </table>
 
-        <div id="tab-1" class="tab-content active">
+        <div id="tab-1" class="tab2-content active">
           a
         </div>
-        <div id="tab-2" class="tab-content">
+        <div id="tab-2" class="tab2-content">
           b
         </div>
-        <div id="tab-3" class="tab-content">
+        <div id="tab-3" class="tab2-content">
           c
         </div>
-        <div id="tab-4" class="tab-content">
+        <div id="tab-4" class="tab2-content">
           d
         </div>
        
@@ -121,14 +121,14 @@
       // --------------------------------------------------
       // タブ切り替え機能
       // --------------------------------------------------
-      $('.tab-btn').on('click', function() {
+      $('.tab2-btn').on('click', function() {
         // 全てのタブからactiveクラスを削除し、クリックされたものに追加
-        $('.tab-btn').removeClass('active');
+        $('.tab2-btn').removeClass('active');
         $(this).addClass('active');
 
         // 対応するコンテンツを表示
         var targetId = $(this).data('target');
-        $('.tab-content').removeClass('active');
+        $('.tab2-content').removeClass('active');
         $(targetId).addClass('active');
       });
 
