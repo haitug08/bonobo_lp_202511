@@ -78,13 +78,13 @@
         <div id="tab-1" class="tab-content active">
           a
         </div>
-        <div id="tab-1" class="tab-content active">
+        <div id="tab-2" class="tab-content">
           b
         </div>
-        <div id="tab-1" class="tab-content active">
+        <div id="tab-3" class="tab-content">
           c
         </div>
-        <div id="tab-1" class="tab-content active">
+        <div id="tab-4" class="tab-content">
           d
         </div>
        
@@ -132,81 +132,7 @@
         $(targetId).addClass('active');
       });
 
-      // --------------------------------------------------
-      // ページネーション機能（汎用関数）
-      // --------------------------------------------------
-      function setupPagination(containerId) {
-        var $container = $(containerId);
-        var $table = $container.find('.pagination-target'); // 対象のテーブル
-        var $rows = $table.find('tbody tr'); // 行の要素
-        var totalRows = $rows.length;       // 全行数
-        var perPage = 5;                    // 1ページあたりの表示数
-        var totalPages = Math.ceil(totalRows / perPage); // 全ページ数
-        var currentPage = 1;                // 現在のページ
 
-        // 要素の取得（IDではなくクラスで取得）
-        var $totalPageNum = $container.find('.totalPageNum');
-        var $currentPageNum = $container.find('.currentPageNum');
-        var $prevBtn = $container.find('.prevPage');
-        var $nextBtn = $container.find('.nextPage');
-
-        // 初期表示：全ページ数を表示
-        $totalPageNum.text(totalPages);
-
-        // 表示更新用関数
-        function updateTable() {
-          // 全ての行を一旦非表示にする
-          $rows.hide();
-
-          // 表示すべき範囲を計算
-          var start = (currentPage - 1) * perPage;
-          var end = start + perPage;
-
-          // 該当する行だけ表示
-          $rows.slice(start, end).fadeIn(300);
-
-          // ページ番号の更新
-          $currentPageNum.text(currentPage);
-
-          // ボタンの活性・非活性制御
-          if (currentPage === 1) {
-            $prevBtn.addClass('disabled-btn');
-          } else {
-            $prevBtn.removeClass('disabled-btn');
-          }
-
-          if (currentPage === totalPages || totalPages === 0) {
-            $nextBtn.addClass('disabled-btn');
-          } else {
-            $nextBtn.removeClass('disabled-btn');
-          }
-        }
-
-        // 初回実行
-        updateTable();
-
-        // 「前へ」ボタンクリック
-        $prevBtn.on('click', function(e) {
-          e.preventDefault();
-          if (currentPage > 1) {
-            currentPage--;
-            updateTable();
-          }
-        });
-
-        // 「次へ」ボタンクリック
-        $nextBtn.on('click', function(e) {
-          e.preventDefault();
-          if (currentPage < totalPages) {
-            currentPage++;
-            updateTable();
-          }
-        });
-      }
-
-      // 各タブコンテンツに対してページネーション機能を初期化
-      setupPagination('#tab-kessan');
-      setupPagination('#tab-disclosure');
   });
   </script>
   
