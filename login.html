@@ -62,7 +62,247 @@
           <i class="fas fa-chevron-down accordion-icon"></i>
         </button>
         <div class="accordion-body">
-          aaaaaa
+
+<section id="plans">
+      <div class="section-title">
+        <h2>保険料プラン</h2>
+        <p>事業形態/規模を選択して、保険料をご確認ください。</p>
+      </div>
+
+      <div class="plan-tabs">
+        <div class="plan-tab-btn active" onclick="switchPlan(event, 'plan-indiv')">個人事業主</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp10')">法人 (10名未満)</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp100')">法人 (100名未満)</div>
+        <div class="plan-tab-btn" onclick="switchPlan(event, 'plan-corp300')">法人 (300名未満)</div>
+      </div>
+
+      <div id="plan-indiv" class="plan-group active col-3">
+        
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">4,600<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">5.5万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">25万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">10,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">5.5万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">50万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：2回/年</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">ワイドプラン</span>
+            <div class="plan-price">18,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value">利用可能<br><span style="font-size:11px; font-weight:normal;">(法務チャット相談を除く)</span></div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="plan-corp10" class="plan-group">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">9,000<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">100万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+        </div>
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">18,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="plan-corp100" class="plan-group">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">21,000<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">100万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+        </div>
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">43,400<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">200万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="plan-corp300" class="plan-group">
+        <div class="css-plan-card recommended">
+          <div class="recommend-badge">おすすめ</div>
+          <div class="plan-name-area">
+            <span class="plan-name">ライトプラン</span>
+            <div class="plan-price">25,700<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">300万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+              <div class="plan-alert">報酬金等が補償対象外</div>
+            </div>
+          </div>
+        </div>
+        <div class="css-plan-card">
+          <div class="plan-name-area">
+            <span class="plan-name">スタンダードプラン</span>
+            <div class="plan-price">52,700<span>円/月</span></div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-item">
+              <span class="plan-label">法務サポート</span>
+              <div class="plan-value" style="color:#00A0BD;"><i class="fas fa-check"></i> 全て利用可能</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">法律相談料保険金</span>
+              <div class="plan-value">11万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+            <div class="plan-item">
+              <span class="plan-label">弁護士費用保険金</span>
+              <div class="plan-value large">600万円<small>/事案</small></div>
+              <div style="font-size:12px;">支払回数：3回/年</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: 0.85rem; color: #888; margin-top: 30px;">
+        ※詳細はパンフレット・重要事項説明書等をご確認ください。
+      </p>
+    </section>
+          
         </div>
         </div>
 
