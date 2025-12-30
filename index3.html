@@ -233,16 +233,19 @@
   /* =========
    * ライン生成
    * ========= */
-  const POINTS = 120;
+const lines = [];
+const LINE_COUNT = 5;
+
+for (let l = 0; l < LINE_COUNT; l++) {
+  const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(POINTS * 3);
 
   for (let i = 0; i < POINTS; i++) {
-    positions[i * 3] = (i - POINTS / 2) * 0.08; // x
-    positions[i * 3 + 1] = Math.sin(i * 0.2) * 0.5; // y
-    positions[i * 3 + 2] = 0; // z
+    positions[i * 3] = (i - POINTS / 2) * 0.08;
+    positions[i * 3 + 1] = Math.sin(i * 0.2 + l) * 0.5;
+    positions[i * 3 + 2] = l * -0.3; // 奥行き
   }
 
-  const geometry = new THREE.BufferGeometry();
   geometry.setAttribute(
     'position',
     new THREE.BufferAttribute(positions, 3)
@@ -251,11 +254,16 @@
   const material = new THREE.LineBasicMaterial({
     color: 0x00ffff,
     transparent: true,
-    opacity: 0.6
+    opacity: 0.25
   });
 
   const line = new THREE.Line(geometry, material);
+  line.scale.set(4, 4, 1);
+
   scene.add(line);
+  lines.push({ line, geometry });
+}
+
 
   /* =========
    * マウス連動
