@@ -292,7 +292,7 @@
     const material = new THREE.LineBasicMaterial({
       color: 0x3366ff, // デフォルト色を濃いめの青に
       transparent: true,
-      opacity: 0.7, // 白背景なので少し濃くする
+      opacity: 0.9, // 白背景なので少し濃くする
       blending: THREE.NormalBlending, // 加算合成(Additive)だと白背景で見えないため通常ブレンドに変更
       depthWrite: false
     });
@@ -366,9 +366,9 @@
     lines.forEach(({ line, geometry, index, speed, phase }) => {
       const pos = geometry.attributes.position.array;
       
-      // 色の動的変化：白背景で映えるように明度(L)を0.5（中間）〜0.4（やや暗め）に設定
+      // 色の動的変化：白背景で映えるように明度(L)を0.5（中間）〜0.3に設定
       const hue = (time * 0.05 + index * 0.02) % 1; 
-      line.material.color.setHSL(hue, 0.9, 0.45); 
+      line.material.color.setHSL(hue, 0.9, 0.35); 
 
       for (let i = 0; i < POINTS; i++) {
         const x = (i - POINTS / 2) * 0.1;
