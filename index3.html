@@ -28,7 +28,7 @@
   <div id="contents">
     <main>
 
-<section id="sec01" style="background: #000000;">
+<section id="sec01">
   <canvas id="three-canvas"></canvas>
   <div class="list-half">
     <div class="list up upstyle" style="flex-direction: column;align-items: normal;">
@@ -207,142 +207,132 @@
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 
 
-<script>
-(() => {
-  const canvas = document.getElementById('three-canvas');
+<script type="module">
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import { Line2 } from 'https://unpkg.com/three@0.160.0/examples/jsm/lines/Line2.js';
+import { LineGeometry } from 'https://unpkg.com/three@0.160.0/examples/jsm/lines/LineGeometry.js';
+import { LineMaterial } from 'https://unpkg.com/three@0.160.0/examples/jsm/lines/LineMaterial.js';
 
-  /* =========================
-   * 基本セット
-   * ========================= */
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x000000);
+const canvas = document.getElementById('three-canvas');
 
-  const camera = new THREE.PerspectiveCamera(
-    50,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    200
-  );
-  camera.position.set(0, 0, 14);
+/* ========= 基本 ========= */
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
 
-  const renderer = new THREE.WebGLRenderer({
-    canvas,
-    alpha: true,
-    antialias: true
+const camera = new THREE.PerspectiveCamera(
+  50,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  200
+);
+camera.position.set(0, 0, 14);
+
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  antialias: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+/* ========= ライン設定 ========= */
+const POINTS = 140;
+const LINE_COUNT = 6;
+const lines = [];
+
+for (let l = 0; l < LINE_COUNT; l++) {
+  const positions = [];
+
+  for (let i = 0; i < POINTS; i++) {
+    positions.push(
+      (i - POINTS / 2) * 0.08,
+      Math.sin(i * 0.3 + l) * 0.4,
+      -l * 0.6
+    );
+  }
+
+  const geometry = new LineGeometry();
+  geometry.setPositions(positions);
+
+  const material = new LineMaterial({
+    color: 0x111111,
+    linewidth: 2 + l * 0.6, // 初期太さ
+    transparent: true,
+    opacity: 0.6
   });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  /* =========================
-   * パラメータ
-   * ========================= */
-  const POINTS = 140;
-  const LINE_COUNT = 7;
-  const LINE_SPREAD = 0.5;
+  material.resolution.set(window.innerWidth, window.innerHeight);
 
-  const lines = [];
+  const line = new Line2(geometry, material);
+  line.scale.set(4.5, 4.5, 1);
 
-  /* =========================
-   * ライン生成
-   * ========================= */
-  for (let l = 0; l < LINE_COUNT; l++) {
-    const positions = new Float32Array(POINTS * 3);
+  scene.add(line);
+  lines.push({ line, material, geometry, index: l });
+}
+
+/* ========= 入力 ========= */
+let mouseX = 0;
+let scrollRatio = 0;
+
+window.addEventListener('mousemove', e => {
+  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+});
+
+window.addEventListener('scroll', () => {
+  const max =
+    document.body.scrollHeight - window.innerHeight;
+  scrollRatio = Math.min(window.scrollY / max, 1);
+});
+
+/* ========= アニメーション ========= */
+const clock = new THREE.Clock();
+
+function animate() {
+  const time = clock.getElapsedTime();
+
+  lines.forEach(({ line, material, geometry, index }) => {
+    const pos = geometry.attributes.position.array;
 
     for (let i = 0; i < POINTS; i++) {
-      positions[i * 3]     = (i - POINTS / 2) * 0.08;
-      positions[i * 3 + 1] = Math.sin(i * 0.25 + l) * 0.4;
-      positions[i * 3 + 2] = -l * LINE_SPREAD;
+      pos[i * 3 + 1] =
+        Math.sin(i * 0.3 + time * 1.5 + index) * 0.5 +
+        scrollRatio * 3;
     }
 
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3)
-    );
+    geometry.attributes.position.needsUpdate = true;
 
-    const material = new THREE.LineBasicMaterial({
-      color: 0x00ffff,
-      transparent: true,
-      opacity: 0.28,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
+    /* 太さが時間で変動（ここが肝） */
+    material.linewidth =
+      1.5 +
+      Math.sin(time * 2 + index) * 1.2 +
+      scrollRatio * 2.5;
 
-    const line = new THREE.Line(geometry, material);
-    line.scale.set(4.5, 4.5, 1);
-
-    scene.add(line);
-    lines.push({ line, geometry, index: l });
-  }
-
-  /* =========================
-   * 入力（マウス & スクロール）
-   * ========================= */
-  let mouseX = 0;
-  let mouseY = 0;
-  let scrollRatio = 0;
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    line.rotation.z = mouseX * 0.4;
+    line.position.y = scrollRatio * 3;
+    line.position.z = -index * 0.6 - scrollRatio * 8;
   });
 
-  window.addEventListener('scroll', () => {
-    const maxScroll =
-      document.body.scrollHeight - window.innerHeight;
-    scrollRatio = Math.min(window.scrollY / maxScroll, 1);
-  });
+  camera.position.z = 14 - scrollRatio * 6;
+  camera.lookAt(0, scrollRatio * 1.5, 0);
 
-  /* =========================
-   * アニメーション
-   * ========================= */
-  const clock = new THREE.Clock();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
 
-  function animate() {
-    const time = clock.getElapsedTime();
+animate();
 
-    /* --- ライン変形 --- */
-    lines.forEach(({ line, geometry, index }) => {
-      const pos = geometry.attributes.position.array;
+/* ========= リサイズ ========= */
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-      for (let i = 0; i < POINTS; i++) {
-        pos[i * 3 + 1] =
-          Math.sin(i * 0.3 + time * 1.6 + index) * 0.5 +
-          Math.sin(time + i * 0.08) * 0.25 +
-          scrollRatio * 4.0;
-      }
-
-      geometry.attributes.position.needsUpdate = true;
-
-      /* 解き放たれる演出 */
-      line.position.y = scrollRatio * 3.5;
-      line.position.z = -index * LINE_SPREAD - scrollRatio * 8;
-
-      line.rotation.z = mouseX * 0.4;
-    });
-
-    /* --- カメラ演出（重要） --- */
-    camera.position.x = mouseX * 2.0;
-    camera.position.y = mouseY * 1.2 + scrollRatio * 2.5;
-    camera.position.z = 14 - scrollRatio * 6;
-
-    camera.lookAt(0, scrollRatio * 1.5, 0);
-
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  /* =========================
-   * リサイズ
-   * ========================= */
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-})();
+  lines.forEach(l =>
+    l.material.resolution.set(
+      window.innerWidth,
+      window.innerHeight
+    )
+  );
+});
 </script>
     
   
