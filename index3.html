@@ -204,6 +204,118 @@
   </script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/main.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script>
+(() => {
+  const canvas = document.getElementById('three-canvas');
+
+  /* =========
+   * 基本セット
+   * ========= */
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100
+  );
+  camera.position.z = 10;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  /* =========
+   * ライン生成
+   * ========= */
+  const POINTS = 120;
+  const positions = new Float32Array(POINTS * 3);
+
+  for (let i = 0; i < POINTS; i++) {
+    positions[i * 3] = (i - POINTS / 2) * 0.08; // x
+    positions[i * 3 + 1] = Math.sin(i * 0.2) * 0.5; // y
+    positions[i * 3 + 2] = 0; // z
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute(
+    'position',
+    new THREE.BufferAttribute(positions, 3)
+  );
+
+  const material = new THREE.LineBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.6
+  });
+
+  const line = new THREE.Line(geometry, material);
+  scene.add(line);
+
+  /* =========
+   * マウス連動
+   * ========= */
+  let mouseX = 0;
+  let mouseY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+  });
+
+  /* =========
+   * スクロール連動
+   * ========= */
+  let scrollRatio = 0;
+  window.addEventListener('scroll', () => {
+    const maxScroll =
+      document.body.scrollHeight - window.innerHeight;
+    scrollRatio = window.scrollY / maxScroll;
+  });
+
+  /* =========
+   * アニメーション
+   * ========= */
+  const clock = new THREE.Clock();
+
+  function animate() {
+    const time = clock.getElapsedTime();
+
+    const pos = geometry.attributes.position.array;
+
+    for (let i = 0; i < POINTS; i++) {
+      pos[i * 3 + 1] =
+        Math.sin(i * 0.2 + time) * 0.5 +
+        mouseY * 0.8 +
+        scrollRatio * 2;
+    }
+
+    geometry.attributes.position.needsUpdate = true;
+
+    line.rotation.z = mouseX * 0.3;
+    line.rotation.x = scrollRatio * 0.5;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  /* =========
+   * リサイズ
+   * ========= */
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+</script>
+
     
   
   </main>
