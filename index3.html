@@ -12,6 +12,27 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
   <link rel="icon" href="https://asiro-ssi.com/favicon.ico" id="favicon">
   <link rel="apple-touch-icon" sizes="180x180" href="https://asiro-ssi.com/apple-touch-icon-180x180.png">
+  <style>
+    /* 追加スタイル：キャンバスの背景調整 */
+    #three-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh; /* FVいっぱいに */
+      z-index: 0;
+      /* 少し発光感を出すためのCSSフィルター */
+      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3)); 
+    }
+    #sec01 {
+        position: relative;
+        overflow: hidden;
+    }
+    .list-half {
+        position: relative;
+        z-index: 1; /* キャンバスの上に文字を表示 */
+    }
+  </style>
 </head>
 
 <body class="home">
@@ -33,7 +54,7 @@
   <div class="list-half">
     <div class="list up upstyle" style="flex-direction: column;align-items: normal;">
       
-      <p class="hero-text" id="hero-text-a">35,000回。</p>   
+      <p class="hero-text" id="hero-text-a">35,000回。</p>    
       <p class="hero-text" id="hero-text-b">人が１日にする「決断」の数。</p>
       <p class="hero-text" id="hero-text-d">不安や恐れは日々の「決断」の回数を濁らせる。</p>
 
@@ -53,7 +74,7 @@
       <section id="sec02" class="bg1">
         <h2><span class="fade-in-text">SERVICE</span><span class="small">/　事業内容</span></h2>
          <div class="list-grid7">
-          <a href="https://asiro-ssi.com/lp">   
+          <a href="https://asiro-ssi.com/lp">    
           <div class="list up">
             <figure><img src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/images/001.png" alt=""></figure>
             
@@ -204,7 +225,7 @@
   </script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/jquery.inview_set.js"></script>
   <script src="https://bonobo-documents.s3.ap-northeast-1.amazonaws.com/cp/js/main.js"></script>
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 
 <script>
@@ -215,13 +236,14 @@
    * 基本セット
    * ========================= */
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x000000);
+  // フォグを追加して奥行き感を出す（黒背景に馴染ませる）
+  scene.fog = new THREE.FogExp2(0x000000, 0.05);
 
   const camera = new THREE.PerspectiveCamera(
-    50,
+    60, // 視野角を少し広げて迫力を出す
     window.innerWidth / window.innerHeight,
     0.1,
-    200
+    1000
   );
   camera.position.set(0, 0, 14);
 
@@ -234,46 +256,78 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   /* =========================
-   * パラメータ
+   * パラメータ設定
    * ========================= */
-  const POINTS = 140;
-  const LINE_COUNT = 7;
-  const LINE_SPREAD = 0.5;
+  const POINTS = 200;       // 点の数を増やして滑らかに
+  const LINE_COUNT = 12;    // ライン数を増やしてボリュームアップ
+  const LINE_SPREAD = 0.8;  // ラインの間隔
 
   const lines = [];
 
   /* =========================
-   * ライン生成
+   * 1. ライン（波）の生成
    * ========================= */
   for (let l = 0; l < LINE_COUNT; l++) {
     const positions = new Float32Array(POINTS * 3);
-
+    const geometry = new THREE.BufferGeometry();
+    
+    // 初期座標（アニメーションで上書きされるため仮置き）
     for (let i = 0; i < POINTS; i++) {
-      positions[i * 3]     = (i - POINTS / 2) * 0.08;
-      positions[i * 3 + 1] = Math.sin(i * 0.25 + l) * 0.4;
-      positions[i * 3 + 2] = -l * LINE_SPREAD;
+      positions[i * 3]     = (i - POINTS / 2) * 0.1;
+      positions[i * 3 + 1] = 0;
+      positions[i * 3 + 2] = 0;
     }
 
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3)
-    );
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
+    // 色はアニメーションで変化させるため白で初期化
     const material = new THREE.LineBasicMaterial({
-      color: 0x00ffff,
+      color: 0xffffff,
       transparent: true,
-      opacity: 0.28,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.4,
+      blending: THREE.AdditiveBlending, // 加算合成で光らせる
       depthWrite: false
     });
 
     const line = new THREE.Line(geometry, material);
-    line.scale.set(4.5, 4.5, 1);
-
+    line.scale.set(4, 4, 1); // スケール調整
     scene.add(line);
-    lines.push({ line, geometry, index: l });
+    
+    // 各ラインに固有の乱数を持たせて動きをずらす
+    lines.push({ 
+        line, 
+        geometry, 
+        index: l, 
+        speed: 0.5 + Math.random() * 0.5,
+        phase: Math.random() * Math.PI * 2
+    });
   }
+
+  /* =========================
+   * 2. パーティクル（光の粒子）の生成
+   * ========================= */
+  const particlesGeometry = new THREE.BufferGeometry();
+  const particleCount = 400; // 粒子の数
+  const posArray = new Float32Array(particleCount * 3);
+  
+  for(let i = 0; i < particleCount * 3; i++) {
+    // 画面全体に散らす
+    posArray[i] = (Math.random() - 0.5) * 40; 
+  }
+  
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+  
+  const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.08,
+      color: 0x00ffff,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending
+  });
+  
+  const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particlesMesh);
+
 
   /* =========================
    * 入力（マウス & スクロール）
@@ -283,49 +337,79 @@
   let scrollRatio = 0;
 
   window.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    // マウス位置の計算（慣性をつけるために直接代入）
+    const x = (e.clientX / window.innerWidth) * 2 - 1;
+    const y = -(e.clientY / window.innerHeight) * 2 + 1;
+    mouseX += (x - mouseX) * 0.05; // 簡易的なイージング
+    mouseY += (y - mouseY) * 0.05;
   });
 
   window.addEventListener('scroll', () => {
-    const maxScroll =
-      document.body.scrollHeight - window.innerHeight;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    // スクロール量を0〜1に正規化
     scrollRatio = Math.min(window.scrollY / maxScroll, 1);
   });
 
   /* =========================
-   * アニメーション
+   * アニメーションループ
    * ========================= */
   const clock = new THREE.Clock();
 
   function animate() {
     const time = clock.getElapsedTime();
 
-    /* --- ライン変形 --- */
-    lines.forEach(({ line, geometry, index }) => {
+    /* --- ラインのアニメーション --- */
+    lines.forEach(({ line, geometry, index, speed, phase }) => {
       const pos = geometry.attributes.position.array;
+      
+      // 色の動的変化（時間経過でHueを回転させる）
+      // indexを使って少しずつ色をずらし、グラデーションを作る
+      const hue = (time * 0.05 + index * 0.02) % 1; 
+      line.material.color.setHSL(hue, 0.8, 0.5);
 
       for (let i = 0; i < POINTS; i++) {
-        pos[i * 3 + 1] =
-          Math.sin(i * 0.3 + time * 1.6 + index) * 0.5 +
-          Math.sin(time + i * 0.08) * 0.25 +
-          scrollRatio * 4.0;
+        const x = (i - POINTS / 2) * 0.1;
+        
+        // 複雑な波の合成
+        // 大きなうねり + 細かい振動 + スクロールによる増幅
+        const wave1 = Math.sin(x * 0.5 + time * speed + phase); // ゆったりした波
+        const wave2 = Math.cos(x * 1.5 + time * 2.0) * 0.3;     // 速い波
+        const noise = Math.sin(x * 5.0 + time * 3.0) * 0.1;     // ジリジリしたノイズ
+        
+        // スクロールすると波が激しくなる（「解き放つ」演出）
+        const amplitude = 1.0 + scrollRatio * 3.0; 
+
+        pos[i * 3] = x;
+        pos[i * 3 + 1] = (wave1 + wave2 + noise) * amplitude;
+        // Z軸にも少し波打たせて立体感を出す
+        pos[i * 3 + 2] = Math.cos(x * 0.5 + time) * 0.5;
       }
 
       geometry.attributes.position.needsUpdate = true;
 
-      /* 解き放たれる演出 */
-      line.position.y = scrollRatio * 3.5;
-      line.position.z = -index * LINE_SPREAD - scrollRatio * 8;
-
-      line.rotation.z = mouseX * 0.4;
+      // ライン全体の配置移動
+      // スクロールで奥から手前に広がっていくような動き
+      line.position.y = scrollRatio * 2.0 - index * 0.1;
+      line.position.z = -index * LINE_SPREAD + scrollRatio * 5.0; 
+      
+      // マウスによる回転（少し遅れてついてくる浮遊感）
+      line.rotation.z = mouseX * 0.2;
+      line.rotation.x = mouseY * 0.1 + (Math.PI / 12); // 少し傾ける
     });
 
-    /* --- カメラ演出（重要） --- */
-    camera.position.x = mouseX * 2.0;
-    camera.position.y = mouseY * 1.2 + scrollRatio * 2.5;
-    camera.position.z = 14 - scrollRatio * 6;
+    /* --- パーティクルのアニメーション --- */
+    particlesMesh.rotation.y = time * 0.05; // ゆっくり回転
+    particlesMesh.rotation.z = time * 0.02;
+    // スクロールで粒子が手前に飛んでくる
+    particlesMesh.position.z = scrollRatio * 10; 
+    
+    // パーティクルの色もラインに合わせて変化
+    particlesMaterial.color.setHSL((time * 0.05) % 1, 0.8, 0.6);
 
+
+    /* --- カメラワーク --- */
+    camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.05;
+    camera.position.y += (mouseY * 0.5 + scrollRatio * 2.0 - camera.position.y) * 0.05;
     camera.lookAt(0, scrollRatio * 1.5, 0);
 
     renderer.render(scene, camera);
@@ -335,7 +419,7 @@
   animate();
 
   /* =========================
-   * リサイズ
+   * リサイズ対応
    * ========================= */
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
