@@ -244,11 +244,11 @@
    * 基本セット
    * ========================= */
   const scene = new THREE.Scene();
-  // フォグを白に変更して、奥行きが白に溶け込むようにする
+  // フォグ設定
   scene.fog = new THREE.FogExp2(0xffffff, 0.05);
 
   const camera = new THREE.PerspectiveCamera(
-    60, // 視野角
+    60,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
@@ -257,7 +257,7 @@
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    alpha: true, // 背景を透明に（HTMLの白背景が見えるように）
+    alpha: true,
     antialias: true
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -267,8 +267,8 @@
    * パラメータ設定
    * ========================= */
   const POINTS = 200;       
-  const LINE_COUNT = 12;    
-  const LINE_SPREAD = 0.8;  
+  const LINE_COUNT = 15;    
+  const LINE_SPREAD = 0.6;  
 
   const lines = [];
 
@@ -279,7 +279,6 @@
     const positions = new Float32Array(POINTS * 3);
     const geometry = new THREE.BufferGeometry();
     
-    // 初期座標
     for (let i = 0; i < POINTS; i++) {
       positions[i * 3]     = (i - POINTS / 2) * 0.1;
       positions[i * 3 + 1] = 0;
@@ -288,12 +287,11 @@
 
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-    // マテリアル設定（白背景用に調整）
     const material = new THREE.LineBasicMaterial({
-      color: 0x3366ff, // デフォルト色を濃いめの青に
+      color: 0x3366ff,
       transparent: true,
-      opacity: 0.9, // 白背景なので少し濃くする
-      blending: THREE.NormalBlending, // 加算合成(Additive)だと白背景で見えないため通常ブレンドに変更
+      opacity: 0.7, 
+      blending: THREE.NormalBlending,
       depthWrite: false
     });
 
@@ -305,30 +303,30 @@
         line, 
         geometry, 
         index: l, 
-        speed: 0.5 + Math.random() * 0.5,
+        baseSpeed: 0.5 + Math.random() * 0.5,
         phase: Math.random() * Math.PI * 2
     });
   }
 
   /* =========================
-   * 2. パーティクル（光の粒子）の生成
+   * 2. パーティクルの生成
    * ========================= */
   const particlesGeometry = new THREE.BufferGeometry();
-  const particleCount = 400;
+  const particleCount = 1200; // 多めに維持
   const posArray = new Float32Array(particleCount * 3);
   
   for(let i = 0; i < particleCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 40; 
+    posArray[i] = (Math.random() - 0.5) * 45; 
   }
   
   particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
   
   const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.08,
+      size: 0.2, // サイズを大きく (0.08 -> 0.2)
       color: 0x3366ff,
       transparent: true,
-      opacity: 0.8, // 濃いめに
-      blending: THREE.NormalBlending // 通常ブレンド
+      opacity: 0.8,
+      blending: THREE.NormalBlending
   });
   
   const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -336,18 +334,37 @@
 
 
   /* =========================
-   * 入力（マウス & スクロール）
+   * 入力管理（クリック連動に変更）
    * ========================= */
   let mouseX = 0;
   let mouseY = 0;
   let scrollRatio = 0;
 
+  // 「勢い」を管理する変数
+  let targetVelocity = 0;
+  let currentVelocity = 0;
+
   window.addEventListener('mousemove', (e) => {
+    // 座標の更新のみ（パララックス用）
+    // 速度（targetVelocity）への加算は削除
     const x = (e.clientX / window.innerWidth) * 2 - 1;
     const y = -(e.clientY / window.innerHeight) * 2 + 1;
-    mouseX += (x - mouseX) * 0.05;
-    mouseY += (y - mouseY) * 0.05;
+    
+    mouseX += (x - mouseX) * 0.1;
+    mouseY += (y - mouseY) * 0.1;
   });
+
+  // クリックイベントで反応させる
+  window.addEventListener('mousedown', () => {
+    // クリックした瞬間に勢いを最大にセット
+    targetVelocity = 8.0; 
+  });
+  
+  // スマホなどタッチデバイス対応
+  window.addEventListener('touchstart', () => {
+    targetVelocity = 8.0; 
+  });
+
 
   window.addEventListener('scroll', () => {
     const maxScroll = document.body.scrollHeight - window.innerHeight;
@@ -362,51 +379,74 @@
   function animate() {
     const time = clock.getElapsedTime();
 
+    // 勢いの減衰処理（クリックしていないときは徐々に0に戻る）
+    // クリック時は targetVelocity が 8.0 になるが、即座にここで減衰が始まる
+    targetVelocity *= 0.94; // 少し減衰を早めに調整
+    currentVelocity += (targetVelocity - currentVelocity) * 0.1;
+
     /* --- ラインのアニメーション --- */
-    lines.forEach(({ line, geometry, index, speed, phase }) => {
+    lines.forEach(({ line, geometry, index, baseSpeed, phase }) => {
       const pos = geometry.attributes.position.array;
       
-      // 色の動的変化：白背景で映えるように明度(L)を0.5（中間）〜0.3に設定
       const hue = (time * 0.05 + index * 0.02) % 1; 
-      line.material.color.setHSL(hue, 0.9, 0.35); 
+      // クリック反応（Velocity）で明度を上げる
+      const lightness = 0.45 + currentVelocity * 0.05; 
+      line.material.color.setHSL(hue, 0.9, lightness); 
+      // クリック反応で不透明度も少し上げる
+      line.material.opacity = 0.6 + currentVelocity * 0.1;
 
       for (let i = 0; i < POINTS; i++) {
         const x = (i - POINTS / 2) * 0.1;
         
-        // 波の合成
-        const wave1 = Math.sin(x * 0.5 + time * speed + phase); 
-        const wave2 = Math.cos(x * 1.5 + time * 2.0) * 0.3;     
-        const noise = Math.sin(x * 5.0 + time * 3.0) * 0.1;     
+        // 波の合成：基本は穏やか
+        const wave1 = Math.sin(x * 0.5 + time * baseSpeed + phase); 
         
-        const amplitude = 1.0 + scrollRatio * 3.0; 
+        // 速い波（ノイズ成分）：クリックした時だけ現れる
+        const noiseAmp = currentVelocity * 0.5;
+        const wave2 = Math.sin(x * 4.0 + time * 5.0) * noiseAmp;
+        
+        // 振幅コントロール：クリック時（Velocity）に大きく広がる
+        const baseAmp = 1.0; 
+        const totalAmp = baseAmp + currentVelocity * 1.2;
 
         pos[i * 3] = x;
-        pos[i * 3 + 1] = (wave1 + wave2 + noise) * amplitude;
-        pos[i * 3 + 2] = Math.cos(x * 0.5 + time) * 0.5;
+        pos[i * 3 + 1] = (wave1 + wave2) * totalAmp * 0.8;
+        pos[i * 3 + 2] = Math.cos(x * 0.8 + time) * 0.5;
       }
 
       geometry.attributes.position.needsUpdate = true;
 
-      line.position.y = scrollRatio * 2.0 - index * 0.1;
-      line.position.z = -index * LINE_SPREAD + scrollRatio * 5.0; 
+      // ライン配置
+      // クリックの衝撃で少し浮き上がる
+      line.position.y = -index * 0.1 + currentVelocity * 0.3;
+      line.position.z = -index * LINE_SPREAD;
       
-      line.rotation.z = mouseX * 0.2;
-      line.rotation.x = mouseY * 0.1 + (Math.PI / 12); 
+      // 全体の回転（マウス位置による緩やかな追従のみ）
+      line.rotation.z = mouseX * 0.15;
+      line.rotation.x = mouseY * 0.1;
     });
 
     /* --- パーティクルのアニメーション --- */
-    particlesMesh.rotation.y = time * 0.05; 
-    particlesMesh.rotation.z = time * 0.02;
-    particlesMesh.position.z = scrollRatio * 10; 
+    // 通常時はゆっくり、クリック時に回転加速
+    particlesMesh.rotation.y += 0.002 + currentVelocity * 0.01;
+    particlesMesh.rotation.z += 0.001 + currentVelocity * 0.01;
     
-    // パーティクルの色もラインに合わせて濃いめに
+    // クリック時に拡散（スケールアップ）
+    const pScale = 1.0 + currentVelocity * 0.4;
+    particlesMesh.scale.set(pScale, pScale, pScale);
+    
+    // 色の連動
     particlesMaterial.color.setHSL((time * 0.05) % 1, 0.9, 0.5);
 
-
     /* --- カメラワーク --- */
-    camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.05;
-    camera.position.y += (mouseY * 0.5 + scrollRatio * 2.0 - camera.position.y) * 0.05;
-    camera.lookAt(0, scrollRatio * 1.5, 0);
+    // マウス位置によるパララックス（視差効果）のみ残す
+    const camX = mouseX * 3.0;
+    const camY = mouseY * 1.5 + scrollRatio * 5.0;
+    
+    camera.position.x += (camX - camera.position.x) * 0.05;
+    camera.position.y += (camY - camera.position.y) * 0.05;
+    
+    camera.lookAt(0, scrollRatio * 2.0, 0);
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
@@ -423,8 +463,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 })();
-</script>
-    
+</script>    
   
   </main>
 </div>
