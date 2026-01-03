@@ -322,7 +322,7 @@
   particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
   
   const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.2, // サイズを大きく (0.08 -> 0.2)
+      size: 0.2, // サイズを大きく
       color: 0x3366ff,
       transparent: true,
       opacity: 0.8,
@@ -334,7 +334,7 @@
 
 
   /* =========================
-   * 入力管理（クリック連動に変更）
+   * 入力管理（クリック連動）
    * ========================= */
   let mouseX = 0;
   let mouseY = 0;
@@ -346,7 +346,6 @@
 
   window.addEventListener('mousemove', (e) => {
     // 座標の更新のみ（パララックス用）
-    // 速度（targetVelocity）への加算は削除
     const x = (e.clientX / window.innerWidth) * 2 - 1;
     const y = -(e.clientY / window.innerHeight) * 2 + 1;
     
@@ -380,45 +379,38 @@
     const time = clock.getElapsedTime();
 
     // 勢いの減衰処理（クリックしていないときは徐々に0に戻る）
-    // クリック時は targetVelocity が 8.0 になるが、即座にここで減衰が始まる
-    targetVelocity *= 0.94; // 少し減衰を早めに調整
+    targetVelocity *= 0.94; 
     currentVelocity += (targetVelocity - currentVelocity) * 0.1;
 
     /* --- ラインのアニメーション --- */
+    // ※ ラインはクリック影響（currentVelocity）を受けないように変更
     lines.forEach(({ line, geometry, index, baseSpeed, phase }) => {
       const pos = geometry.attributes.position.array;
       
       const hue = (time * 0.05 + index * 0.02) % 1; 
-      // クリック反応（Velocity）で明度を上げる
-      const lightness = 0.45 + currentVelocity * 0.05; 
+      // 常に一定の明るさ
+      const lightness = 0.45; 
       line.material.color.setHSL(hue, 0.9, lightness); 
-      // クリック反応で不透明度も少し上げる
-      line.material.opacity = 0.6 + currentVelocity * 0.1;
+      line.material.opacity = 0.6;
 
       for (let i = 0; i < POINTS; i++) {
         const x = (i - POINTS / 2) * 0.1;
         
-        // 波の合成：基本は穏やか
+        // 波の合成：基本は穏やか（クリックで変形させない）
         const wave1 = Math.sin(x * 0.5 + time * baseSpeed + phase); 
         
-        // 速い波（ノイズ成分）：クリックした時だけ現れる
-        const noiseAmp = currentVelocity * 0.5;
-        const wave2 = Math.sin(x * 4.0 + time * 5.0) * noiseAmp;
-        
-        // 振幅コントロール：クリック時（Velocity）に大きく広がる
-        const baseAmp = 1.0; 
-        const totalAmp = baseAmp + currentVelocity * 1.2;
+        // 振幅は一定
+        const totalAmp = 1.0; 
 
         pos[i * 3] = x;
-        pos[i * 3 + 1] = (wave1 + wave2) * totalAmp * 0.8;
+        pos[i * 3 + 1] = wave1 * totalAmp * 0.8;
         pos[i * 3 + 2] = Math.cos(x * 0.8 + time) * 0.5;
       }
 
       geometry.attributes.position.needsUpdate = true;
 
-      // ライン配置
-      // クリックの衝撃で少し浮き上がる
-      line.position.y = -index * 0.1 + currentVelocity * 0.3;
+      // ライン配置（一定）
+      line.position.y = -index * 0.1;
       line.position.z = -index * LINE_SPREAD;
       
       // 全体の回転（マウス位置による緩やかな追従のみ）
@@ -427,6 +419,7 @@
     });
 
     /* --- パーティクルのアニメーション --- */
+    // こちらはクリック影響（currentVelocity）を受ける
     // 通常時はゆっくり、クリック時に回転加速
     particlesMesh.rotation.y += 0.002 + currentVelocity * 0.01;
     particlesMesh.rotation.z += 0.001 + currentVelocity * 0.01;
@@ -435,11 +428,12 @@
     const pScale = 1.0 + currentVelocity * 0.4;
     particlesMesh.scale.set(pScale, pScale, pScale);
     
-    // 色の連動
-    particlesMaterial.color.setHSL((time * 0.05) % 1, 0.9, 0.5);
+    // 色の連動（ここもクリックで少し明るくしても良いが、シンプルに時間変化のみにするか、
+    // あるいはパーティクルだけ輝かせても良い。ここではシンプルに時間変化＋クリック時は少し明るく）
+    particlesMaterial.color.setHSL((time * 0.05) % 1, 0.9, 0.5 + currentVelocity * 0.02);
 
     /* --- カメラワーク --- */
-    // マウス位置によるパララックス（視差効果）のみ残す
+    // マウス位置によるパララックス（視差効果）
     const camX = mouseX * 3.0;
     const camY = mouseY * 1.5 + scrollRatio * 5.0;
     
@@ -463,7 +457,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 })();
-</script>    
+</script>
   
   </main>
 </div>
